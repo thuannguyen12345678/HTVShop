@@ -16,9 +16,16 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->date('day_of_birth');
+            $table->string('address');
+            $table->string('avatar');
+            $table->string('phone');
+            $table->string('gender');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
