@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->integer('order_total_price');
+            $table->foreignId('customer_id')->constrained('customers');
             $table->softDeletes();
             $table->timestamps();
         });
