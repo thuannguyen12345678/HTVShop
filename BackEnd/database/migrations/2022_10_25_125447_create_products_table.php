@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('amount');
             $table->integer('price');
             $table->longText('description');
-            $table->boolean('status');
+            $table->tinyInteger('status')->default('0')->comment('0=Hide, 1=Show');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('brand_id')->constrained('brands');
             $table->timestamps();
