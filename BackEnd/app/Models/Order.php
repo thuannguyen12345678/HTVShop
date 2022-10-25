@@ -10,9 +10,9 @@ class Order extends Model
     use HasFactory;
     protected $table = 'orders';
     function customer(){
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Customer::class);
     }
     function order_detail(){
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(OrderDetail::class);
     }
 }
