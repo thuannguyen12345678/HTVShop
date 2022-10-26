@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Store;
+namespace App\Http\Requests\Update;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class UpdateImageProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,16 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'product_id' => 'required',
+            'image' => 'required',
         ];
-        
+
     }
     public function messages()
     {
         return [
-            'name.required' => 'Trường bắt buộc',
+            'product_id.required' => 'Trường bắt buộc',
+            'image.required' => 'Trường bắt buộc',
         ];
     }
 }
