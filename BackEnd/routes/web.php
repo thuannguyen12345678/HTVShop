@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +34,23 @@ Route::delete('orders/trash/force-delete/{id}', [OrderController::class, 'forceD
 Route::get('searchOrders', [OrderController::class, 'searchByName'])->name('order.searchKey');
 Route::get('searchOrders', [OrderController::class, 'searchOrder'])->name('order.search');
 
+//danh mục:
+Route::prefix('categories')->group(function () {
+    Route::get('/trash', [CategoryController::class, 'trashedItems'])->name('categories.trash');
+    Route::put('/force_destroy/{id}', [CategoryController::class, 'force_destroy'])->name('categories.force_destroy');
+    Route::put('/restore/{id}', [CategoryController::class, 'restore'])->name('categories.restore');
+    Route::get('categories/showStatus/{id}', [CategoryController::class, 'showStatus'])->name('categories.showStatus');
+    Route::get('categories/hideStatus/{id}', [CategoryController::class,'hideStatus'])->name('categories.hideStatus');
+});
+Route::resource('categories',CategoryController::class);
+
+//Nhãn hiệu:
+
+Route::prefix('brands')->group(function () {
+    Route::get('/trash', [BrandController::class, 'trashedItems'])->name('brands.trash');
+    Route::put('/force_destroy/{id}', [BrandController::class, 'force_destroy'])->name('brands.force_destroy');
+    Route::put('/restore/{id}', [BrandController::class, 'restore'])->name('brands.restore');
+    Route::get('search_brand', [BrandController::class, 'searchByName'])->name('brand.searchKey');
+    Route::get('searchBrand', [BrandController::class, 'searchBrand'])->name('brand.search');
+});
+Route::resource('brands',BrandController::class);
