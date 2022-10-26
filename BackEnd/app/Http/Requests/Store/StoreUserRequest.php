@@ -45,7 +45,7 @@ class StoreUserRequest extends FormRequest
         'day_of_birth.required' => 'Trường bắt buộc',
         'avatar.required' => 'Trường bắt buộc',
         'group_id.required' => 'Trường bắt buộc',
-        'email.unique' => 'Email đã bị trùng',
+        'email.unique' => 'Email đã tồn tại',
         'email.email' => 'Email không đúng định dạng',
     ];
     }

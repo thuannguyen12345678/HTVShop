@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Update;
+namespace App\Http\Requests\Store;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BrandRequest extends FormRequest
+class StoreGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,17 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'image' => 'required',
+          'name' => 'required|unique::groups',
+          'description'=>'required'
         ];
-        
     }
     public function messages()
     {
-        return [
-            'name.required' => 'Trường bắt buộc',
-            'image.required' => 'Trường bắt buộc',
-        ];
+    return [
+        'name.required' => 'Trường bắt buộc',
+        'description.required' => 'Trường bắt buộc',
+        'name.unique' => 'tên đã tồn tại',
+
+    ];
     }
 }
