@@ -136,7 +136,7 @@ class CategoryController extends Controller
     {
 
         try {
-            $categories = $this->categoryService->force_destroy($id);
+            $this->categoryService->force_destroy($id);
             Session::flash('success', 'Xóa thành công!');
             return redirect()->route('categories.trash');
         } catch (\Exception $e) {

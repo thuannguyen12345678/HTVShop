@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
-
     function getModel()
     {
         return Category::class;
@@ -37,7 +36,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         }
         //Phân trang
         return $query->where('deleted_at', '=', null)->paginate(5);
-        
     }
     public function update($id, $data)
     {
