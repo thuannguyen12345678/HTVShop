@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\Brand\BrandRepository;
+use App\Repositories\Brand\BrandRepositoryInterface;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Services\Brand\BrandService;
+use App\Services\Brand\BrandServiceInterface;
 use App\Services\Category\CategoryService;
 use App\Services\Category\CategoryServiceInterface;
 use Illuminate\Pagination\Paginator;
@@ -21,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
         // register category
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
+        // register brand
+        $this->app->singleton(BrandRepositoryInterface::class, BrandRepository::class);
+        $this->app->singleton(BrandServiceInterface::class, BrandService::class);
     }
 
     /**
