@@ -29,11 +29,21 @@
       <link rel="stylesheet" href="{{asset('themeAdmin/css/perfect-scrollbar.css')}}" />
       <!-- custom css -->
       <link rel="stylesheet" href="{{asset('themeAdmin/css/custom.css')}}" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+      
+      
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      
+      
       <![endif]-->
-   </head>
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      
    <body class="dashboard dashboard_1">
       <div class="full_container">
          <div class="inner_container">
@@ -54,6 +64,7 @@
          </div>
       </div>
       <!-- jQuery -->
+      <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
       <script src="{{asset('themeAdmin/js/jquery.min.js')}}"></script>
       <script src="{{asset('themeAdmin/js/popper.min.js')}}"></script>
       <script src="{{asset('themeAdmin/js/bootstrap.min.js')}}"></script>
@@ -76,5 +87,25 @@
       <!-- custom js -->
       <script src="{{asset('themeAdmin/js/custom.js')}}"></script>
       <script src="{{asset('themeAdmin/js/chart_custom_style1.js')}}"></script>
+
+      <script>
+         @if (Session::has('message'))
+             var type = "{{ Session::get('alert-type', 'info') }}"
+             switch (type) {
+                 case 'info':
+                     toastr.info(" {{ Session::get('message') }} ");
+                     break;
+                 case 'success':
+                     toastr.success(" {{ Session::get('message') }} ");
+                     break;
+                 case 'warning':
+                     toastr.warning(" {{ Session::get('message') }} ");
+                     break;
+                 case 'error':
+                     toastr.error(" {{ Session::get('message') }} ");
+                     break;
+             }
+         @endif
+     </script>
    </body>
 </html>
