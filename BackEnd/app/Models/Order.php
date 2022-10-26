@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $table = 'orders';
+    protected $guarded = [];
     function customer(){
-        return $this->hasMany(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
     function order_detail(){
-        return $this->belongsTo(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class);
     }
 }

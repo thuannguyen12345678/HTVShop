@@ -10,15 +10,15 @@ class Customer extends Model
     use HasFactory;
     protected $table = 'customers';
     function order(){
-        return $this->belongsTo(Order::class);
+        return $this->hasMany(Order::class);
     }
     function province(){
-        return $this->hasMany(Province::class);
+        return $this->belongsTo(Province::class);
     }
     function district(){
-        return $this->hasMany(District::class);
+        return $this->belongsTo(District::class);
     }
     function ward(){
-        return $this->hasMany(Ward::class);
+        return $this->belongsTo(Ward::class);
     }
 }
