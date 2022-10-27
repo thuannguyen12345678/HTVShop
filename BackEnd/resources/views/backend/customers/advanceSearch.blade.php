@@ -28,7 +28,7 @@
                             </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{ route('customer.index') }}" class="btn btn-dark ">Đặt lại</a>
+                    <a href="{{ route('customers.index') }}" class="btn btn-dark ">Đặt lại</a>
                     <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
                 </div>
             </div>

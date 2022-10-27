@@ -10,7 +10,7 @@
                 </ol>
             </nav>
             <div class="d-md-flex align-items-md-start">
-                <h1 class="page-title mr-sm-auto">Danh mục sản phẩm</h1>
+                <h1 class="page-title mr-sm-auto">Danh sách người đặt hàng</h1>
                 <div class="btn-toolbar">
                     <div class="input-group-prepend">
                             {{-- @include('backend.category.advanceSearch') --}}
@@ -76,7 +76,7 @@
                                         <td class="align-middle"> {{ $order->phone }} </td>
                                         <td>
                                                 {{-- @can('Show_order', 'Show_order') --}}
-                                                <a href="{{ route('order.show', $order->id) }}" class="btn btn-primary sm ">
+                                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary sm ">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
                                                 {{-- @endcan --}}
