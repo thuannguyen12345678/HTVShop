@@ -76,7 +76,7 @@
                                         <td class="align-middle"> {{ $order->phone }} </td>
                                         <td>
                                                 {{-- @can('Show_order', 'Show_order') --}}
-                                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary sm ">
+                                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
                                                 {{-- @endcan --}}

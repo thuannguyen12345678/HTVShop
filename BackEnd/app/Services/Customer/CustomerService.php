@@ -20,6 +20,10 @@ class CustomerService extends BaseService implements CustomerServiceInterface {
         return $this->repository->getTrash();
 
     }
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
+    }
     public function restore($id)
     {
         return $this->repository->restore($id);

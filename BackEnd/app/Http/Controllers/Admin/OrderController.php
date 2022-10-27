@@ -62,7 +62,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = $this->orderService->find($id);
-        $orderDetails = $order->oderDetails;
+        $orderDetails = $order->orderDetails;
         $params = [
             'order' => $order,
             'orderDetails' => $orderDetails,

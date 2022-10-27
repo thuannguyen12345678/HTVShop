@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
 {
@@ -61,63 +62,45 @@ class CustomerController extends Controller
         //     abort(403);
         // }
     }
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        // if (Gate::denies('Edit_Customer', 'Edit_Customer')) {
-        //     abort(403);
-        // }
         try {
-            DB::beginTransaction();
-            $id = $request->id;
-            $customer = $this->customerService->find($id);
-            $customer->delete();
-            DB::commit();
-            $messages = 'Deleted successfully.' . $customer->name;
-            return response()->json([
-                'messages' => $messages,
-                'status' => 1
-            ], 200);
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::error('messages' . $e->getMessage() . '.Line________' . $e->getLine() . ' .File ' . $e->getFile());
-            $messages = 'Deleted errors!!!please try again.';
-            return response()->json([
-                'messages' => $messages,
-                'status' => 0
-            ], 500);
+            $category = $this->customerService->delete($id);
+            // dd(1);
+            Session::flash('success', 'Đưa vào thùng rác thành công!');
+            return redirect()->route('customers.index');
+        } catch (\Exception $e) {
+            Log::error('message:' . $e->getMessage());
+            Session::flash('error', 'Đưa vào thùng rác không thành công!');
+            return redirect()->route('customers.index');
         }
     }
+
     public function getTrash()
     {
+        $customers = $this->customerService->getTrash();
+        return view('backend.customers.softDelete', compact('customers'));
         try {
-            $customers = $this->customerService->getTrash();
-            $params = ['customers' => $customers];
-            return view('backend.customers.softDelete', $params);
         } catch (Exception $e) {
             Log::error('errors' . $e->getMessage() . 'getLine' . $e->getLine());
             abort(403);
         }
     }
-    public function restore(Request $request)
+    public function restore(Request $request,$id)
     {
         try {
             DB::beginTransaction();
-            $id = $request->id;
             $this->customerService->restore($id);
             DB::commit();
-            $messages = 'Restore successfully.';
-            return response()->json([
-                'messages' => $messages,
-                'status' => 1
-            ], 200);
+            $messages = 'Khôi phục thành công ';
+            Session::flash('success',$messages );
+            return redirect()->route('customers.index');
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('messages' . $e->getMessage() . 'line________' . $e->getLine() . 'file ' . $e->getFile());
-            $messages = 'Deleted errors!!!please try again.';
-            return response()->json([
-                'messages' => $messages,
-                'status' => 0
-            ], 500);
+            $messages = 'Khôi phục không thành công ';
+            Session::flash('error',$messages );
+            return redirect()->route('customers.index');
         }
     }
     public function forceDelete(Request $request)

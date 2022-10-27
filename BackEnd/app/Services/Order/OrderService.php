@@ -12,9 +12,9 @@ class OrderService extends BaseService implements OrderServiceInterface{
     {
         $this->repository = $orderRepositoryInterface;
     }
-    function getAllWithPaginateLatest($request){
-        return $this->repository->getAllWithPaginateLatest($request);
-    }
+    // function getAllWithPaginateLatest($request){
+    //     return $this->repository->getAllWithPaginateLatest($request);
+    // }
     function updateSingle($id){
         return $this->repository->updateSingle($id);
     }

@@ -4,6 +4,7 @@ namespace App\Repositories\Customer;
 use App\Models\Customer;
 use App\Repositories\BaseRepository;
 use App\Repositories\Customer\CustomerRepositoryInterface;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 class CustomerRepository extends BaseRepository implements CustomerRepositoryInterface
@@ -56,7 +57,22 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
     }
     public function getTrash()
     {
-        return  $this->model->onlyTrashed()->paginate(8);
+        $query=  $this->model->onlyTrashed();
+        $query ->orderBy('id', 'asc');
+        $customer = $query->paginate(8);
+        return $customer;
+    }
+    public function delete($id)
+    {
+        $customer = $this->model->findOrFail($id);
+        try {
+            $customer->delete();
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+        return $customer;
     }
     public function restore($id){
         return  $this->model->withTrashed()->where('id', $id)->restore();
