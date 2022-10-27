@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +51,6 @@ Route::prefix('categories')->group(function () {
 Route::resource('categories',CategoryController::class);
 
 //Nhãn hiệu:
-
 Route::prefix('brands')->group(function () {
     Route::get('/trash', [BrandController::class, 'trashedItems'])->name('brands.trash');
     Route::put('/force_destroy/{id}', [BrandController::class, 'force_destroy'])->name('brands.force_destroy');
@@ -59,3 +59,15 @@ Route::prefix('brands')->group(function () {
     Route::get('searchBrand', [BrandController::class, 'searchBrand'])->name('brand.search');
 });
 Route::resource('brands',BrandController::class);
+
+
+//Sản phẩm:
+Route::prefix('products')->group(function () {
+    Route::get('/trash', [ProductController::class, 'trashedItems'])->name('products.trash');
+    Route::put('/force_destroy/{id}', [ProductController::class, 'force_destroy'])->name('products.force_destroy');
+    Route::put('/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
+    Route::get('products/showStatus/{id}', [ProductController::class, 'showStatus'])->name('products.showStatus');
+    Route::get('products/hideStatus/{id}', [ProductController::class,'hideStatus'])->name('products.hideStatus');
+});
+Route::resource('products',ProductController::class);
+

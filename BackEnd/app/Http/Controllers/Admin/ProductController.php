@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
+use App\Services\Product\ProductServiceInterface;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,9 +16,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    private $productService;
+    public function __construct(ProductServiceInterface $productService){
+        $this->productService = $productService;
+    }
+    public function index(Request $request)
     {
-        //
+        $products = $this->productService->all($request);
+        $categories = Category::all();
+        $brands = Brand::all();
+        $params = [
+            'products' => $products,
+            'categories' => $categories,
+            'brands' => $brands,
+        ];
+        return view('backend.products.index', $params);
     }
 
     /**
@@ -81,5 +97,22 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function showStatus($id){
+
+        $product = Product::findOrFail($id);
+        $product->status = '1';
+        if ($product->save()) {
+            return redirect()->back();
+        }
+    }
+    public function hideStatus($id){
+
+        $product = Product::findOrFail($id);
+        $product->status = '0';
+        if ($product->save()) {
+            return redirect()->back();
+        }
     }
 }
