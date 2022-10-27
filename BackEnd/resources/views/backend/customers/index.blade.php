@@ -5,7 +5,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">
-                        <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
+                        <a href=""><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
                     </li>
                 </ol>
             </nav>
@@ -16,7 +16,7 @@
                     <div class="input-group-prepend">
                         <button class="btn btn-secondary" type="button" data-toggle="modal"
                             data-target="#searchModal" >Tìm nâng cao</button>
-                            @include('backend.customers.advanceSearch');
+                            @include('backend.customers.advanceSearch')
                     </div>
                     <div class="md-5 title_cate d-flex">
                         <div class="form-outline">
@@ -77,7 +77,7 @@
                                         <td class="align-middle"> {{ $customer->email }} </td>
                                         <td>
                                             {{-- @can('Show_Customer', 'Show_Customer') --}}
-                                            <a href="{{ route('customer.show', $customer->id) }}"
+                                            <a href="{{ route('customers.show', $customer->id) }}"
                                                 class="btn btn-primary sm ">
                                                 <i class="bi bi-eye"></i>
                                             </a>
