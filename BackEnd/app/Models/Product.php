@@ -14,7 +14,7 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
-    public function oderDetails(){
+    public function orderDetails(){
         return $this->hasMany(OrderDetail::class, 'product_id','id');
     }
     public function image_products(){

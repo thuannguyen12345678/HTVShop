@@ -5,12 +5,12 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">
-                        <a href=""><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
+                        <a href="{{ route('customers.index') }}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Quay Lại</a>
                     </li>
                 </ol>
             </nav>
             <div class="d-md-flex align-items-md-start">
-                <h1 class="page-title mr-sm-auto">Danh sách khách hàng</h1>
+                <h1 class="page-title mr-sm-auto">Danh sách khách hàng đã xóa</h1>
                 <div class="btn-toolbar">
                     {{-- @can('create', App\Models\customer::class) --}}
                     <div class="input-group-prepend">
@@ -36,14 +36,16 @@
         <div class="page-section">
             <div class="card card-fluid">
                 <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('customers.index') }}">Tất Cả</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ route('customer.trash') }}">Thùng Rác</a>
-                        </li>
-                    </ul>
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{ route('customers.index') }}">Tất Cả</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('customer.trash') }}">Thùng Rác</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -54,18 +56,12 @@
                             </form>
                         </div>
                     </div><br>
-                    @if (Session::has('success'))
-                        <p class="text-success">
-                        <div class="alert alert-success"><i class="fa fa-check" aria-hidden="true"></i>
-                            {{ Session::get('success') }}</div>
-                        </p>
-                    @endif
-                    @if (Session::has('error'))
+                    {{-- @if (!count($customers))
                         <p class="text-danger">
-                        <div class="alert alert-danger"> <i class="bi bi-x-circle"></i>
+                        <div class="alert alert-danger"> <i class="bi bi-x-circle"></i> Không tìm thấy kết quả
                             {{ Session::get('error') }}</div>
                         </p>
-                    @endif
+                    @endif  --}}
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -81,21 +77,32 @@
                                 @foreach ($customers as $customer)
                                     <tr>
                                         <td class="align-middle"> {{ $customer->id }} </td>
-                                        <td class="align-middle"> {{ $customer->name }}</td>
+                                        <td class="align-middle">
+                                            {{ $customer->name }}
+                                        </td>
                                         <td class="align-middle"> {{ $customer->phone }} </td>
                                         <td class="align-middle"> {{ $customer->email }} </td>
                                         <td>
-                                            <form action="{{ route('customers.destroy', $customer->id) }}"
-                                                style="display:inline" method="post">
-                                                <a href="{{ route('customers.show', $customer->id) }}" class="btn btn-primary">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                                <button onclick="return confirm('Xóa khách hàng {{ $customer->name }} ?')"
-                                                    type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                                {{-- @endcan --}}
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <form action="{{ route('customer.restore', $customer->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary"
+                                                            onclick="return confirm('Bạn muốn khôi phục khách hàng {{ $customer->name }}?')">
+                                                            <i class="bi bi-arrow-counterclockwise"> </i></button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-2">
+                                                    <form action="{{ route('customer.forceDelete', $customer->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('Bạn chắc chắn muốn xóa khách hàng {{ $customer->name }}?')"><i
+                                                                class="bi bi-trash3"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
