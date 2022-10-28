@@ -4,7 +4,11 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+
+use App\Http\Controllers\Admin\UserController;
+
 use App\Http\Controllers\Admin\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('backend.master');
 });
+
 
 //Customer
 Route::prefix('customers')->group(function () {
@@ -40,7 +45,6 @@ Route::prefix('orders')->group(function () {
 });
 Route::resource('orders', OrderController::class);
 
-//danh mục:
 Route::prefix('categories')->group(function () {
     Route::get('/trash', [CategoryController::class, 'trashedItems'])->name('categories.trash');
     Route::put('/force_destroy/{id}', [CategoryController::class, 'force_destroy'])->name('categories.force_destroy');
@@ -49,6 +53,19 @@ Route::prefix('categories')->group(function () {
     Route::get('categories/hideStatus/{id}', [CategoryController::class,'hideStatus'])->name('categories.hideStatus');
 });
 Route::resource('categories',CategoryController::class);
+
+Route::prefix('users')->middleware(['auth', 'PreventBackHistory'])->group(function () {
+    Route::put('softDeletes/{id}',[UserController::class,'softDeletes'])->name('users.softDeletes');
+    Route::get('trash',[UserController::class,'trash'])->name('users.trash');
+    Route::put('restore/{id}',[UserController::class, 'restore'])->name('users.restore');
+});
+Route::resource('users',UserController::class)->middleware(['auth', 'PreventBackHistory']);
+Route::prefix('login')->group(function (){
+    route::get('/',[UserController::class,'login'])->name('login');
+    route::post('loginprocessing',[UserController::class,'loginProcessing'])->name('login.processing');
+    route::get('logout',[UserController::class,'logout'])->name('login.logout');
+});
+
 
 //Nhãn hiệu:
 Route::prefix('brands')->group(function () {
@@ -70,4 +87,5 @@ Route::prefix('products')->group(function () {
     Route::get('products/hideStatus/{id}', [ProductController::class,'hideStatus'])->name('products.hideStatus');
 });
 Route::resource('products',ProductController::class);
+
 

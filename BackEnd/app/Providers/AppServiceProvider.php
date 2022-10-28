@@ -14,6 +14,14 @@ use App\Repositories\Brand\BrandRepository;
 use App\Repositories\Brand\BrandRepositoryInterface;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
+
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryInterface;
+use App\Services\Category\CategoryService;
+use App\Services\Category\CategoryServiceInterface;
+use App\Services\User\UserService;
+use App\Services\User\UserServiceInterface;
+
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Services\Brand\BrandService;
@@ -22,6 +30,7 @@ use App\Services\Category\CategoryService;
 use App\Services\Category\CategoryServiceInterface;
 use App\Services\Product\ProductService;
 use App\Services\Product\ProductServiceInterface;
+
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -43,12 +52,17 @@ class AppServiceProvider extends ServiceProvider
         // register category
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
+
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(UserServiceInterface::class, UserService::class);
+
         // register brand
         $this->app->singleton(BrandRepositoryInterface::class, BrandRepository::class);
         $this->app->singleton(BrandServiceInterface::class, BrandService::class);
           // register product
           $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
           $this->app->bind(ProductServiceInterface::class, ProductService::class);
+
     }
 
     /**
