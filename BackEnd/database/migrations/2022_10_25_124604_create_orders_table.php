@@ -16,10 +16,14 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('note');
+            $table->string('name_customer');
             $table->string('address');
             $table->string('phone');
             $table->integer('order_total_price');
             $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('province_id')->constrained('provinces');
+            $table->foreignId('district_id')->constrained('districts');
+            $table->foreignId('ward_id')->constrained('wards');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -35,15 +35,6 @@
                                     <b> {{ $customers->email }}</b>
                                 </span>
                             </div>
-                            <div class="mb-3">
-                                <span class="me-3">Địa Chỉ :
-                                    <b>
-                                        {{ $customers->province->name }},
-                                        {{ $customers->district->name }},
-                                        {{ $customers->ward->name }},
-                                    </b>
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>

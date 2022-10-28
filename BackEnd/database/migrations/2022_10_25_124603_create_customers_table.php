@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('password');
-            $table->foreignId('province_id')->constrained('provinces');
-            $table->foreignId('district_id')->constrained('districts');
-            $table->foreignId('ward_id')->constrained('wards');
             $table->softDeletes();
             $table->timestamps();
         });
