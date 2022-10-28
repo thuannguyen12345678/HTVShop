@@ -17,8 +17,6 @@ use App\Repositories\Category\CategoryRepositoryInterface;
 
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\Category\CategoryService;
-use App\Services\Category\CategoryServiceInterface;
 use App\Services\User\UserService;
 use App\Services\User\UserServiceInterface;
 
