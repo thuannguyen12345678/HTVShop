@@ -73,7 +73,6 @@
                                     <th> # </th>
                                     <th> Tên khách hàng </th>
                                     <th> Số điện thoại </th>
-                                    <th> Email </th>
                                     <th> Thao tác </th>
                                 </tr>
                             </thead>
@@ -83,7 +82,6 @@
                                         <td class="align-middle"> {{ $customer->id }} </td>
                                         <td class="align-middle"> {{ $customer->name }}</td>
                                         <td class="align-middle"> {{ $customer->phone }} </td>
-                                        <td class="align-middle"> {{ $customer->email }} </td>
                                         <td>
                                             <form action="{{ route('customers.destroy', $customer->id) }}"
                                                 style="display:inline" method="post">

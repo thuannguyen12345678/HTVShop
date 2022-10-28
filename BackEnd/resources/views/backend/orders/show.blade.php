@@ -26,8 +26,7 @@
                         <div class="card-body">
                             <div class="mb-3 d-flex justify-content-between">
                                 <div>
-                                    <span class="me-3">Created At: {{ $order->created_at }}</span><br>
-                                    <span class="me-3">Updated At: {{ $order->updated_at }}</span>
+                                    <span class="me-3">Ngày Tạo Đơn: {{ $order->created_at }}</span><br>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -61,10 +60,13 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ $orderDetail->product_quantity }}</td>
-                                            <td class="text-end">{{ number_format($orderDetail->product_price) }}</td>
+                                            {{-- <td>
+                                                <img style="witdh:50px;height:50px" src="{{asset( $orderDetail->products->image )}}" alt="">
+                                            </td> --}}
+                                            <td>{{ $orderDetail->product_quantity }} chiếc</td>
+                                            <td class="text-end">{{ number_format($orderDetail->product_price) }} đ</td>
                                             <td class="text-end">
-                                                {{ number_format($orderDetail->product_price * $orderDetail->product_quantity) }}
+                                                {{ number_format($orderDetail->product_price * $orderDetail->product_quantity) }} đ
                                             </td>
                                             @php
                                                 $totalPriceOrder += $orderDetail->product_price * $orderDetail->product_quantity;
@@ -78,7 +80,7 @@
                                             <p>Tổng tiền hóa đơn : </p>
                                         </td>
                                         <td class="text-end">
-                                            <h4><strong>{{ number_format($order->order_total_price) }} đ</strong></h4>
+                                            <h4><strong>{{ number_format($totalPriceOrder) }} đ</strong></h4>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -91,17 +93,17 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h3 class="h6">PHƯƠNG THỨC THANH TOÁN</h3>
-                                    <p>Visa -1234 <br>
-                                        Tổng : $169,98 <span class="badge bg-success rounded-pill">Trả</span></p>
+                                    <p>Thanh Toán Khi Nhận Hàng <br>
+                                        Tổng Thanh Toán <b>{{number_format($totalPriceOrder) }}</b> đ</p>
                                 </div>
                                 <div class="col-lg-6">
                                     <h3 class="h6">Địa chỉ thanh toán</h3>
                                     <address>
                                         <div>
                                             <strong>
-                                                {{ $order->customer->province->name }},
-                                                {{ $order->customer->district->name }},
-                                                {{ $order->customer->ward->name }},
+                                                {{ $order->province->name }},
+                                                {{ $order->district->name }},
+                                                {{ $order->ward->name }}
                                             </strong>
                                         </div>
                                 </div>
@@ -113,8 +115,12 @@
                     <!-- Customer Notes -->
                     <div class="card mb-4">
                         <div class="card-body">
-                            <b class="h5">Ghi Chú</b><br><br>
+                            <b class="h5">Ghi Chú :</b><br><br>
                             <b>{{ $order->note }}</b>
+                        </div>
+                        <div class="card-body">
+                            <b class="h5"> Người Nhận :</b><br><br>
+                            <b>{{ $order->name_customer }}</b>
                         </div>
                     </div>
                     <div class="card mb-4">
@@ -127,9 +133,9 @@
                             <hr>
                             <h3 class="h6">Địa chỉ</h3>
                             <address>
-                                <strong>John Doe</strong><br>
-                                1355 Market St, Suite 900<br>
-                                San Francisco, CA 94103<br>
+                                <strong>CodeGym</strong><br>
+                                133 Lý Thường Kiệt<br>
+                                Thành Phố Đông Hà<br>
                                 <abbr title="Phone">P:</abbr> (123) 456-7890
                             </address>
                         </div>

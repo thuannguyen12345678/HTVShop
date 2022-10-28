@@ -21,20 +21,14 @@ class CustomerSeeder extends Seeder
                 'avatar'=>'',
                 'phone'=>'+84327227222',
                 'email'=>'vinh@gmail.com',
-                'password'=>'123',
-                'province_id'=>1,
-                'district_id'=>1,
-                'ward_id'=>1,
+                'password'=>bcrypt('123'),
             ],
             [
                 'name'=>'Thuần',
                 'avatar'=>'',
                 'phone'=>'+84327227223',
                 'email'=>'thuan@gmail.com',
-                'password'=>'1234',
-                'province_id'=>2,
-                'district_id'=>2,
-                'ward_id'=>2,
+                'password'=>bcrypt('1234'),
             ],
             ]
         );

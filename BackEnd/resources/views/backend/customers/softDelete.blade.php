@@ -69,7 +69,6 @@
                                     <th> # </th>
                                     <th> Tên khách hàng </th>
                                     <th> Số điện thoại </th>
-                                    <th> Email </th>
                                     <th> Thao tác </th>
                                 </tr>
                             </thead>
@@ -81,7 +80,6 @@
                                             {{ $customer->name }}
                                         </td>
                                         <td class="align-middle"> {{ $customer->phone }} </td>
-                                        <td class="align-middle"> {{ $customer->email }} </td>
                                         <td>
                                             <div class="row">
                                                 <div class="col-2">
