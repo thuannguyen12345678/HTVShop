@@ -23,6 +23,7 @@ class ProductSeeder extends Seeder
                 'price' => '14000000',
                 'description' => 'camera có khả năng chụp ảnh vượt trội, thời lượng pin cực dài ',
                 'brand_id' => '1',
+                'image' => '',
                 'status' => '0',
             ],
         ]);

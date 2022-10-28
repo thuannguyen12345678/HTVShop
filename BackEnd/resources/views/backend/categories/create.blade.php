@@ -20,15 +20,17 @@
                     <div class="card-body">
                         <legend>Thông tin cơ bản</legend>
                         <div class="row">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label for="tf1">Tên danh mục<abbr name="Trường bắt buộc">*</abbr></label> <input
-                                        name="name" type="text" class="form-control" value="{{ old('name') }}"
+                                        name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                         placeholder="Nhập tên danh mục">
                                     <small id="" class="form-text text-muted"></small>
                                     @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('name') }}</p>
+                                        <p style="color:red">*{{ $errors->first('name') }}</p>
                                     @endif
                                 </div>
+                            </div>
                                
                         <div class="form-actions">
                             <a class="btn btn-secondary float-right" href="{{ route('categories.index') }}">Hủy</a>

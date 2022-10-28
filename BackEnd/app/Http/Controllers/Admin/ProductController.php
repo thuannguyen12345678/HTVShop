@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Store\StoreProductRequest;
+use App\Http\Requests\Update\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\Product\ProductServiceInterface;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -40,7 +45,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $brands = Brand::all();
+        $params = [
+            'categories' => $categories,
+            'brands' => $brands,
+        ];
+
+        return view('backend.products.create', $params);
     }
 
     /**
@@ -49,9 +61,18 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        try {
+            // dd(123);
+            $this->productService->create($request);
+            Session::flash('success', 'Tạo mới thành công');
+            //tao moi xong quay ve trang danh sach task
+            return redirect()->route('products.index');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('products.index')->with('error', 'Tạo mới không thành công');
+        }
     }
 
     /**
@@ -62,7 +83,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = $this->productService->find($id);
+        return view('backend.products.show',compact('products'));
     }
 
     /**
@@ -73,7 +95,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = $this->productService->find($id);
+        $categories = Category::get();
+        $brands = Brand::get();
+        $params = [
+            'categories' => $categories,
+            'brands' => $brands,
+            'products' => $products,
+        ];
+
+        return view('backend.products.edit', $params);
     }
 
     /**
@@ -83,10 +114,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        //
-    }
+        
+        try {
+            // $brands->save();
+            $products = $this->productService->update($id, $request->all());
+
+            //dung session de dua ra thong bao
+            Session::flash('success', 'Cập nhật thành công');
+            //tao moi xong quay ve trang danh sach product
+            return redirect()->route('products.index');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('products.index')->with('error', 'cập nhật không thành công');
+        }
+}
 
     /**
      * Remove the specified resource from storage.
@@ -96,22 +139,63 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->productService->delete($id);
+            // dd(1);
+            Session::flash('success', 'Đưa vào thùng rác thành công!');
+            return redirect()->route('products.index');
+        } catch (\Exception $e) {
+            Log::error('message:' . $e->getMessage());
+            Session::flash('error', 'Đưa vào thùng rác không thành công!');
+            return redirect()->route('products.index');
+        }
+    }
+    public function trashedItems(Request $request)
+    {
+        $products = $this->productService->trashedItems();
+        return view('backend.products.trash', compact('products'));
+    }
+    public function force_destroy($id)
+    {
+
+        try {
+            $this->productService->force_destroy($id);
+            Session::flash('success', 'Xóa thành công!');
+            return redirect()->route('products.trash');
+        } catch (\Exception $e) {
+            Log::error('message:' . $e->getMessage());
+            Session::flash('error', 'Xóa không thành công!');
+            return redirect()->route('products.trash');
+        }
+    }
+
+    public function restore($id)
+    {
+
+        try {
+            $this->productService->restore($id);
+            Session::flash('success', 'Khôi phục thành công!');
+            return redirect()->route('products.trash');
+        } catch (\Exception $e) {
+            Log::error('message:' . $e->getMessage());
+            Session::flash('error', 'Khôi phục không thành công!');
+            return redirect()->route('products.trash');
+        }
     }
     
     public function showStatus($id){
 
-        $product = Product::findOrFail($id);
-        $product->status = '1';
-        if ($product->save()) {
+        $products = Product::findOrFail($id);
+        $products->status = '1';
+        if ($products->save()) {
             return redirect()->back();
         }
     }
     public function hideStatus($id){
 
-        $product = Product::findOrFail($id);
-        $product->status = '0';
-        if ($product->save()) {
+        $products = Product::findOrFail($id);
+        $products->status = '0';
+        if ($products->save()) {
             return redirect()->back();
         }
     }

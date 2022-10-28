@@ -12,11 +12,6 @@
             <div class="d-md-flex align-items-md-start">
                 <h1 class="page-title mr-sm-auto">Danh mục sản phẩm</h1>
                 <div class="btn-toolbar">
-
-
-                    {{-- @can('create', App\Models\category::class) --}}
-
-
                     <div class="input-group-prepend">
                         <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#searchModal">Tìm
                             nâng cao</button>
@@ -28,7 +23,6 @@
                             <form action="">
                                 <input type="search" value="" name="key" id="form1" class="form-control"
                                     placeholder="search..." />
-
                         </div>
                         <button type="submit" class="btn btn-primary  waves-effect waves-light ">
                             <i class="fas fa-search"></i>
@@ -64,7 +58,6 @@
                                         <i class="fa-solid fa fa-plus"></i>
                                         <span class="ml-1">Thêm Mới</span>
                                     </a>
-                                    {{-- @include('backend.category.modals.modalFilterColumns') --}}
                             </form>
                         </div>
                     </div><br>
@@ -151,8 +144,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $categories->onEachSide(5)->links() }}
+                        <div style="float:right">
 
+                            {{ $categories->onEachSide(5)->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

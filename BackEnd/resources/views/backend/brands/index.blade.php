@@ -117,8 +117,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div style="float:right">
                     {{ $brands->onEachSide(5)->links() }}
-
+                </div>
                 </div>
             </div>
         </div>

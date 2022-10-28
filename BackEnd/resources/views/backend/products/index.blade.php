@@ -18,21 +18,22 @@
 
 
                     <div class="input-group-prepend">
-                        <button class="btn btn-secondary" type="button" data-toggle="modal"
-                            data-target="#modalFilterColumns">Tìm nâng cao</button>
+                        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#searchModal">Tìm
+                            nâng cao</button>
+                        @include('backend.products.advanceSearch')
                     </div>
 
                     <div class="md-5 title_cate d-flex">
                         <div class="form-outline">
                             <form action="">
-                                <input type="search" value="" name="key" id="form1"
-                                    class="form-control" placeholder="search..." />
+                                <input type="search" value="" name="key" id="form1" class="form-control"
+                                    placeholder="search..." />
 
-                                </div>
-                                <button type="submit" class="btn btn-primary  waves-effect waves-light ">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </form>
+                        </div>
+                        <button type="submit" class="btn btn-primary  waves-effect waves-light ">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        </form>
                     </div>
                     {{-- @endcan --}}
 
@@ -87,14 +88,14 @@
                         </p>
                     @endif
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" style="text-align: center">
                             <thead>
                                 <tr>
                                     <th> # </th>
+                                    <th> Ảnh </th>
                                     <th> Tên Sản phẩm </th>
                                     <th> Số lượng </th>
                                     <th> Gía </th>
-                                    <th> Mô Tả </th>
                                     <th> Trạng thái</th>
                                     <th> Thao tác</th>
                                 </tr>
@@ -103,30 +104,29 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td class="align-middle"> {{ $product->id }} </td>
-                                        {{-- <td>
-                                            <img style="width:100px; height:70px" src="{{ asset($product->logo) }}">
-                                        </td> --}}
-
+                                        <td>
+                                            <img style="width:100px; height:70px" src="{{ asset($product->image) }}">
+                                        </td>
                                         <td class="align-middle"> {{ $product->name }} </td>
                                         <td class="align-middle"> {{ $product->amount }} </td>
                                         <td class="align-middle"> {{ $product->price }} </td>
-                                        <td class="align-middle"> {{ $product->description }} </td>
                                         <td>
                                             @if ($product->status == 1)
                                                 <a href="{{ route('products.hideStatus', $product->id) }}">
-                                                    <i class=" fas fa-chevron-circle-down text-success"></i>
+                                                    <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
                                                 </a>
                                             @else
                                                 <a href="{{ route('products.showStatus', $product->id) }}">
-                                                    <i class=" far fa-times-circle text-danger"></i>
+                                                    <i class="bi bi-eye-slash-fill h3" style="color:red"></i>
                                                 </a>
                                             @endif
                                         </td>
-
                                         <td>
                                             <form action="{{ route('products.destroy', $product->id) }}"
                                                 style="display:inline" method="post">
                                                 {{-- @can('update', App\Models\product::class) --}}
+                                                <a href="{{ route('products.show', $product->id) }}"
+                                                    class="btn btn-sm btn-icon btn-secondary"><i class="bi bi-eye"></i></a>
                                                 <a href="{{ route('products.edit', $product->id) }}"
                                                     class="btn btn-sm btn-icon btn-secondary"><i
                                                         class="fa fa-pencil-alt"></i></a>
@@ -144,9 +144,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $products->onEachSide(5)->links() }}
-                        
                     </div>
+                </div>
+                <div  style="float:right">
+                    {{ $products->onEachSide(5)->links() }}
                 </div>
             </div>
         </div>

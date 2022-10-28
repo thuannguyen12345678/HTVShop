@@ -10,6 +10,10 @@ class Product extends Model
 {
     use HasFactory,SoftDeletes;
     protected $table = 'products';
+    protected $guarded = [];
+    protected $fillable = [
+        'name', 'price', 'quantity', 'category_id', 'brand_id', 'image', 'status', 'description'
+    ];
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -18,10 +22,50 @@ class Product extends Model
         return $this->hasMany(OrderDetail::class, 'product_id','id');
     }
     public function image_products(){
-        return $this->hasMany(ImageProducts::class, 'product_id','id');
+        return $this->hasMany(ImageProduct::class, 'product_id','id');
     }
     public function categories()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function scopeSearch($query, $term)
+    {
+        if ($term) {
+            $query->where('name', 'like', '%' . $term . '%')
+                ->orWhere('price', 'like', '%' . $term . '%')
+                ->orWhere('amount', 'like', '%' . $term . '%')
+                ->orWhere('status', 'like', '%' . $term . '%');
+        }
+        return $query;
+    }
+    public function scopeNameCate($query, $request)
+    {
+        if ($request->has('category_id')) {
+            return $query->whereHas('category', function ($query) use ($request) {
+                $query->where('category_id', $request->category_id);
+            });
+        }
+    }
+    public function scopeFilterPrice($query, array $filters)
+    {
+        if (isset($filters['startPrice']) && isset($filters['endPrice'])) {
+            $query->whereBetween('price', [$filters['startPrice'], $filters['endPrice']]);
+        }
+        return $query;
+    }
+    public function scopefilterDate($query, array $date_to_date)
+    {
+        if (isset($date_to_date['start_date']) && isset($date_to_date['end_date'])) {
+            $query->whereBetween('created_at', [$date_to_date['start_date'], $date_to_date['end_date']]);
+        }
+        return $query;
+    }
+    public function scopeStatus($query, $request)
+    {
+        if ($request->has('status')) {
+            $query->where('status', $request->status);
+        };
+        return $query;
     }
 }

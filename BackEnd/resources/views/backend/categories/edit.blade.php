@@ -26,10 +26,10 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="tf1">Tên danh mục</label> <input type="text" name="name"
-                                        value="{{ $categories->name }}" class="form-control">
+                                        value="{{ $categories->name }}" class="form-control @error('name') border border-danger @enderror">
                                     <small class="form-text text-muted"></small>
                                     @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('name') }}</p>
+                                        <p style="color:red">*{{ $errors->first('name') }}</p>
                                     @endif
                                 </div>
                             </div>

@@ -30,6 +30,7 @@ class StoreProductRequest extends FormRequest
             'price' => 'required|numeric',
             'description' => 'required',
             'brand_id' => 'required',
+            'image' => 'required',
         ];
 
     }
@@ -44,6 +45,7 @@ class StoreProductRequest extends FormRequest
             'price.numeric' => 'Bắt buộc nhập số',
             'description.required' => 'Trường bắt buộc',
             'brand_id.required' => 'Trường bắt buộc',
+            'image.required' => 'Trường bắt buộc',
         ];
     }
 }
