@@ -12,35 +12,28 @@
             <div class="d-md-flex align-items-md-start">
                 <h1 class="page-title mr-sm-auto">Danh mục sản phẩm</h1>
                 <div class="btn-toolbar">
-
-
                     {{-- @can('create', App\Models\category::class) --}}
-
-
                     <div class="input-group-prepend">
-                        <button class="btn btn-secondary" type="button" data-toggle="modal"
-                            data-target="#searchModal">Tìm nâng cao</button>
-                            @include('backend.categories.advanceSearch')
+                        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#searchModal">Tìm
+                            nâng cao</button>
+                        @include('backend.categories.advanceSearch')
                     </div>
 
                     <div class="md-5 title_cate d-flex">
                         <div class="form-outline">
                             <form action="">
-                                <input type="search" value="" name="key" id="form1"
-                                    class="form-control" placeholder="search..." />
+                                <input type="search" value="" name="key" id="form1" class="form-control"
+                                    placeholder="search..." />
 
-                                </div>
-                                <button type="submit" class="btn btn-primary  waves-effect waves-light ">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </form>
+                        </div>
+                        <button type="submit" class="btn btn-primary  waves-effect waves-light ">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        </form>
                     </div>
                     {{-- @endcan --}}
-
                 </div>
-
             </div>
-
         </header>
         <div class="page-section">
             <div class="card card-fluid">
@@ -64,11 +57,9 @@
                                         <i class="fa-solid fa fa-plus"></i>
                                         <span class="ml-1">Thêm Mới</span>
                                     </a>
-                                    {{-- @include('backend.category.modals.modalFilterColumns') --}}
                             </form>
                         </div>
                     </div><br>
-
                     @if (Session::has('success'))
                         <p class="text-success">
                         <div class="alert alert-success"><i class="fa fa-check" aria-hidden="true"></i>
@@ -105,7 +96,7 @@
                                         <td class="align-middle"> {{ $category->name }} </td>
                                         <td>
                                             @if ($category->status == 1)
-                                                <a href="{{ route('categories.hideStatus', $category->id)}}">
+                                                <a href="{{ route('categories.hideStatus', $category->id) }}">
                                                     <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
                                                 </a>
                                             @else
@@ -120,11 +111,13 @@
                                                 style="display:inline" method="post">
                                                 {{-- @can('update', App\Models\category::class) --}}
                                                 <a href="{{ route('categories.edit', $category->id) }}"
-                                                    class="btn btn-sm btn-icon btn-secondary"><i class="bi bi-pencil-square"></i></a>
+                                                    class="btn btn-sm btn-icon btn-secondary"><i
+                                                        class="bi bi-pencil-square"></i></a>
                                                 {{-- @endcan --}}
                                                 {{-- @can('forceDelete', App\Models\category::class) --}}
                                                 <button onclick="return confirm('Xóa {{ $category->name }} ?')"
-                                                    type="submit" class="btn btn-sm btn-icon btn-secondary"><i class="bi bi-trash"></i></button>
+                                                    type="submit" class="btn btn-sm btn-icon btn-secondary"><i
+                                                        class="bi bi-trash"></i></button>
                                                 {{-- @endcan --}}
                                                 @csrf
                                                 @method('DELETE')
@@ -134,8 +127,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $categories->onEachSide(5)->links() }}
-                        
+                        <div style="float:right">
+                            {{ $categories->onEachSide(5)->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

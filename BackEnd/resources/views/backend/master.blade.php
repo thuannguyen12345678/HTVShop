@@ -93,6 +93,13 @@
     <script src="{{ asset('themeAdmin/js/custom.js') }}"></script>
     <script src="{{ asset('themeAdmin/js/chart_custom_style1.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script> --}}
+    <script src="{{ asset('AdminTheme/ckeditor/ckeditor.js') }}"></script> <!-- END THEME JS -->
+    <script src="{{ asset('assets/js/uploadFile.js') }}"></script>
+    <script>
+        CKEDITOR.replace('ckeditor');
+        CKEDITOR.replace('ckeditor1');
+    </script>
 
     <script>
         @if (Session::has('message'))
@@ -128,6 +135,7 @@
             });
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

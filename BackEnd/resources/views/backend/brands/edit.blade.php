@@ -25,10 +25,10 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="tf1">Tên Nhãn hiệu</label> <input type="text" name="name"
-                                        value="{{ $brand->name }}" class="form-control">
+                                        value="{{ $brand->name }} @error('name') is-invalid @enderror" class="form-control">
                                     <small class="form-text text-muted"></small>
                                     @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('name') }}</p>
+                                        <p style="color:red">*{{ $errors->first('name') }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                 <img type="hidden" width="90px" height="90px" id="blah1"
                                     src="{{ asset($brand->image) }}" alt="" />
                                 @if ($errors->any())
-                                    <p style="color:red">{{ $errors->first('image') }}</p>
+                                    <p style="color:red">*{{ $errors->first('image') }}</p>
                                 @endif
                             </div>
                         </div>

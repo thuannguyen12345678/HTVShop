@@ -10,6 +10,9 @@ class ImageProduct extends Model
 {
     use HasFactory,SoftDeletes;
     protected $table = 'image_products';
+    protected $fillable = [
+        'product_id','file_name'
+    ];
     public function products(){
         return $this->belongsTo(Product::class);
     }

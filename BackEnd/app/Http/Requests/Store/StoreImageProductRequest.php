@@ -25,7 +25,7 @@ class StoreImageProductRequest extends FormRequest
     {
         return [
             'product_id' => 'required',
-            'image' => 'required',
+            'file_name' => 'required',
         ];
 
     }
@@ -33,7 +33,7 @@ class StoreImageProductRequest extends FormRequest
     {
         return [
             'product_id.required' => 'Trường bắt buộc',
-            'image.required' => 'Trường bắt buộc',
+            'file_name.required' => 'Trường bắt buộc',
         ];
     }
 }

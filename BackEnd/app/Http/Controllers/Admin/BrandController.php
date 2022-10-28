@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Store\StoreBrandRequest;
+use App\Http\Requests\Update\UpdateBrandRequest;
 use App\Models\Brand;
 use App\Services\Brand\BrandServiceInterface;
 use Exception;
@@ -52,7 +54,7 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBrandRequest $request)
     {
         // $brands = new Brand();
         // $brands->name = $request->name;
@@ -69,7 +71,7 @@ class BrandController extends Controller
 
         try {
             // $brands->save();
-            $brands = $this->brandService->create($request->all());
+             $this->brandService->create($request->all());
             Session::flash('success', 'Tạo mới thành công');
             //tao moi xong quay ve trang danh sach task
             return redirect()->route('brands.index');
@@ -112,7 +114,7 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBrandRequest $request, $id)
     {
         try {
             // $brands->save();
@@ -164,26 +166,7 @@ class BrandController extends Controller
             Session::flash('error', 'Xóa không thành công!');
             return redirect()->route('brands.trash');
         }
-        // try {
-        //     DB::beginTransaction();
-        //     $id = $request->id;
-        //     $this->brandService->force_destroy($id);
-        //     DB::commit();
-        //     return redirect()->route('brands.trash');
-        //     $messages = 'Force delete successfully!!';
-        //     return response()->json([
-        //         'messages' => $messages,
-        //         'status' => 1
-        //     ], 200);
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     Log::error('messages' . $e->getMessage() . 'line________' . $e->getLine() . 'file ' . $e->getFile());
-        //     $messages = 'Force Deleted errors!!!please try again.';
-        //     return response()->json([
-        //         'messages' => $messages,
-        //         'status' => 0
-        //     ], 200);
-        // }
+       
     }
 
     public function restore($id)

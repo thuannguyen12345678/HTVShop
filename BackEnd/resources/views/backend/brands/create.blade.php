@@ -25,11 +25,11 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="tf1">Tên nhãn hiệu<abbr name="Trường bắt buộc">*</abbr></label> <input
-                                        name="name" type="text" class="form-control" value="{{ old('name') }}"
+                                        name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                         placeholder="Nhập tên vị trí">
                                     <small id="" class="form-text text-muted"></small>
                                     @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('name') }}</p>
+                                        <p style="color:red">*{{ $errors->first('name') }}</p>
                                     @endif
                                 </div>
                             </div>

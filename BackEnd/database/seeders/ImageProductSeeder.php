@@ -18,7 +18,7 @@ class ImageProductSeeder extends Seeder
         DB::table('image_products')->insert([
             [
                 'product_id' => '1',
-                'image' => '',
+                'file_name' => '',
             ],
         ]);
     }
