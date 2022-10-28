@@ -18,16 +18,16 @@ class OrderSeeder extends Seeder
         DB::table('orders')->insert([
             [
                 'note' => 'iphone',
-                'address' => '',
+                'address' => 'Đông Hà',
                 'phone' => '+84323323322',
-                'order_total_price' => 1,
+                'order_total_price' => 1300000,
                 'customer_id' => 1
             ],
             [
                 'note' => 'samsung',
-                'address' => '',
+                'address' => 'Quảng Trị',
                 'phone' => '+84323323333',
-                'order_total_price' => 2,
+                'order_total_price' => 1300000,
                 'customer_id' => 2
             ]
         ]);

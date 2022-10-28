@@ -18,7 +18,8 @@
             <div class="card">
                 <div class="card-body">
                     <legend>Thông tin cơ bản</legend>
-                    <form action="{{ route('categories.update', $categories->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('categories.update', $categories->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -32,10 +33,10 @@
                                     @endif
                                 </div>
                             </div>
-                        <div class="form-actions">
-                            <a class="btn btn-secondary float-right" href="{{ route('categories.index') }}">Hủy</a>
-                            <button class="btn btn-primary ml-auto" type="submit">Lưu</button>
-                        </div>
+                            <div class="form-actions">
+                                <a class="btn btn-secondary float-right" href="{{ route('categories.index') }}">Hủy</a>
+                                <button class="btn btn-primary ml-auto" type="submit">Lưu</button>
+                            </div>
                     </form>
                 </div>
             </div>

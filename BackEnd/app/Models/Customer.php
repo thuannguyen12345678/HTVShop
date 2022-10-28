@@ -4,21 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $table = 'customers';
     function order(){
-        return $this->belongsTo(Order::class);
+        return $this->hasMany(Order::class);
     }
     function province(){
-        return $this->hasMany(Province::class);
+        return $this->belongsTo(Province::class);
     }
     function district(){
-        return $this->hasMany(District::class);
+        return $this->belongsTo(District::class);
     }
     function ward(){
-        return $this->hasMany(Ward::class);
+        return $this->belongsTo(Ward::class);
     }
 }
