@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Banner\BannerRepository;
+use App\Repositories\Banner\BannerRepositoryInterface;
 use App\Repositories\Customer\CustomerRepository;
 use App\Repositories\Customer\CustomerRepositoryInterface;
 use App\Repositories\Order\OrderRepository;
@@ -22,6 +24,8 @@ use App\Services\User\UserServiceInterface;
 
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
+use App\Services\Banner\BannerService;
+use App\Services\Banner\BannerServiceInterface;
 use App\Services\Brand\BrandService;
 use App\Services\Brand\BrandServiceInterface;
 use App\Services\Category\CategoryService;
@@ -60,7 +64,9 @@ class AppServiceProvider extends ServiceProvider
           // register product
           $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
           $this->app->bind(ProductServiceInterface::class, ProductService::class);
-
+        //Banner
+        $this->app->bind(BannerRepositoryInterface::class, BannerRepository::class);
+        $this->app->bind(BannerServiceInterface::class, BannerService::class);
     }
 
     /**

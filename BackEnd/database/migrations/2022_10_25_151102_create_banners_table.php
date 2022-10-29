@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('url');
-            $table->boolean('status');
+            $table->tinyInteger('status')->default('0')->comment('0=Hide, 1=Show');
             $table->softDeletes();
             $table->timestamps();
         });

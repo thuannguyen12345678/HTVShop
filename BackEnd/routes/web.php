@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,4 +88,12 @@ Route::prefix('products')->group(function () {
 });
 Route::resource('products',ProductController::class);
 
+//Banner
+Route::controller(BannerController::class)->group(function () {
+    Route::post('banner/updatestatus/{id}/{status?}', 'updateStatus')->name('banner.updatestatus');
+    Route::delete('banner/destroy/{id}', 'destroy')->name('banner.destroy');
+    Route::get('banner/showStatus/{id}',  'showStatus')->name('banner.showStatus');
+    Route::get('banner/hideStatus/{id}', 'hideStatus')->name('banner.hideStatus');
+});
+Route::resource('banners', BannerController::class);
 
