@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Store\StoreUserRequest;
+use App\Http\Requests\Update\UpdateUserRequest;
+use App\Models\Group;
 use App\Models\User;
+use App\Services\Group\GroupServiceInterface;
 use App\Services\User\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +20,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $userService;
-    public function __construct(UserServiceInterface $UserService)
-    {
+    private $GroupService;
+    public function __construct(UserServiceInterface $UserService, GroupServiceInterface $GroupService)
+    {  $this->GroupService = $GroupService;
         $this->userService = $UserService;
     }
     public function index(Request $request)
@@ -30,10 +35,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-
-      return view('backend.users.add');
+      $groups = Group::all();
+      return view('backend.users.add',compact('groups'));
     }
 
     /**
@@ -42,7 +47,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $data = $request->all();
         if($this->userService->create($data)){
@@ -74,7 +79,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $users = $this->userService->find($id);
-        return view('backend.users.edit', compact('users'));
+        $groups = Group::all();
+        return view('backend.users.edit', compact('users','groups'));
     }
 
     /**
@@ -84,7 +90,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         // $user = User::find($id);
         // dd($id);

@@ -14,7 +14,8 @@ use App\Repositories\Brand\BrandRepository;
 use App\Repositories\Brand\BrandRepositoryInterface;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
-
+use App\Repositories\Group\GroupRepository;
+use App\Repositories\Group\GroupRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Services\User\UserService;
@@ -26,6 +27,8 @@ use App\Services\Brand\BrandService;
 use App\Services\Brand\BrandServiceInterface;
 use App\Services\Category\CategoryService;
 use App\Services\Category\CategoryServiceInterface;
+use App\Services\Group\GroupService;
+use App\Services\Group\GroupServiceInterface;
 use App\Services\Product\ProductService;
 use App\Services\Product\ProductServiceInterface;
 
@@ -60,6 +63,9 @@ class AppServiceProvider extends ServiceProvider
           // register product
           $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
           $this->app->bind(ProductServiceInterface::class, ProductService::class);
+
+        $this->app->bind(GroupRepositoryInterface::class, GroupRepository::class);
+        $this->app->bind(GroupServiceInterface::class, GroupService::class);
 
     }
 
