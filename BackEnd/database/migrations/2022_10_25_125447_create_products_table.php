@@ -23,6 +23,8 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('brand_id')->constrained('brands');
             $table->timestamps();
+            $table->string('color');
+
         });
     }
 

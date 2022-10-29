@@ -78,7 +78,7 @@
                     </p>
                 @endif
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" style="text-align: center">
                         <thead>
                             <tr>
                                 <th> # </th>
@@ -91,11 +91,11 @@
                             @foreach ($brands as $brand)
                                 <tr>
                                     <td class="align-middle"> {{ $brand->id }} </td>
-                                    <td>
-                                        <img style="width:100px; height:70px" src="{{ asset($brand->image) }}">
-                                    </td>
-
+                                    
                                     <td class="align-middle"> {{ $brand->name }} </td>
+                                    <td>
+                                        <img style="width:300px; height:100px" src="{{ asset($brand->image) }}">
+                                    </td>
                                     <td>
                                         <form action="{{ route('brands.destroy', $brand->id) }}" style="display:inline"
                                             method="post">
