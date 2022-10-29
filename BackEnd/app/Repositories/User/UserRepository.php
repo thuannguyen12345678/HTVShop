@@ -52,14 +52,13 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
     public function update($id, $data)
     {
-
         $user = User::find($id);
         $user->name = $data['name'];
         $user->address = $data['address'];
         $user->gender = $data['gender'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
-        $user->group_id = $user->group_id;
+        $user->group_id = $data['group_id'];
         $user->day_of_birth = $data['day_of_birth'];
         $user->phone = $data['phone'];
         // dd($data['avatar']);
@@ -81,7 +80,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
     public function create($data)
     {
-
         $user = $this->model;
         $user->name = $data['name'];
         $user->address = $data['address'];

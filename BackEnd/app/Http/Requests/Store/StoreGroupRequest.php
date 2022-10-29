@@ -24,7 +24,7 @@ class StoreGroupRequest extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'required|unique::groups',
+          'name' => 'required',
           'description'=>'required'
         ];
     }
@@ -33,8 +33,6 @@ class StoreGroupRequest extends FormRequest
     return [
         'name.required' => 'Trường bắt buộc',
         'description.required' => 'Trường bắt buộc',
-        'name.unique' => 'tên đã tồn tại',
-
     ];
     }
 }

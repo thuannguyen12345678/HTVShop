@@ -77,12 +77,9 @@
                                 id=""class="form-control @error('group_id') is-invalid @enderror"
                                 data-toggle="flatpickr">
                                 <option value="">Chọn Nhóm</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="2">3</option>
-                                {{-- @foreach ($groups as $group)
+                                @foreach ($groups as $group)
                                     <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                         @if ($errors->any())
