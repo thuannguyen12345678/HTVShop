@@ -59,11 +59,17 @@
 
                         <div class="col">
                             <form action="" method="GET" id="form-search">
-                                <div class="input-group input-group-alt">
+                                <div>
                                     <a href="{{ route('products.create') }}" class="btn btn-primary mr-2">
                                         <i class="fa-solid fa fa-plus"></i>
                                         <span class="ml-1">Thêm Mới</span>
                                     </a>
+                                    <a style="float: right" href="{{ route('export-products') }}" class="btn btn-primary">
+                                        <i class="fas fa-file"></i>
+                                        <span class="ml-1">Xuất file excel</span>
+                                    </a>
+                                </div>
+
                                     {{-- @include('backend.products.modals.modalFilterColumns') --}}
                             </form>
                         </div>
@@ -146,7 +152,7 @@
                         </table>
                     </div>
                 </div>
-                <div  style="float:right">
+                <div style="float:right">
                     {{ $products->onEachSide(5)->links() }}
                 </div>
             </div>
