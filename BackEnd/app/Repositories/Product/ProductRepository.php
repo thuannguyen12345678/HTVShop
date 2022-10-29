@@ -28,6 +28,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $price      = $request->price ?? '';
         $category_id      = $request->category_id ?? '';
         $brand_id      = $request->brand_id ?? '';
+        $status      = $request->status ?? '';
         $id         = $request->id ?? '';
 
         // $categories = Category::all();
@@ -51,6 +52,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         if ($brand_id) {
             $query->where('brand_id', 'LIKE', '%' . $brand_id . '%')->where('deleted_at', '=', null);
         }
+        if ($status) {
+            $query->where('status', 'LIKE', '%' . $status . '%')->where('deleted_at', '=', null);
+        }
         if ($id) {
             $query->where('id', $id)->where('deleted_at', '=', null);
         }
@@ -59,9 +63,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             $query->orWhere('name', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
             $query->orWhere('amount', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
             $query->orWhere('category_id', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-            $query->orWhere('brand_id', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
             $query->orWhere('price', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
+            $query->orWhere('brand_id', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
         }
+        $query->status($request);
         return $query->where('deleted_at', '=', null)->paginate(5);
     }
     public function create($data)
@@ -73,6 +78,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             $products->name = $data['name'];
             $products->price = $data['price'];
             $products->amount = $data['amount'];
+            $products->color = $data['color'];
             $products->category_id = $data['category_id'];
             $products->brand_id = $data['brand_id'];
             $products->description = $data['description'];
@@ -119,12 +125,14 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             $products->name = $data['name'];
             $products->price = $data['price'];
             $products->amount = $data['amount'];
+            $products->color = $data['color'];
             $products->category_id = $data['category_id'];
             $products->brand_id = $data['brand_id'];
             $products->description = $data['description'];
-            $products->image = $data['image'];
+            // $products->image = $data['image'];
+            // dd($data);
             // $products->created_by = Auth::user()->id;
-            if (!empty($data['image'])) {
+            if (isset($data['image'])) {
                 $file = $data['image'];
                 $filenameWithExt = $file->getClientOriginalName();
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

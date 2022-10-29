@@ -20,7 +20,7 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
-                            <div class="row" style="text-align: center">
+                            <div class="row" >
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label class="control-label" for="flatpickr01">Tên Sản phẩm</label> <input
@@ -35,7 +35,7 @@
                                     <div class="form-group">
                                         <label class="control-label" for="flatpickr01">Số lượng</label> <input
                                             id="flatpickr01" type="text" class="form-control @error('price') is-invalid @enderror"
-                                            value="{{ old('name') ?? $products->amount }}" name="amount" data-toggle="flatpickr">
+                                            value="{{ old('amount') ?? $products->amount }}" name="amount" data-toggle="flatpickr">
                                     </div>
                                     @if ($errors->any())
                                         <p style="color:red">*{{ $errors->first('amount') }}</p>
@@ -58,6 +58,17 @@
                                 @if ($errors->any())
                                     <p style="color:red">*{{ $errors->first('description') }}</p>
                                 @endif
+                                <div class="col-lg-12">
+                                    <div class="mb-2">
+                                        <p><b>Màu sắc:</b></p>
+                                        <input <?=$products->color =="Đen" ? 'checked' : ''?> type="radio" id="html"  name="color" value="{{ old('color') ?? $products->color }}" style="color:black" >
+                                        <label for="html">Đen </label><br>
+                                        <input <?=$products->color =="Trắng" ? 'checked' : ''?> type="radio" id="css"  name="color" value="{{ old('color') ?? $products->color }}" style="color:white"  >
+                                        <label  for="css">Trắng</label><br>
+                                        <input <?=$products->color =="Vàng" ? 'checked' : ''?> type="radio" id="css"  name="color" value="{{ old('color') ?? $products->color }}" style="color:yellow"  >
+                                        <label for="css">Vàng</label><br>
+                                    </div>
+                                </div>
                                 <div class="col-6">
                                     <div class="form-select" aria-label="Default select example">
                                         <label class="control-label" for="flatpickr01">Danh mục</label>
@@ -71,6 +82,7 @@
                                         <p style="color:red">{{ $errors->first('category_id') }}</p>
                                     @endif
                                 </div>
+
                                 <div class="col-6">
                                     <div class="form-select" aria-label="Default select example">
                                         <label class="control-label" for="flatpickr01">Nhãn hiệu</label>

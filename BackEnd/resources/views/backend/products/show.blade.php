@@ -6,16 +6,16 @@
             Back</a>
         <div class="row g-0">
             <div class="col-md-6 border-end">
-                <div class="d-flex flex-column justify-content-center">
-                    <div class="main_image"> <img src="{{ asset($products->image) }}" id="main_product_image" width="350">
-                    </div>
+                <div style="text-align: center" class="d-flex flex-column justify-content-center">
+                    <div  class="main_image"> <img src="{{ asset($products->image) }}" id="main_product_image" height="350px" width="450">
+                    </div> <br>
                     <div class="thumbnail_images">
                         <ul id="thumbnail">
                             <li>
-                                {{-- @foreach ($products->file_names as $file_name)
-                                    <img onclick="changeImage(this)" src="{{ asset($file_name->file_name) }}"
-                                        width="110px">
-                                @endforeach --}}
+                                @foreach ($products->image_products as $file_name)
+                                    <img  onclick="changeImage(this)" src="{{ asset($file_name->file_name) }}"
+                                       height="100px" width="90px">
+                                @endforeach
                             </li>
                         </ul>
                     </div>
@@ -44,12 +44,19 @@
                     </div><br>
 
                     <div >
-                        <span class="line-through"><b>Số lượng :</b> {{$products->amount}} cái</span>
+                        <span class="line-through"><h4><b>Số lượng :</b> {{$products->amount}} cái </h4></span>
+                    </div><br>
+                    <div >
+                        <span class="line-through"><h4><b>Giá :</b> {{ number_format( $products->price)}} vnđ </h4></span>
+                    </div><br>
+
+                    <div >
+                        <span class="line-through"><h4><b>Màu :</b> {{  $products->color}}  </h4></span>
                     </div><br>
                     {{-- <span>3 Reviews</span> --}}
                     <div class="products-price-discount">   
                         <span
-                            class="line-through"><b>Tổng tiền: </b>{{ number_format($products->amount * $products->price)  }} vnđ</span>
+                            class="line-through"><h3><b>Tổng tiền: </b>{{ number_format($products->amount * $products->price)  }} vnđ </h3></span>
                     </div>
                     <div class="ratings d-flex flex-row align-items-center">
                         <div class="d-flex flex-row">

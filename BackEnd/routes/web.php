@@ -85,6 +85,7 @@ Route::prefix('products')->group(function () {
     Route::put('/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
     Route::get('products/showStatus/{id}', [ProductController::class, 'showStatus'])->name('products.showStatus');
     Route::get('products/hideStatus/{id}', [ProductController::class,'hideStatus'])->name('products.hideStatus');
+    Route::get('/export-products', [ProductController::class, 'exportProducts'])->name('export-products');
 });
 Route::resource('products',ProductController::class);
 

@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="tf1"><b>Gía</b><abbr name="Trường bắt buộc">*</abbr></label> <input
+                                    <label for="tf1"><b>Giá</b><abbr name="Trường bắt buộc">*</abbr></label> <input
                                         name="price" type="text" style="resize: none" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}"
                                         placeholder="Nhập Gía">
                                     @if ($errors->any())
@@ -59,6 +59,19 @@
                                     <p style="color:red">*{{ $errors->first('description') }}</p>
                                 @endif
                             </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="mb-2">
+                                    <p><b>Màu sắc:</b></p>
+                                    <input type="radio" id="html"  name="color" style="color:black" value="Đen">
+                                    <label for="html">Đen </label><br>
+                                    <input type="radio" id="css"  name="color" style="color:white"  value="Trắng">
+                                    <label for="css">Trắng</label><br>
+                                    <input type="radio" id="css"  name="color" style="color:yellow"  value="Vàng">
+                                    <label for="css">Vàng</label><br>
+                                </div>
+                            </div>
                             <div class="form-group col-lg-6">
                                 <label class="control-label" for="flatpickr01"><b>Danh mục</b><abbr
                                         name="Trường bắt buộc">*</abbr></label>
@@ -73,6 +86,8 @@
                                     <p style="color:red">*{{ $errors->first('category_id') }}</p>
                                 @enderror
                             </div>
+
+                    
                             <div class="form-group col-lg-6">
                                 <label class="control-label" for="flatpickr01"><b>Nhãn hiệu</b><abbr
                                         name="Trường bắt buộc">*</abbr></label>
