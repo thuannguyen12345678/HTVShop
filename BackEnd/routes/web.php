@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\ProductController;
@@ -87,5 +87,6 @@ Route::prefix('products')->group(function () {
     Route::get('products/hideStatus/{id}', [ProductController::class,'hideStatus'])->name('products.hideStatus');
 });
 Route::resource('products',ProductController::class);
+Route::resource('groups',GroupController::class);
 
 
