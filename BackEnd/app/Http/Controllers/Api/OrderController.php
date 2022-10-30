@@ -105,7 +105,7 @@ class OrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return response()->json(Order::with(['province', 'district', 'ward', 'oderDetails' => function ($query) {
+        return response()->json(Order::with(['province', 'district', 'ward', 'orderDetails' => function ($query) {
             return $query->with(['products']);
         }])->find($id));
     }
