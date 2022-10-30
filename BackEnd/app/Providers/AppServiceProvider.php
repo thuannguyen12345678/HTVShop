@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\Api\Brand\BrandApiRepository;
+use App\Repositories\api\Brand\BrandApiRepositoryInterface;
+use App\Repositories\Api\Product\FeProductRepository;
+use App\Repositories\Api\Product\FeProductRepositoryInterface;
 use App\Repositories\Banner\BannerRepository;
 use App\Repositories\Banner\BannerRepositoryInterface;
 use App\Repositories\Customer\CustomerRepository;
@@ -25,6 +29,10 @@ use App\Services\User\UserServiceInterface;
 
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
+use App\Services\Api\Brand\BrandApiService;
+use App\Services\Api\Brand\BrandApiServiceInterface;
+use App\Services\Api\Product\FeProductService;
+use App\Services\Api\Product\FeProductServiceInterface;
 use App\Services\Banner\BannerService;
 use App\Services\Banner\BannerServiceInterface;
 use App\Services\Brand\BrandService;
@@ -74,6 +82,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(GroupRepositoryInterface::class, GroupRepository::class);
         $this->app->bind(GroupServiceInterface::class, GroupService::class);
 
+
+    //frontend:
+        //brand
+        $this->app->bind(BrandApiRepositoryInterface::class, BrandApiRepository::class);
+        $this->app->bind(BrandApiServiceInterface::class, BrandApiService::class);
+        $this->app->bind(FeProductRepositoryInterface::class, FeProductRepository::class);
+        $this->app->bind(FeProductServiceInterface::class, FeProductService::class);
     }
 
     /**

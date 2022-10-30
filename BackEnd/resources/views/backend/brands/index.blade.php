@@ -83,8 +83,8 @@
                         <thead>
                             <tr>
                                 <th> # </th>
-                                <th> logo </th>
                                 <th> Tên Nhãn hiệu </th>
+                                <th> logo </th>
                                 <th> Thao tác</th>
                             </tr>
                         </thead>
