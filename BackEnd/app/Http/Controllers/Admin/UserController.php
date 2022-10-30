@@ -27,6 +27,7 @@ class UserController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('viewAny', User::class);
         return $this->userService->all($request);
     }
 
@@ -37,6 +38,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+      $this->authorize('create', User::class);
       $groups = Group::all();
       return view('backend.users.add',compact('groups'));
     }
@@ -78,6 +80,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+
+        $this->authorize('update', User::class);
         $users = $this->userService->find($id);
         $groups = Group::all();
         return view('backend.users.edit', compact('users','groups'));
@@ -109,9 +113,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete',User::class);
         return $this->userService->deletes($id);
     }
     function softDeletes($id){
+        $this->authorize('forceDelete', User::class);
         if($this->userService->SoftDeletes($id)){
             return redirect()->route('users.index')->with('success','xóa thành công');
             }
@@ -122,6 +128,7 @@ class UserController extends Controller
     }
     public function restore($id){
     //   return $this->userService->restore($id);
+    $this->authorize('restore', User::class);
       if($this->userService->restore($id)){
         return redirect()->route('users.trash')->with('success','khôi phục thành công');
         }

@@ -83,6 +83,7 @@
                                         <td>
                                             <div class="row">
                                                 <div class="col-2">
+                                                    @can('restore', App\Models\User::class)
                                                     <form action="{{ route('customer.restore', $customer->id) }}"
                                                         method="post">
                                                         @csrf
@@ -90,8 +91,10 @@
                                                             onclick="return confirm('Bạn muốn khôi phục khách hàng {{ $customer->name }}?')">
                                                             <i class="bi bi-arrow-counterclockwise"> </i></button>
                                                     </form>
+                                                   @endcan
                                                 </div>
                                                 <div class="col-2">
+                                                    @can('delete', App\Models\User::class)
                                                     <form action="{{ route('customer.forceDelete', $customer->id) }}"
                                                         method="post">
                                                         @csrf
@@ -99,6 +102,8 @@
                                                             onclick="return confirm('Bạn chắc chắn muốn xóa khách hàng {{ $customer->name }}?')"><i
                                                                 class="bi bi-trash3"></i></button>
                                                     </form>
+                                                   @endcan
+
                                                 </div>
                                             </div>
                                         </td>

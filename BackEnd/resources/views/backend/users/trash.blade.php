@@ -49,12 +49,7 @@
 
                     <div class="col">
                         <form action="" method="get" id="form-search">
-                            <div class="input-group input-group-alt">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary mr-2">
-                                    <i class="fa-solid fa fa-plus"></i>
-                                    <span class="ml-1">Thêm Mới</span>
-                                </a>
-
+                            <div class="input-group input-group-alt">   
                                 @include('backend.users.modal')
                         </form>
 
@@ -91,7 +86,7 @@
                                 <th> Tên Nhân Viên </th>
                                 <th> Chức Vụ </th>
                                 <th> Email </th>
-                                <th> Tùy Chọn </th>
+                                <th style="text-align:"> Tùy Chọn </th>
                             </tr>
                         </thead><!-- /thead -->
                         <tbody>
@@ -106,10 +101,10 @@
                                     <td>{{ $user->group->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <div class="container">
+                                        <div class="container"style="text-align: center">
                                             <div class="row">
-                                                <div class="col-2 mx-2">
-                                                    {{-- @can('restore', App\Models\User::class) --}}
+                                                <div class="col-2 mx-1">
+                                                    @can('restore', App\Models\User::class)
                                                     <form action="{{ route('users.restore', $user->id) }}"
                                                         method="post">
                                                         @csrf
@@ -118,10 +113,10 @@
                                                             <i class="fa fa-trash-restore"></i>
                                                         </button>
                                                     </form>
-                                                    {{-- @endcan --}}
+                                                    @endcan
                                                 </div>
                                                 <div class="col-2">
-                                                    {{-- @can('delete', App\Models\User::class) --}}
+                                                    @can('delete', App\Models\User::class)
                                                     <form action="{{ route('users.destroy', $user->id) }}"
                                                         method="post">
                                                         @csrf
@@ -130,7 +125,7 @@
                                                             onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i
                                                                 class="far fa-trash-alt"></i></button>
                                                     </form>
-                                                    {{-- @endcan --}}
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </div>

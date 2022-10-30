@@ -25,6 +25,7 @@ class CategoryController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Category::class);
         $categories = $this->categoryService->all($request);
         return view('backend.categories.index', compact('categories'));
     }
@@ -36,6 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Category::class);
         return view('backend.categories.create');
     }
 
@@ -79,6 +81,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Category::class);
         $categories = $this->categoryService->find($id);
         return view('backend.categories.edit', compact('categories'));
     }
@@ -114,7 +117,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-
+        $this->authorize('delete',Category::class);
         try {
             $category = $this->categoryService->delete($id);
             // dd(1);
@@ -134,7 +137,7 @@ class CategoryController extends Controller
     }
     public function force_destroy($id)
     {
-
+        $this->authorize('delete', Category::class);
         try {
             $this->categoryService->force_destroy($id);
             Session::flash('success', 'Xóa thành công!');
@@ -148,7 +151,7 @@ class CategoryController extends Controller
 
     public function restore($id)
     {
-
+        $this->authorize('restore', Category::class);
         try {
             $this->categoryService->restore($id);
             Session::flash('success', 'Khôi phục thành công!');
@@ -161,7 +164,7 @@ class CategoryController extends Controller
     }
     public function showStatus($id)
     {
-
+        $this->authorize('view', Category::class);
         $categories = Category::findOrFail($id);
         $categories->status = '1';
         if ($categories->save()) {

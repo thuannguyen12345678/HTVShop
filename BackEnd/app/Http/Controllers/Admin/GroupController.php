@@ -21,10 +21,12 @@ class GroupController extends Controller
     }
     function index(Request $request)
     {
+        $this->authorize('viewAny', Group::class);
         return $this->groupService->all($request);
     }
     function create()
     {
+        $this->authorize('create', Group::class);
         return view('backend.groups.add');
     }
     function store(StoreGroupRequest $request)
@@ -37,6 +39,7 @@ class GroupController extends Controller
     }
     function edit($id)
     {
+        $this->authorize('update', Group::class);
         $group = Group::find($id);
         $roles = Role::all()->toArray();
         $userRoles = $group->roles->pluck('id', 'name')->toArray();
@@ -73,6 +76,7 @@ class GroupController extends Controller
     }
     function destroy($id)
     {
+        $this->authorize('delete',Group::class);
         if ($this->groupService->delete($id)) {
             return redirect()->route('groups.index')->with('success', 'thêm mới thành công');
         }
