@@ -27,18 +27,17 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
+    public function login(Request $request){
+    	$validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        if (!$token = auth('api')->attempt($validator->validated())) {
+        if (! $token = auth()->attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -51,32 +50,24 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
-    {
+    public function register(Request $request) {
         $validator = Validator::make($request->all(), [
-
-            'email' => 'required|string|email|max:100|unique:customers',
-            'password' => 'required|string|confirmed|min:6',
-
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors()->toJson(),
-                'message' => 'Đăng kí thành công',
-                'status' => false,
-            ], 400);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
         }
         $data = array_merge(
             $validator->validated(),
             ['password' => bcrypt($request->password)]
         );
-        $customer = $this->customerService->create($data);
 
         return response()->json([
             'status' => true,
             'message' => 'Người dùng đăng kí thành công',
-            'customer' => $customer
+            'data' => $data
         ], 201);
     }
 
