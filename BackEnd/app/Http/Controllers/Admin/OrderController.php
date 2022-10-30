@@ -22,6 +22,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Order::class);
         // if (Gate::denies('List_Order', 'List_Order')) {
         //     abort(403);
         // }
@@ -39,7 +40,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -61,6 +62,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Order::class);
         $order = $this->orderService->find($id);
         $orderDetails = $order->orderDetails;
         $params = [
@@ -93,7 +95,7 @@ class OrderController extends Controller
         //
     }
 
-   
+
     /**
      * Remove the specified resource from storage.
      *

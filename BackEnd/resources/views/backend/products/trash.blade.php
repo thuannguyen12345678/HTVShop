@@ -56,7 +56,7 @@
                 <div class="card-body">
                     <div class="row">
 
-                       
+
                     </div><br>
 
                     @if (Session::has('success'))
@@ -117,7 +117,7 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        {{-- @can('restore', App\Models\Banner::class) --}}
+                                                        @can('restore', App\Models\Banner::class)
                                                         <form action="{{ route('products.restore', $product->id) }}"
                                                             method="post">
                                                             @csrf
@@ -126,10 +126,10 @@
                                                                 onclick="return confirm('Bạn muốn khôi phục?')">
                                                                 <i class="bi bi-arrow-counterclockwise"> </i></button>
                                                         </form>
-                                                        {{-- @endcan --}}
+                                                        @endcan
                                                     </div>
                                                     <div class="col-2">
-                                                        {{-- @can('delete', App\Models\product::class) --}}
+                                                        @can('delete', App\Models\product::class)
                                                         <form
                                                             action="{{ route('products.force_destroy', $product->id) }}"
                                                             method="post">
@@ -139,7 +139,7 @@
                                                                 onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i
                                                                     class="bi bi-trash3"></i></button>
                                                         </form>
-                                                        {{-- @endcan --}}
+                                                        @endcan
                                                     </div>
                                                 </div>
                                             </div>

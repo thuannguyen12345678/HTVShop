@@ -12,7 +12,7 @@
             <div class="d-md-flex align-items-md-start">
                 <h1 class="page-title mr-sm-auto">Danh mục sản phẩm</h1>
                 <div class="btn-toolbar">
-                    {{-- @can('create', App\Models\category::class) --}}
+
                     <div class="input-group-prepend">
                         <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#searchModal">Tìm
                             nâng cao</button>
@@ -31,7 +31,7 @@
                         </button>
                         </form>
                     </div>
-                    {{-- @endcan --}}
+
                 </div>
             </div>
         </header>
@@ -53,10 +53,12 @@
                         <div class="col">
                             <form action="" method="GET" id="form-search">
                                 <div class="input-group input-group-alt">
-                                    <a href="{{ route('categories.create') }}" class="btn btn-primary mr-2">
-                                        <i class="fa-solid fa fa-plus"></i>
-                                        <span class="ml-1">Thêm Mới</span>
-                                    </a>
+                                    @can('create', App\Models\category::class)
+                                        <a href="{{ route('categories.create') }}" class="btn btn-primary mr-2">
+                                            <i class="fa-solid fa fa-plus"></i>
+                                            <span class="ml-1">Thêm Mới</span>
+                                        </a>
+                                    @endcan
                             </form>
                         </div>
                     </div><br>
@@ -109,16 +111,16 @@
                                         <td>
                                             <form action="{{ route('categories.destroy', $category->id) }}"
                                                 style="display:inline" method="post">
-                                                {{-- @can('update', App\Models\category::class) --}}
+                                                @can('update', App\Models\category::class)
                                                 <a href="{{ route('categories.edit', $category->id) }}"
                                                     class="btn btn-sm btn-icon btn-secondary"><i
                                                         class="bi bi-pencil-square"></i></a>
-                                                {{-- @endcan --}}
-                                                {{-- @can('forceDelete', App\Models\category::class) --}}
+                                                @endcan
+                                                @can('forceDelete', App\Models\category::class)
                                                 <button onclick="return confirm('Xóa {{ $category->name }} ?')"
                                                     type="submit" class="btn btn-sm btn-icon btn-secondary"><i
                                                         class="bi bi-trash"></i></button>
-                                                {{-- @endcan --}}
+                                                @endcan
                                                 @csrf
                                                 @method('DELETE')
                                             </form>

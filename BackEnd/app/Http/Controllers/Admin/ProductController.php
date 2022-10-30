@@ -27,6 +27,7 @@ class ProductController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Product::class);
         $products = $this->productService->all($request);
         $categories = Category::all();
         $brands = Brand::all();
@@ -45,6 +46,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Product::class);
         $categories = Category::all();
         $brands = Brand::all();
         $params = [
@@ -83,6 +85,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Product::class);
         $products = $this->productService->find($id);
         return view('backend.products.show',compact('products'));
     }
@@ -95,6 +98,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Product::class);
         $products = $this->productService->find($id);
         $categories = Category::get();
         $brands = Brand::get();
@@ -116,7 +120,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
-        
+
         try {
             // $brands->save();
             $products = $this->productService->update($id, $request->all());
@@ -139,6 +143,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Product::class);
         try {
             $this->productService->delete($id);
             // dd(1);
@@ -158,6 +163,7 @@ class ProductController extends Controller
     public function force_destroy($id)
     {
 
+        $this->authorize('forceDelete', Product::class);
         try {
             $this->productService->force_destroy($id);
             Session::flash('success', 'Xóa thành công!');
@@ -172,6 +178,8 @@ class ProductController extends Controller
     public function restore($id)
     {
 
+        $this->authorize('restore', Product::class);
+
         try {
             $this->productService->restore($id);
             Session::flash('success', 'Khôi phục thành công!');
@@ -182,9 +190,8 @@ class ProductController extends Controller
             return redirect()->route('products.trash');
         }
     }
-    
-    public function showStatus($id){
 
+    public function showStatus($id){
         $products = Product::findOrFail($id);
         $products->status = '1';
         if ($products->save()) {
@@ -192,7 +199,6 @@ class ProductController extends Controller
         }
     }
     public function hideStatus($id){
-
         $products = Product::findOrFail($id);
         $products->status = '0';
         if ($products->save()) {

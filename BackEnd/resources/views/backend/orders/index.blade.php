@@ -75,11 +75,11 @@
                                         <td class="align-middle"> {{ $order->customer->name }} </td>
                                         <td class="align-middle"> {{ $order->phone }} </td>
                                         <td>
-                                                {{-- @can('Show_order', 'Show_order') --}}
+                                                @can('view', App\Models\Order::class)
                                                 <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
-                                                {{-- @endcan --}}
+                                                @endcan
                                         </td>
                                     </tr>
                                 @endforeach
