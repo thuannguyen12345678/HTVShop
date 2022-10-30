@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Customer extends Model
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class Customer extends Model implements JWTSubject
 {
     use HasFactory,SoftDeletes;
     protected $guarded = [];
@@ -22,5 +22,12 @@ class Customer extends Model
     }
     function ward(){
         return $this->belongsTo(Ward::class);
+    }
+
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims() {
+        return [];
     }
 }
