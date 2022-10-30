@@ -29,6 +29,7 @@ class BrandController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Brand::class);
         try {
             $brands = $this->brandService->all($request);
             return  view('backend.brands.index', compact('brands'));
@@ -45,6 +46,7 @@ class BrandController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Brand::class);
         return view('backend.brands.create');
     }
 
@@ -98,6 +100,7 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Brand::class);
         $brand = $this->brandService->find($id);
         $params = [
             'brand' => $brand
@@ -136,6 +139,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Brand::class);
+
         try {
             $this->brandService->delete($id);
             // dd(1);
@@ -155,6 +160,7 @@ class BrandController extends Controller
 
     public function force_destroy($id)
     {
+        $this->authorize('forceDelete', Brand::class);
         try {
             $this->brandService->force_destroy($id);
             Session::flash('success', 'Xóa thành công!');
@@ -164,12 +170,12 @@ class BrandController extends Controller
             Session::flash('error', 'Xóa không thành công!');
             return redirect()->route('brands.trash');
         }
-       
+
     }
 
     public function restore($id)
     {
-
+        $this->authorize('restore', Brand::class);
         try {
             $this->brandService->restore($id);
             Session::flash('success', 'Khôi phục thành công!');

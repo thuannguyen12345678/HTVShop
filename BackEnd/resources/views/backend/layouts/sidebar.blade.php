@@ -8,9 +8,9 @@
        <div class="sidebar_user_info">
           <div class="icon_setting"></div>
           <div class="user_profle_side">
-             <div class="user_img"><img class="img-responsive" src="{{asset('themeAdmin/images/layout_img/user_img.jpg')}}" alt="#" /></div>
+             <div class="user_img"><img class="img-responsive" src="{{asset(auth()->user()->avatar ?? '')}}" alt="#" /></div>
              <div class="user_info">
-                <h6>John David</h6>
+                <h6>{{ (auth()->user()->name ?? '') }}</h6>
                 <p><span class="online_animation"></span> Online</p>
              </div>
           </div>

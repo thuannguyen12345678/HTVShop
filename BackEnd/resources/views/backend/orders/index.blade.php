@@ -69,17 +69,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $order)
+                                @foreach ($orders as $key => $order)
                                     <tr>
-                                        <td class="align-middle"> {{ $order->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1 }} </td>
                                         <td class="align-middle"> {{ $order->customer->name }} </td>
                                         <td class="align-middle"> {{ $order->phone }} </td>
                                         <td>
-                                                {{-- @can('Show_order', 'Show_order') --}}
+                                                @can('view', App\Models\Order::class)
                                                 <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
-                                                {{-- @endcan --}}
+                                                @endcan
                                         </td>
                                     </tr>
                                 @endforeach

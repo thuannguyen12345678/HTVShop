@@ -115,7 +115,7 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        {{-- @can('restore', App\Models\Banner::class) --}}
+                                                        @can('restore', App\Models\Brand::class)
                                                         <form action="{{ route('brands.restore', $brand->id) }}"
                                                             method="post">
                                                             @csrf
@@ -124,10 +124,10 @@
                                                                 onclick="return confirm('Bạn muốn khôi phục?')">
                                                                 <i class="bi bi-arrow-counterclockwise"> </i></button>
                                                         </form>
-                                                        {{-- @endcan --}}
+                                                        @endcan
                                                     </div>
                                                     <div class="col-2">
-                                                        {{-- @can('delete', App\Models\brand::class) --}}
+                                                        @can('delete', App\Models\Brand::class)
                                                         <form action="{{ route('brands.force_destroy', $brand->id) }}"
                                                             method="post">
                                                             @csrf
@@ -136,7 +136,7 @@
                                                                 onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i
                                                                     class="bi bi-trash3"></i></button>
                                                         </form>
-                                                        {{-- @endcan --}}
+                                                        @endcan
                                                     </div>
                                                 </div>
                                             </div>

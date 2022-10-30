@@ -59,11 +59,20 @@
 
                         <div class="col">
                             <form action="" method="GET" id="form-search">
+
                                 <div class="input-group input-group-alt">
-                                    <a href="{{ route('products.create') }}" class="btn btn-primary mr-2">
-                                        <i class="fa-solid fa fa-plus"></i>
-                                        <span class="ml-1">Thêm Mới</span>
+                                    @can('create', App\Models\Product::class)
+                                        <a href="{{ route('products.create') }}" class="btn btn-primary mr-2">
+                                            <i class="fa-solid fa fa-plus"></i>
+                                            <span class="ml-1">Thêm Mới</span>
+                                        </a>
+                                    @endcan
+                                    <a style="float: right" href="{{ route('export-products') }}" class="btn btn-primary">
+                                        <i class="fas fa-file"></i>
+                                        <span class="ml-1">Xuất file excel</span>
                                     </a>
+                                </div>
+
                                     {{-- @include('backend.products.modals.modalFilterColumns') --}}
                             </form>
                         </div>
@@ -124,18 +133,20 @@
                                         <td>
                                             <form action="{{ route('products.destroy', $product->id) }}"
                                                 style="display:inline" method="post">
-                                                {{-- @can('update', App\Models\product::class) --}}
-                                                <a href="{{ route('products.show', $product->id) }}"
-                                                    class="btn btn-sm btn-icon btn-secondary"><i class="bi bi-eye"></i></a>
-                                                <a href="{{ route('products.edit', $product->id) }}"
-                                                    class="btn btn-sm btn-icon btn-secondary"><i
-                                                        class="fa fa-pencil-alt"></i></a>
-                                                {{-- @endcan --}}
-                                                {{-- @can('forceDelete', App\Models\product::class) --}}
-                                                <button onclick="return confirm('Xóa {{ $product->name }} ?')"
-                                                    type="submit" class="btn btn-sm btn-icon btn-secondary"><i
-                                                        class="far fa-trash-alt"></i></button>
-                                                {{-- @endcan --}}
+                                                @can('view', App\Models\product::class)
+                                                    <a href="{{ route('products.show', $product->id) }}"
+                                                        class="btn btn-sm btn-icon btn-secondary"><i class="bi bi-eye"></i></a>
+                                                @endcan
+                                                @can('update', App\Models\product::class)
+                                                    <a href="{{ route('products.edit', $product->id) }}"
+                                                        class="btn btn-sm btn-icon btn-secondary"><i
+                                                            class="fa fa-pencil-alt"></i></a>
+                                                @endcan
+                                                @can('forceDelete', App\Models\product::class)
+                                                    <button onclick="return confirm('Xóa {{ $product->name }} ?')"
+                                                        type="submit" class="btn btn-sm btn-icon btn-secondary"><i
+                                                            class="far fa-trash-alt"></i></button>
+                                                @endcan
                                                 @csrf
                                                 @method('Delete')
                                             </form>
@@ -146,7 +157,7 @@
                         </table>
                     </div>
                 </div>
-                <div  style="float:right">
+                <div style="float:right">
                     {{ $products->onEachSide(5)->links() }}
                 </div>
             </div>

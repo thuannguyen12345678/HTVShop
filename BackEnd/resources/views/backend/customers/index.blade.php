@@ -12,7 +12,7 @@
             <div class="d-md-flex align-items-md-start">
                 <h1 class="page-title mr-sm-auto">Danh sách khách hàng</h1>
                 <div class="btn-toolbar">
-                    {{-- @can('create', App\Models\customer::class) --}}
+                   
                     <div class="input-group-prepend">
                         <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#searchModal">Tìm
                             nâng cao</button>
@@ -85,12 +85,15 @@
                                         <td>
                                             <form action="{{ route('customers.destroy', $customer->id) }}"
                                                 style="display:inline" method="post">
+                                                @can('view', App\Models\Customer::class)
                                                 <a href="{{ route('customers.show', $customer->id) }}" class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
+                                                @endcan
+                                                @can('forceDelete', App\Models\Customer::class)
                                                 <button onclick="return confirm('Xóa khách hàng {{ $customer->name }} ?')"
                                                     type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                                {{-- @endcan --}}
+                                                @endcan
                                                 @csrf
                                                 @method('DELETE')
                                             </form>

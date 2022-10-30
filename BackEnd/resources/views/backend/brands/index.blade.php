@@ -11,7 +11,7 @@
             </nav>
             <div class="d-md-flex align-items-md-start">
                 <h1 class="page-title mr-sm-auto">Danh mục Nhãn hiệu</h1>
-                
+
                 <div class="md-5 title_cate d-flex">
                     <div class="form-outline">
                         <form action="{{ route('brand.search') }}">
@@ -50,11 +50,12 @@
                     <div class="col">
                         <form action="" method="GET" id="form-search">
                             <div class="input-group input-group-alt">
+                                 @can('create', App\Models\Brand::class)
                                 <a href="{{ route('brands.create') }}" class="btn btn-primary mr-2">
                                     <i class="fa-solid fa fa-plus"></i>
                                     <span class="ml-1">Thêm Mới</span>
                                 </a>
-
+                                @endcan
                         </form>
                     </div>
                 </div><br>
@@ -99,16 +100,16 @@
                                     <td>
                                         <form action="{{ route('brands.destroy', $brand->id) }}" style="display:inline"
                                             method="post">
-                                            {{-- @can('update', App\Models\brand::class) --}}
+                                            @can('update', App\Models\Brand::class)
                                             <a href="{{ route('brands.edit', $brand->id) }}"
                                                 class="btn btn-sm btn-icon btn-secondary"><i
                                                     class="fa fa-pencil-alt"></i></a>
-                                            {{-- @endcan --}}
-                                            {{-- @can('forceDelete', App\Models\brand::class) --}}
+                                            @endcan
+                                            @can('forceDelete', App\Models\Brand::class)
                                             <button onclick="return confirm('Xóa {{ $brand->name }} ?')" type="submit"
                                                 class="btn btn-sm btn-icon btn-secondary"><i
                                                     class="far fa-trash-alt"></i></button>
-                                            {{-- @endcan --}}
+                                            @endcan
                                             @csrf
                                             @method('Delete')
                                         </form>

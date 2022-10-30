@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Services\Customer\CustomerServiceInterface;
 use Exception;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class CustomerController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Customer::class);
         $customers =  $this->customerService->all($request);
         return view('backend.customers.index', compact('customers'));
     }
@@ -38,6 +40,7 @@ class CustomerController extends Controller
     }
     public function show($id)
     {
+        $this->authorize('view', Customer::class);
         $customers =  $this->customerService->find($id);
         $provinces =  $this->customerService->all($id);
         $districts =  $this->customerService->all($id);
@@ -64,6 +67,7 @@ class CustomerController extends Controller
     }
     public function destroy($id)
     {
+        $this->authorize('delete', Customer::class);
         try {
             $category = $this->customerService->delete($id);
             // dd(1);
@@ -78,6 +82,7 @@ class CustomerController extends Controller
 
     public function getTrash()
     {
+
         $customers = $this->customerService->getTrash();
         return view('backend.customers.softDelete', compact('customers'));
         try {
@@ -88,6 +93,7 @@ class CustomerController extends Controller
     }
     public function restore(Request $request,$id)
     {
+        $this->authorize('restore', Customer::class);
         try {
             DB::beginTransaction();
             $this->customerService->restore($id);
@@ -105,6 +111,7 @@ class CustomerController extends Controller
     }
     public function forceDelete(Request $request)
     {
+        $this->authorize('forceDelete', Customer::class);
         try {
             DB::beginTransaction();
             $id = $request->id;
