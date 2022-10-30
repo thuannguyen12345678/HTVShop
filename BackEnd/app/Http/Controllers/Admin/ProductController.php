@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\StoreProductRequest;
 use App\Http\Requests\Update\UpdateProductRequest;
@@ -13,6 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -204,5 +206,8 @@ class ProductController extends Controller
         if ($products->save()) {
             return redirect()->back();
         }
+    }
+    public function exportProducts(Request $request){
+        return Excel::download(new ProductsExport, 'users.xlsx');
     }
 }

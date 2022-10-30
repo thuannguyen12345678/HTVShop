@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//addToCart
+Route::get('list-cart', [CartController::class, 'getAllCart']);
+Route::get('add-to-cart/{id}', [CartController::class, 'addToCart']);
+Route::get('remove-to-cart/{id}', [CartController::class, 'removeToCart']);
+Route::get('remove-all-cart', [CartController::class, 'removeAllCart']);
+Route::get('update-cart/{id}/{quantity}', [CartController::class, 'updateCart']);
 //Order
 Route::get('orders/create', [OrderController::class, 'create']);
 Route::get('orders/list-province', [OrderController::class, 'getAllProvince']);

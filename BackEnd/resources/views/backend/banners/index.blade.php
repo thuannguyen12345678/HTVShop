@@ -10,23 +10,7 @@
                 </ol>
             </nav>
             <div class="d-md-flex align-items-md-start">
-                <h1 class="page-title mr-sm-auto">Danh mục Nhãn hiệu</h1>
-
-                <div class="md-5 title_cate d-flex">
-                    <div class="form-outline">
-                        <form action="{{ route('brand.search') }}">
-                            <input type="search" value="" name="keySearch" id="keyword" class="form-control"
-                                placeholder="search..." />
-                            {{-- @include('backend.brands.modals.modalFilterColumns') --}}
-
-                    </div>
-                    <button type="submit" class="btn btn-primary  waves-effect waves-light ">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    </form>
-                </div>
-                {{-- @endcan --}}
-
+                <h1 class="page-title mr-sm-auto">Ảnh Bìa </h1>
             </div>
 
     </div>
@@ -34,28 +18,15 @@
     </header>
     <div class="page-section">
         <div class="card card-fluid">
-            <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="">Tất Cả</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('brands.trash') }}">Thùng Rác</a>
-                    </li>
-                </ul>
-            </div>
             <div class="card-body">
                 <div class="row">
-
                     <div class="col">
                         <form action="" method="GET" id="form-search">
                             <div class="input-group input-group-alt">
-                                 @can('create', App\Models\Brand::class)
-                                <a href="{{ route('brands.create') }}" class="btn btn-primary mr-2">
+                                <a href="{{ route('banners.create') }}" class="btn btn-primary mr-2">
                                     <i class="fa-solid fa fa-plus"></i>
                                     <span class="ml-1">Thêm Mới</span>
                                 </a>
-                                @endcan
                         </form>
                     </div>
                 </div><br>
@@ -72,44 +43,47 @@
                         {{ Session::get('error') }}</div>
                     </p>
                 @endif
-                @if (!count($brands))
-                    <p class="text-danger">
-                    <div class="alert alert-danger"> <i class="bi bi-x-circle"></i> Không tìm thấy kết quả
-                        {{ Session::get('error') }}</div>
-                    </p>
-                @endif
                 <div class="table-responsive">
-                    <table class="table" style="text-align: center">
+                    <table class="table" style=" text-align: center">
                         <thead>
                             <tr>
                                 <th> # </th>
-                                <th> logo </th>
-                                <th> Tên Nhãn hiệu </th>
+                                <th> Ảnh Bìa </th>
+                                <th> Trạng Thái </th>
                                 <th> Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($brands as $brand)
+                            @foreach ($banners as $key => $banner)
                                 <tr>
-                                    <td class="align-middle"> {{ $brand->id }} </td>
-                                    
-                                    <td class="align-middle"> {{ $brand->name }} </td>
+                                    <td class="align-middle"> {{ $key + 1}} </td>
                                     <td>
-                                        <img style="width:300px; height:100px" src="{{ asset($brand->image) }}">
+                                        <img style="width:300px; height:100px" src="{{ asset($banner->image) }}">
                                     </td>
                                     <td>
-                                        <form action="{{ route('brands.destroy', $brand->id) }}" style="display:inline"
+                                        @if ($banner->status == 1)
+                                            <a href="{{ route('banner.hideStatus', $banner->id) }}">
+                                                <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('banner.showStatus', $banner->id) }}">
+                                                <i class="bi bi-eye-slash-fill h3" style="color:red"></i>
+                                            </a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('banners.destroy', $banner->id) }}" style="display:inline"
                                             method="post">
-                                            @can('update', App\Models\Brand::class)
-                                            <a href="{{ route('brands.edit', $brand->id) }}"
+                                            {{-- @can('update', App\Models\banner::class) --}}
+                                            <a href="{{ route('banners.edit', $banner->id) }}"
                                                 class="btn btn-sm btn-icon btn-secondary"><i
                                                     class="fa fa-pencil-alt"></i></a>
-                                            @endcan
-                                            @can('forceDelete', App\Models\Brand::class)
-                                            <button onclick="return confirm('Xóa {{ $brand->name }} ?')" type="submit"
+                                            {{-- @endcan --}}
+                                            {{-- @can('forceDelete', App\Models\banner::class) --}}
+                                            <button onclick="return confirm('Xóa {{ $banner->name }} ?')" type="submit"
                                                 class="btn btn-sm btn-icon btn-secondary"><i
                                                     class="far fa-trash-alt"></i></button>
-                                            @endcan
+                                            {{-- @endcan --}}
                                             @csrf
                                             @method('Delete')
                                         </form>
@@ -119,7 +93,7 @@
                         </tbody>
                     </table>
                 </div style="float:right">
-                    {{ $brands->onEachSide(5)->links() }}
+                    {{-- {{ $banners->onEachSide(5)->links() }} --}}
                 </div>
                 </div>
             </div>

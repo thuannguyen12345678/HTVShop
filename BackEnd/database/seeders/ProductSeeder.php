@@ -25,6 +25,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '1',
                 'image' => '',
                 'status' => '0',
+                'color' => '',
             ],
         ]);
     }

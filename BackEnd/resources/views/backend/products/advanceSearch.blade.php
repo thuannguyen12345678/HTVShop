@@ -54,10 +54,10 @@
                         <div class="col-lg-6">
                             <div class="mb-2">
                                 <p><b>Trạng thái:</b></p>
-                                <input type="radio" id="html" checked name="status" value="0">
-                                <label for="html">Hide </label><br>
-                                <input type="radio" id="css" checked name="status" value="1">
-                                <label for="css">Show</label><br>
+                                <input type="radio" id="html"  name="status" value="0">
+                                <label for="html">Ẩn </label><br>
+                                <input type="radio" id="css"  name="status" value="1">
+                                <label for="css">Hiện</label><br>
                             </div>
                         </div>
                     </div>

@@ -23,7 +23,8 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="tf1"><b>Tên Sản phẩm</b><abbr name="Trường bắt buộc">*</abbr></label>
-                                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
+                                    <input name="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                         placeholder="Nhập tên Sản phẩm">
                                     @if ($errors->any())
                                         <p style="color:red">*{{ $errors->first('name') }}</p>
@@ -33,8 +34,9 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="tf1"> <b>Số lượng</b><abbr name="Trường bắt buộc">*</abbr></label>
-                                    <input name="amount" type="text" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount') }}"
-                                        placeholder="Nhập  Số lượng">
+                                    <input name="amount" type="text"
+                                        class="form-control @error('amount') is-invalid @enderror"
+                                        value="{{ old('amount') }}" placeholder="Nhập  Số lượng">
                                     @if ($errors->any())
                                         <p style="color:red">*{{ $errors->first('amount') }}</p>
                                     @endif
@@ -42,9 +44,10 @@
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="tf1"><b>Gía</b><abbr name="Trường bắt buộc">*</abbr></label> <input
-                                        name="price" type="text" style="resize: none" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}"
-                                        placeholder="Nhập Gía">
+                                    <label for="tf1"><b>Giá</b><abbr name="Trường bắt buộc">*</abbr></label> <input
+                                        name="price" type="text" style="resize: none"
+                                        class="form-control @error('price') is-invalid @enderror"
+                                        value="{{ old('price') }}" placeholder="Nhập Gía">
                                     @if ($errors->any())
                                         <p style="color:red">*{{ $errors->first('price') }}</p>
                                     @endif
@@ -59,7 +62,26 @@
                                     <p style="color:red">*{{ $errors->first('description') }}</p>
                                 @endif
                             </div>
-                            <div class="form-group col-lg-6">
+                        </div><br><br>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-2">
+
+                                    <label for="tf1"><b>Màu sắc</b><abbr name="Trường bắt buộc">*</abbr></label><br>
+                                    <input type="radio" id="html" name="color" value="Đen">
+                                    <label for="html">Đen </label>&nbsp
+                                    <input type="radio" id="css" name="color" value="Trắng">
+                                    <label for="css">Trắng</label>&nbsp
+                                    <input type="radio" id="css" name="color" value="Vàng">
+                                    <label for="css">Vàng</label>&nbsp
+                                    <input type="radio" id="css" name="color" value="xanh">
+                                    <label for="css">xanh</label>&nbsp
+                                    @error('color')
+                                    <p style="color:red">*{{ $errors->first('color') }}</p>
+                                @enderror
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-4">
                                 <label class="control-label" for="flatpickr01"><b>Danh mục</b><abbr
                                         name="Trường bắt buộc">*</abbr></label>
                                 <select name="category_id" id=""
@@ -73,7 +95,9 @@
                                     <p style="color:red">*{{ $errors->first('category_id') }}</p>
                                 @enderror
                             </div>
-                            <div class="form-group col-lg-6">
+
+
+                            <div class="form-group col-lg-4">
                                 <label class="control-label" for="flatpickr01"><b>Nhãn hiệu</b><abbr
                                         name="Trường bắt buộc">*</abbr></label>
                                 <select name="brand_id" id=""
@@ -87,39 +111,41 @@
                                     <p style="color:red">*{{ $errors->first('brand_id') }}</p>
                                 @enderror
                             </div>
+                        </div> <br><br>
+                        <div class="row">
                             <div class="form-group col-lg-4">
-                                <label class="control-label @error('category_id') is-invalid @enderror" for="flatpickr01"><b>Hìnhh Ảnh*</b></label><br>
+                                <label class="control-label @error('category_id') is-invalid @enderror"
+                                    for="flatpickr01"><b>Hìnhh Ảnh*</b></label><br>
                                 <input accept="image/*" type='file' id="inputFile" name="image" /><br>
                                 <br>
                                 <img type="hidden" width="200px" height="200px" id="blah" src="#"
                                     alt="" />
-                                    @if ($errors->any())
-                                        <p style="color:red">*{{ $errors->first('image') }}</p>
-                                    @endif
+                                @if ($errors->any())
+                                    <p style="color:red">*{{ $errors->first('image') }}</p>
+                                @endif
                             </div>
 
-                            <div class="col-lg-8">
+                            <div class="form-group col-lg-8">
                                 <label for="file_name"><b>Hình ảnh chi tiết*</b></label>
                                 <div class="card_file_name">
                                     <div class="form-group form_input @error('file_names') border border-danger @enderror">
-                                        <span class="inner">
-
-                                            <span class="select">chọn nhiều hình ảnh ở đây</span>
-                                        </span>
                                         <input type="file" name="file_names[]" id="file_name" multiple
-                                            class="form-control files @error('file_name') is-invalid @enderror">
+                                        class="form-control files @error('file_name') is-invalid @enderror">
+                                        <span class="inner">
+                                            <span class="select" style="color:red">Ctrl + click để chọn nhiều ảnh</span>
+                                        </span>
                                     </div>
                                     <div class="container_image">
                                         @error($errors->any())
-                                        <p style="color:red">*{{ $errors->first('file_name') }}</p>
+                                            <p style="color:red">*{{ $errors->first('file_name') }}</p>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-actions">
-                                <a class="btn btn-secondary float-right" href="{{ route('products.index') }}">Hủy</a>
-                                <button class="btn btn-primary ml-auto" type="submit">Lưu</button>
-                            </div>
+                        </div><br>
+                        <div class="form-actions">
+                            <a class="btn btn-secondary float-right" href="{{ route('products.index') }}">Hủy</a>
+                            <button class="btn btn-primary ml-auto" type="submit">Lưu</button>
                         </div>
                     </div>
             </form>

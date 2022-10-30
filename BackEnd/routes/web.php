@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,8 +85,17 @@ Route::prefix('products')->group(function () {
     Route::put('/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
     Route::get('products/showStatus/{id}', [ProductController::class, 'showStatus'])->name('products.showStatus');
     Route::get('products/hideStatus/{id}', [ProductController::class,'hideStatus'])->name('products.hideStatus');
+    Route::get('/export-products', [ProductController::class, 'exportProducts'])->name('export-products');
 });
 Route::resource('products',ProductController::class);
 Route::resource('groups',GroupController::class);
 
+//Banner
+Route::controller(BannerController::class)->group(function () {
+    Route::post('banner/updatestatus/{id}/{status?}', 'updateStatus')->name('banner.updatestatus');
+    Route::delete('banner/destroy/{id}', 'destroy')->name('banner.destroy');
+    Route::get('banner/showStatus/{id}',  'showStatus')->name('banner.showStatus');
+    Route::get('banner/hideStatus/{id}', 'hideStatus')->name('banner.hideStatus');
+});
+Route::resource('banners', BannerController::class);
 

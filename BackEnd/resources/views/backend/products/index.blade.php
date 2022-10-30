@@ -10,7 +10,7 @@
                 </ol>
             </nav>
             <div class="d-md-flex align-items-md-start">
-                <h1 class="page-title mr-sm-auto">Danh mục Nhãn hiệu</h1>
+                <h1 class="page-title mr-sm-auto">Danh sách sản phẩm</h1>
                 <div class="btn-toolbar">
 
 
@@ -59,6 +59,7 @@
 
                         <div class="col">
                             <form action="" method="GET" id="form-search">
+
                                 <div class="input-group input-group-alt">
                                     @can('create', App\Models\Product::class)
                                         <a href="{{ route('products.create') }}" class="btn btn-primary mr-2">
@@ -66,6 +67,12 @@
                                             <span class="ml-1">Thêm Mới</span>
                                         </a>
                                     @endcan
+                                    <a style="float: right" href="{{ route('export-products') }}" class="btn btn-primary">
+                                        <i class="fas fa-file"></i>
+                                        <span class="ml-1">Xuất file excel</span>
+                                    </a>
+                                </div>
+
                                     {{-- @include('backend.products.modals.modalFilterColumns') --}}
                             </form>
                         </div>

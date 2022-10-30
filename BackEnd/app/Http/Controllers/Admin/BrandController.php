@@ -60,8 +60,6 @@ class BrandController extends Controller
     {
         // $brands = new Brand();
         // $brands->name = $request->name;
-
-
         // if ($request->hasFile('image')) {
         //     $file = $request->image;
         //     $fileExtension = $file->getClientOriginalExtension(); //jpg,png lấy ra định dạng file và trả về

@@ -10,7 +10,7 @@
                 </ol>
             </nav>
             <div class="d-md-flex align-items-md-start">
-                <h1 class="page-title mr-sm-auto">Danh mục Nhãn hiệu</h1>
+                <h1 class="page-title mr-sm-auto">Sản phẩm - Thùng rác </h1>
                 <div class="btn-toolbar">
 
 
