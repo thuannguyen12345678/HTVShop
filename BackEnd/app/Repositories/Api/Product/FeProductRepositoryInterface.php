@@ -9,5 +9,6 @@ interface FeProductRepositoryInterface extends RepositoryInterface{
     public function find($id);
     public function trendingProduct();
     public function countReviewStar($id);
+    public function find_images($id);
 
 }

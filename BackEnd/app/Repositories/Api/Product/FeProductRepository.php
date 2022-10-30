@@ -32,25 +32,25 @@ class FeProductRepository extends BaseRepository implements FeProductRepositoryI
         if ($data) {
             $query->whereRaw("name Like '%" . $data . "%' ")
                 ->orWhereRaw("price Like '%" .$data . "%' ")
-                ->orWhereRaw("description Like '%" .$data . "%' ")
+                // ->orWhereRaw("description Like '%" .$data . "%' ")
             ;
         }
         return $query->get();
     }
     public function find($id)
     {
-        $product = $this->model
-            ->with([
-                 'image_products', 'brand', 'category'
-                => function ($query) {
-                    return $query->with([
-                        'answers'
-                        => function ($query) {
-                            return $query->with('customer');
-                        }
-                    ]);
-                }
-            ])->find($id);
+        $product= DB::table('products')->join('categories', 'products.category_id', '=', 'categories.id')
+        ->join('brands', 'products.brand_id', '=', 'brands.id')
+        ->select('products.*',  'categories.name as cateName',
+        'brands.name as branName')->where('products.id','=',$id)->get();
+        return $product;
+    }
+   
+    public function find_images($id)
+    {
+        $product= DB::table('products')
+        ->join('product_images', 'products.id', '=', 'product_images.product_id')
+        ->select('product_images.image as product_images')->where('product_images.product_id','=',$id)->get();
         return $product;
     }
     public function trendingProduct()
