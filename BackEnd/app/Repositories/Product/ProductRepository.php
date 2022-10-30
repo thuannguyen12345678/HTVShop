@@ -22,52 +22,37 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
     public function all($request)
     {
-        $key        = $request->key ?? '';
-        $name      = $request->name ?? '';
-        $amount      = $request->amount ?? '';
-        $price      = $request->price ?? '';
-        $category_id      = $request->category_id ?? '';
-        $brand_id      = $request->brand_id ?? '';
-        $status      = $request->status ?? '';
-        $id         = $request->id ?? '';
+        $products = $this->model->select('*');
 
-        // $categories = Category::all();
-        // $brands = Brand::all();
+        if (!empty($request->search)) {
+            $search = $request->search;
+            $products = $products->Search($search);
+        }
+        if (!empty($request->category_id)) {
+            $products->NameCate($request)
+            ->filterPrice(request(['startPrice', 'endPrice']))
+            ->filterDate(request(['start_date', 'end_date']))
+            ->status($request)->Type($request);
+        }
+        if (!empty($request->supplier_id)) {
+            $products->NameSupp($request)
+            ->filterPrice(request(['startPrice', 'endPrice']))
+            ->filterDate(request(['start_date', 'end_date']))
+            ->status($request)->Type($request);
+        }
+        if (!empty($request->brand_id)) {
+            $products->NameBran($request)
+            ->filterPrice(request(['startPrice', 'endPrice']))
+            ->filterDate(request(['start_date', 'end_date']))
+            ->status($request)->Type($request);
+        }
 
-        // thực hiện query
-        $query = Product::select('*');
-        $query->orderBy('id', 'DESC');
-        if ($name) {
-            $query->where('name', 'LIKE', '%' . $name . '%')->where('deleted_at', '=', null);
-        }
-        if ($amount) {
-            $query->where('amount', 'LIKE', '%' . $amount . '%')->where('deleted_at', '=', null);
-        }
-        if ($price) {
-            $query->where('price', 'LIKE', '%' . $price . '%')->where('deleted_at', '=', null);
-        }
-        if ($category_id) {
-            $query->where('category_id', 'LIKE', '%' . $category_id . '%')->where('deleted_at', '=', null);
-        }
-        if ($brand_id) {
-            $query->where('brand_id', 'LIKE', '%' . $brand_id . '%')->where('deleted_at', '=', null);
-        }
-        if ($status) {
-            $query->where('status', 'LIKE', '%' . $status . '%')->where('deleted_at', '=', null);
-        }
-        if ($id) {
-            $query->where('id', $id)->where('deleted_at', '=', null);
-        }
-        if ($key) {
-            $query->orWhere('id', $key)->where('deleted_at', '=', null);
-            $query->orWhere('name', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-            $query->orWhere('amount', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-            $query->orWhere('category_id', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-            $query->orWhere('price', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-            $query->orWhere('brand_id', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-        }
-        $query->status($request);
-        return $query->where('deleted_at', '=', null)->paginate(5);
+        $products->filterPrice(request(['startPrice', 'endPrice']));
+        $products->filterDate(request(['start_date', 'end_date']));
+        $products->status($request);
+        $products->Type($request);
+
+        return $products->orderBy('id', 'DESC')->paginate(5);
     }
     public function create($data)
     {

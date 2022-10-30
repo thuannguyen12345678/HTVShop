@@ -24,26 +24,32 @@ class Product extends Model
     public function image_products(){
         return $this->hasMany(ImageProduct::class, 'product_id','id');
     }
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function scopeSearch($query, $term)
-    {
-        if ($term) {
-            $query->where('name', 'like', '%' . $term . '%')
-                ->orWhere('price', 'like', '%' . $term . '%')
-                ->orWhere('amount', 'like', '%' . $term . '%')
-                ->orWhere('status', 'like', '%' . $term . '%');
-        }
-        return $query;
-    }
     public function scopeNameCate($query, $request)
     {
         if ($request->has('category_id')) {
             return $query->whereHas('category', function ($query) use ($request) {
                 $query->where('category_id', $request->category_id);
+            });
+        }
+    }
+    public function scopeNameSupp($query, $request)
+    {
+        if ($request->has('supplier_id')) {
+            return $query->whereHas('supplier', function ($query) use ($request) {
+                $query->where('supplier_id', $request->supplier_id);
+            });
+        }
+    }
+    public function scopeNameBran($query, $request)
+    {
+        if ($request->has('brand_id')) {
+            return $query->whereHas('brand', function ($query) use ($request) {
+                $query->where('brand_id', $request->brand_id);
             });
         }
     }
@@ -58,6 +64,25 @@ class Product extends Model
     {
         if (isset($date_to_date['start_date']) && isset($date_to_date['end_date'])) {
             $query->whereBetween('created_at', [$date_to_date['start_date'], $date_to_date['end_date']]);
+        }
+        return $query;
+    }
+    
+    public function scopeType($query, $request)
+    {
+        if ($request->has('type_gender')) {
+            $query->where('type_gender', $request->type_gender);
+        };
+        return $query;
+    }
+    public function scopeSearch($query, $term)
+    {
+        if ($term) {
+            $query->where('name', 'like', '%' . $term . '%')
+                ->orWhere('price', 'like', '%' . $term . '%')
+                ->orWhere('status', 'like', '%' . $term . '%')
+                ->orWhere('quantity', 'like', '%' . $term . '%')
+                ->orWhere('id', 'like', '%' . $term . '%');
         }
         return $query;
     }
