@@ -36,6 +36,11 @@ class FeProductController extends Controller
         $product = $this->FeproductService->find($id);
         return response()->json($product, 200);
     }
+    public function image_detail($id)
+    {
+        $product = $this->FeproductService->find_images($id);
+        return response()->json($product, 200);
+    }
     public function category_list()
     {
         $categories = Category::with('products')->take(10)->get();

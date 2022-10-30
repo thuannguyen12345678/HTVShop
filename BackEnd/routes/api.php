@@ -52,6 +52,7 @@ Route::group(['middleware' => 'api',], function () {
     Route::get('product_list', [FeProductController::class, 'product_list']);
     Route::get('product_list/search', [FeProductController::class, 'search']);
     Route::get('product_detail/{id}', [FeProductController::class, 'product_detail']);
+    Route::get('image_detail/{id}', [FeProductController::class, 'image_detail']);
     Route::get('category_list', [FeProductController::class, 'category_list']);
     Route::get('trendingProduct', [FeProductController::class, 'trendingProduct']);
     Route::get('getBanner', [FeProductController::class, 'getBanner']);

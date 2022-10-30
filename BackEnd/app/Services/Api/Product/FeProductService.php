@@ -24,6 +24,10 @@ class FeProductService extends BaseService implements FeProductServiceInterface 
     {
         return $this->repository->find($id);
     }
+    public function find_images($id)
+    {
+        return $this->repository->find_images($id);
+    }
     public function trendingProduct()
     {
         return $this->repository->trendingProduct();
