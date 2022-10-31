@@ -59,6 +59,8 @@ Route::prefix('users')->middleware(['auth', 'PreventBackHistory'])->group(functi
     Route::put('softDeletes/{id}',[UserController::class,'softDeletes'])->name('users.softDeletes');
     Route::get('trash',[UserController::class,'trash'])->name('users.trash');
     Route::put('restore/{id}',[UserController::class, 'restore'])->name('users.restore');
+    Route::put('edit_password/{id}',[UserController::class, 'updatePassword'])->name('users.editPassword');
+    Route::get('profile',[UserController::class, 'profile'])->name('users.profile');
 });
 Route::resource('users',UserController::class)->middleware(['auth', 'PreventBackHistory']);
 
