@@ -62,8 +62,6 @@
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
-                                        {{-- <input id="flatpickr01" type="text" class="form-control" placeholder="vui lòng nhập"
-                                        value="{{ old('phone') }}" name="phone" data-toggle="flatpickr"> --}}
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -106,7 +104,7 @@
                                         </select>
                                     </div>
                                     @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('group_id') }}</p>
+                                        <p style="color:red">{{$errors->first('group_id') }}</p>
                                     @endif
                                 </div>
                             </div>
