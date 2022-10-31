@@ -11,6 +11,7 @@ use App\Services\Group\GroupServiceInterface;
 use App\Services\User\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -151,5 +152,25 @@ class UserController extends Controller
     public function logout(Request $request) {
         $request->session()->flush();
         return redirect()->route('login');
+    }
+    public function profile(){
+        return view('backend.Users.profile');
+    }
+    public function updatePassword($id, Request $request){
+        if ((Hash::check($request->password, Auth::user()->password))) {
+        if($request->password1== $request->password2){
+            $user = User::find($id);
+            $user->password = bcrypt($request->password1);
+            $user->save();
+
+            return redirect()->route('users.profile')->with('success','thay đổi mật khẩu thành công');
+        }
+        else{
+            return redirect()->route('users.profile')->with('error',' mật khẩu nhập lại không trùng khớp');
+        }
+        }else{
+            return redirect()->route('users.profile')->with('error',' mật khẩu cũ không chính xác');
+        }
+
     }
 }

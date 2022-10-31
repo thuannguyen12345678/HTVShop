@@ -121,7 +121,7 @@
                                 <p style="color:red">{{ $errors->first('avatar') }}</p>
                             @endif
                             <div class="form-actions">
-                                <a class="btn btn-secondary float-right" href="">Hủy</a>
+                                <a class="btn btn-secondary float-right" href="{{ route('users.index') }}">Hủy</a>
                                 <button class="btn btn-primary ml-auto" type="submit">Lưu</button>
                             </div>
                         </form>
