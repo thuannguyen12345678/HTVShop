@@ -23,9 +23,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('backend.master');
-});
-
+    return view('backend.dashboard.index');
+})->name('dashboard');
 
 //Customer
 Route::prefix('customers')->group(function () {
@@ -69,8 +68,6 @@ Route::prefix('login')->group(function (){
     route::post('loginprocessing',[UserController::class,'loginProcessing'])->name('login.processing');
     route::get('logout',[UserController::class,'logout'])->name('login.logout');
 });
-
-
 //Nhãn hiệu:
 Route::prefix('brands')->group(function () {
     Route::get('/trash', [BrandController::class, 'trashedItems'])->name('brands.trash');
@@ -80,8 +77,6 @@ Route::prefix('brands')->group(function () {
     Route::get('searchBrand', [BrandController::class, 'searchBrand'])->name('brand.search');
 });
 Route::resource('brands',BrandController::class);
-
-
 //Sản phẩm:
 Route::prefix('products')->group(function () {
     Route::get('/trash', [ProductController::class, 'trashedItems'])->name('products.trash');
