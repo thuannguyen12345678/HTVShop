@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">Số điện thoại</label>
+                                        <label class="control-label" for="flatpickr01">Số Điện Thoại</label>
                                         <input id="flatpickr01" type="text" class="form-control"
                                             placeholder="vui lòng nhập" value="{{ old('phone') }}" name="phone"
                                             data-toggle="flatpickr">
@@ -57,7 +57,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">giới tính</label>
+                                        <label class="control-label" for="flatpickr01">Giới Tính</label>
                                         <select name="gender" id=""class="form-control">
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
@@ -71,7 +71,7 @@
                                         <p style="color:red">{{ $errors->first('gender') }}</p>
                                     @endif
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">Ngày sinh:</label>
+                                        <label class="control-label" for="flatpickr01">Ngày Sinh:</label>
                                         <input id="flatpickr01" type="date" class="form-control"
                                             placeholder="vui lòng nhập" value="{{ old('day_of_birth') }}"
                                             name="day_of_birth" data-toggle="flatpickr">
@@ -84,7 +84,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">Địa chỉ</label>
+                                        <label class="control-label" for="flatpickr01">Địa Chỉ</label>
                                         <input id="flatpickr01" type="text" class="form-control"
                                             value="{{ old('address') }}" name="address" placeholder="vui lòng nhập"
                                             data-toggle="flatpickr">

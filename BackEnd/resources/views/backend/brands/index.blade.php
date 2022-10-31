@@ -72,12 +72,6 @@
                         {{ Session::get('error') }}</div>
                     </p>
                 @endif
-                @if (!count($brands))
-                    <p class="text-danger">
-                    <div class="alert alert-danger"> <i class="bi bi-x-circle"></i> Không tìm thấy kết quả
-                        {{ Session::get('error') }}</div>
-                    </p>
-                @endif
                 <div class="table-responsive">
                     <table class="table" style="text-align: center">
                         <thead>
@@ -89,9 +83,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($brands as $brand)
+                            @foreach ($brands as $key => $brand)
                                 <tr>
-                                    <td class="align-middle"> {{ $brand->id }} </td>
+                                    <td class="align-middle"> {{ $key + 1 }} </td>
                                     
                                     <td class="align-middle"> {{ $brand->name }} </td>
                                     <td>

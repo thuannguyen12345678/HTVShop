@@ -48,20 +48,6 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-
-                        <div class="col">
-                            <form action="" method="GET" id="form-search">
-                                <div class="input-group input-group-alt">
-                                    <a href="{{ route('brands.create') }}" class="btn btn-primary mr-2">
-                                        <i class="fa-solid fa fa-plus"></i>
-                                        <span class="ml-1">Thêm Mới</span>
-                                    </a>
-
-                            </form>
-                        </div>
-                    </div><br>
-
                     @if (Session::has('success'))
                         <p class="text-success">
                         <div class="alert alert-success"><i class="fa fa-check" aria-hidden="true"></i>
@@ -71,12 +57,6 @@
                     @if (Session::has('error'))
                         <p class="text-danger">
                         <div class="alert alert-danger"> <i class="bi bi-x-circle"></i>
-                            {{ Session::get('error') }}</div>
-                        </p>
-                    @endif
-                    @if (!count($brands))
-                        <p class="text-danger">
-                        <div class="alert alert-danger"> <i class="bi bi-x-circle"></i> Không tìm thấy kết quả
                             {{ Session::get('error') }}</div>
                         </p>
                     @endif
@@ -91,9 +71,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($brands as $brand)
+                                @foreach ($brands as $key => $brand)
                                     <tr>
-                                        <td class="align-middle"> {{ $brand->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1 }} </td>
                                         <td>
                                             <img style="width:100px; height:70px" src="{{ asset($brand->image) }}">
                                         </td>

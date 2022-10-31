@@ -91,9 +91,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($categories as $key => $category)
                                     <tr>
-                                        <td class="align-middle"> {{ $category->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1 }} </td>
 
                                         <td class="align-middle"> {{ $category->name }} </td>
                                         <td>

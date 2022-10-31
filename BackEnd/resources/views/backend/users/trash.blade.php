@@ -92,7 +92,7 @@
                         <tbody>
                             @foreach ($users as $key => $user)
                                 <tr>
-                                    <th scope="row">{{ $user->id }}</th>
+                                    <th scope="row">{{ $key + 1 }}</th>
                                     <td>
                                         <img class=" image_photo rounded-circle" src="{{ asset($user->avatar) }}"
                                             style="width:75px;height:75px">

@@ -104,15 +104,15 @@
                                     <th> Ảnh </th>
                                     <th> Tên Sản phẩm </th>
                                     <th> Số lượng </th>
-                                    <th> Gía </th>
+                                    <th> Giá </th>
                                     <th> Trạng thái</th>
                                     <th> Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($products as $key => $product)
                                     <tr>
-                                        <td class="align-middle"> {{ $product->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1 }} </td>
                                         <td>
                                             <img style="width:100px; height:70px" src="{{ asset($product->image) }}">
                                         </td>

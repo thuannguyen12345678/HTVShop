@@ -28,7 +28,7 @@
                                         value="{{ $brand->name }} @error('name') is-invalid @enderror" class="form-control">
                                     <small class="form-text text-muted"></small>
                                     @if ($errors->any())
-                                        <p style="color:red">*{{ $errors->first('name') }}</p>
+                                        <p style="color:red">{{ $errors->first('name') }}</p>
                                     @endif
                                 </div>
                             </div>

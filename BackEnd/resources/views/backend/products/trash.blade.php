@@ -85,7 +85,7 @@
                                     <th> Ảnh </th>
                                     <th> Tên Sản phẩm </th>
                                     <th> Số lượng </th>
-                                    <th> Gía </th>
+                                    <th> Giá </th>
                                     <th> Trạng thái</th>
                                     <th> Thao tác</th>
                                 </tr>
