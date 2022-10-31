@@ -30,8 +30,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required|unique:customers|email',
+            'password' => 'required|string|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -39,7 +39,7 @@ class AuthController extends Controller
         }
 
         if (!$token = auth('api')->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Không Được Phép'], 401);
         }
 
         return $this->createNewToken($token);
@@ -55,10 +55,10 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
 
-            'email' => 'required',
-            'password' => 'required',
-            'name' => 'required',
-            'phone' => 'required',
+            'email' => 'required|string|email|max:100|unique:customers',
+            'password' => 'required|string|confirmed|min:6',
+            'name' => 'required|max:20',
+            'phone' => 'required|numeric',
             'avatar' => 'required',
 
         ]);
@@ -93,7 +93,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'User successfully signed out']);
+        return response()->json(['message' => 'Đăng Xuất Thành Công']);
     }
 
     /**
@@ -150,7 +150,7 @@ class AuthController extends Controller
         );
 
         return response()->json([
-            'message' => 'User successfully changed password',
+            'message' => 'Thay Đổi Mật Khẩu Thành Công',
             'user' => $user,
         ], 201);
     }
