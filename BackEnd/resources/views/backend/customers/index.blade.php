@@ -77,9 +77,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($customers as $customer)
+                                @foreach ($customers as $key => $customer)
                                     <tr>
-                                        <td class="align-middle"> {{ $customer->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1 }} </td>
                                         <td class="align-middle"> {{ $customer->name }}</td>
                                         <td class="align-middle"> {{ $customer->phone }} </td>
                                         <td>
@@ -102,7 +102,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $customers->onEachSide(5)->links() }}
+                        <div style="float:right">
+                            {{ $customers->onEachSide(5)->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

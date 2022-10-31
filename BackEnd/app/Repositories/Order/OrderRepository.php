@@ -15,11 +15,11 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     public function all($request)
     {
         $search = $request->search;
-        $orders = $this->model->select('*');
+        $orders = $this->model->select('*')->orderBy('id', 'desc');
         if ($search) {
             $orders = $orders->where('phone', 'like', '%' . $search . '%');
         }
-        return $orders->paginate(10);
+        return $orders->paginate(5);
     }
     // function getAllWithPaginateLatest($request){
     //     $orders = $this->model->latest()->paginate(10);

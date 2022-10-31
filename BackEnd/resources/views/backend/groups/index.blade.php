@@ -86,7 +86,7 @@
                             <tbody>
                                 @foreach ($groups as $key => $group)
                                     <tr>
-                                        <th scope="row">{{ $group->id }}</th>
+                                        <th scope="row">{{ $key + 1 }}</th>
                                         <td>{{ $group->name }}</td>
                                         <td>{{ $group->description }}</td>
                                         <td>

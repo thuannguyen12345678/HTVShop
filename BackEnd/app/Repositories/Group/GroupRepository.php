@@ -35,7 +35,7 @@ class GroupRepository extends BaseRepository implements GroupRepositoryInterface
             $query->orWhere('name', 'LIKE', '%' . $key . '%');
         }
         //Phân trang
-        $groups = $query->orderBy('id', 'DESC')->paginate(5);
+        $groups = $query->paginate(5);
         $params = [
             'f_id'           => $id,
             'f_name'         => $name,

@@ -22,20 +22,20 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         $query = Category::select('*');
         $query->orderBy('id', 'DESC');
         if ($name) {
-            $query->where('name', 'LIKE', '%' . $name . '%')->where('deleted_at', '=', null);
+            $query->where('name', 'LIKE', '%' . $name . '%');
         }
         if ($status) {
-            $query->where('status', 'LIKE', '%' . $status . '%')->where('deleted_at', '=', null);
+            $query->where('status', 'LIKE', '%' . $status . '%');
         }
         if ($id) {
-            $query->where('id', $id)->where('deleted_at', '=', null);
+            $query->where('id', $id);
         }
         if ($key) {
-            $query->orWhere('id', $key)->where('deleted_at', '=', null);
-            $query->orWhere('name', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
+            $query->orWhere('id', $key);
+            $query->orWhere('name', 'LIKE', '%' . $key . '%');
         }
         //Phân trang
-        return $query->where('deleted_at', '=', null)->paginate(5);
+        return $query->paginate(5);
     }
     public function update($id, $data)
     {

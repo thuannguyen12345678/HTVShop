@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">Số điện thoại</label> <input
+                                        <label class="control-label" for="flatpickr01">Số Điện Thoại</label> <input
                                             id="flatpickr01" type="text" class="form-control" name="phone"
                                             value="{{ $users->phone }}" data-toggle="flatpickr">
                                     </div>
@@ -55,7 +55,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">Địa chỉ</label> <input
+                                        <label class="control-label" for="flatpickr01">Địa Chỉ</label> <input
                                             id="flatpickr01" type="text" class="form-control" name="address"
                                             value="{{ $users->address }}" data-toggle="flatpickr">
                                     </div>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">ngày sinh</label> <input
+                                        <label class="control-label" for="flatpickr01">Ngày Sinh</label> <input
                                             id="flatpickr01" type="text" class="form-control" name="day_of_birth"
                                             value="{{ $users->day_of_birth }}" data-toggle="flatpickr">
                                     </div>

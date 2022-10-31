@@ -73,9 +73,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($customers as $customer)
+                                @foreach ($customers as $key => $customer)
                                     <tr>
-                                        <td class="align-middle"> {{ $customer->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1 }} </td>
                                         <td class="align-middle">
                                             {{ $customer->name }}
                                         </td>

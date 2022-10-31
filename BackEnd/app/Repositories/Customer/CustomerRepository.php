@@ -21,26 +21,26 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
         $email      = $request->email ?? '';
         $id         = $request->id ?? '';
         $query = Customer::query(true);
-        $query->orderBy('id', 'ASC');
+        $query->orderBy('id', 'desc');
         if ($name) {
-            $query->where('name', 'LIKE', '%' . $name . '%')->where('deleted_at', '=', null);
+            $query->where('name', 'LIKE', '%' . $name . '%');
         }
         if ($phone) {
-            $query->where('phone', 'LIKE', '%' . $phone . '%')->where('deleted_at', '=', null);
+            $query->where('phone', 'LIKE', '%' . $phone . '%');
         }
         if ($email) {
-            $query->where('email', 'LIKE', '%' . $email . '%')->where('deleted_at', '=', null);
+            $query->where('email', 'LIKE', '%' . $email . '%');
         }
         if ($id) {
-            $query->where('id', $id)->where('deleted_at', '=', null);
+            $query->where('id', $id);
         }
         if ($key) {
-            $query->orWhere('id', $key)->where('deleted_at', '=', null);
-            $query->orWhere('name', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-            $query->orWhere('phone', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
-            $query->orWhere('email', 'LIKE', '%' . $key . '%')->where('deleted_at', '=', null);
+            $query->orWhere('id', $key);
+            $query->orWhere('name', 'LIKE', '%' . $key . '%');
+            $query->orWhere('phone', 'LIKE', '%' . $key . '%');
+            $query->orWhere('email', 'LIKE', '%' . $key . '%');
         }
-        return $query->where('deleted_at', '=', null)->paginate(5);
+        return $query->paginate(5);
         // $params = [
         //     'f_id'        => $id,
         //     'f_name'     => $name,
@@ -58,7 +58,7 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
     public function getTrash()
     {
         $query=  $this->model->onlyTrashed();
-        $query ->orderBy('id', 'asc');
+        $query ->orderBy('id', 'desc');
         $customer = $query->paginate(8);
         return $customer;
     }

@@ -49,19 +49,6 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-
-                        <div class="col">
-                            <form action="" method="GET" id="form-search">
-                                <div class="input-group input-group-alt">
-                                    <a href="{{ route('categories.create') }}" class="btn btn-primary mr-2">
-                                        <i class="fa-solid fa fa-plus"></i>
-                                        <span class="ml-1">Thêm Mới</span>
-                                    </a>
-                            </form>
-                        </div>
-                    </div><br>
-
                     @if (Session::has('success'))
                         <p class="text-success">
                         <div class="alert alert-success"><i class="fa fa-check" aria-hidden="true"></i>
@@ -91,9 +78,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($categories as $key => $category)
                                     <tr>
-                                        <td class="align-middle"> {{ $category->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1   }} </td>
 
                                         <td class="align-middle"> {{ $category->name }} </td>
                                         <td>
