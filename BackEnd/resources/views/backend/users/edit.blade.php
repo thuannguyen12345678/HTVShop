@@ -19,6 +19,8 @@
                         <form action="{{ route('users.update', $users->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            <div class="row">
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label class="control-label" for="flatpickr01">Tên Nhân Viên</label> <input
                                             id="flatpickr01" type="text" class="form-control" name="name"
@@ -27,6 +29,8 @@
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
                                     @endif
+                                </div>
+                                <div class="col-4">
                                     <div class="form-group">
                                         <label class="control-label" for="flatpickr01">Email</label> <input id="flatpickr01"
                                             type="text" class="form-control" name="email" value="{{ $users->email }}"
@@ -35,40 +39,56 @@
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                     @endif
+                                </div>
+                                <div class="col-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">Số điện thoại</label> <input id="flatpickr01"
-                                            type="text" class="form-control" name="phone" value="{{ $users->phone }}"
-                                            data-toggle="flatpickr">
+                                        <label class="control-label" for="flatpickr01">Số điện thoại</label> <input
+                                            id="flatpickr01" type="text" class="form-control" name="phone"
+                                            value="{{ $users->phone }}" data-toggle="flatpickr">
                                     </div>
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('phone') }}</p>
                                     @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">Địa chỉ</label> <input id="flatpickr01"
-                                            type="text" class="form-control" name="address" value="{{ $users->address }}"
-                                            data-toggle="flatpickr">
+                                        <label class="control-label" for="flatpickr01">Địa chỉ</label> <input
+                                            id="flatpickr01" type="text" class="form-control" name="address"
+                                            value="{{ $users->address }}" data-toggle="flatpickr">
                                     </div>
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('address') }}</p>
                                     @endif
+                                </div>
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="flatpickr01">ngày sinh</label> <input id="flatpickr01"
-                                            type="text" class="form-control" name="day_of_birth" value="{{ $users->day_of_birth }}"
-                                            data-toggle="flatpickr">
+                                        <label class="control-label" for="flatpickr01">ngày sinh</label> <input
+                                            id="flatpickr01" type="text" class="form-control" name="day_of_birth"
+                                            value="{{ $users->day_of_birth }}" data-toggle="flatpickr">
                                     </div>
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('address') }}</p>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label class="control-label" for="flatpickr01">Giới tính</label>
-                                            <select name="gender" class ='form-control'>
-                                                <option {{ $users->gender == 'Nam' ? 'selected' : '' }} value = "Nam">Nam</option>
-                                                <option {{ $users->gender == 'Nữ' ? 'selected' : '' }} value = "Nữ">Nữ</option>
-                                            </select>
+                                        <select name="gender" class='form-control'>
+                                            <option {{ $users->gender == 'Nam' ? 'selected' : '' }} value="Nam">Nam
+                                            </option>
+                                            <option {{ $users->gender == 'Nữ' ? 'selected' : '' }} value="Nữ">Nữ</option>
+                                        </select>
                                     </div>
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('address') }}</p>
                                     @endif
+                                </div>
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label class="control-label" for="flatpickr01">Nhóm</label>
                                         <select name="group_id"
@@ -84,9 +104,12 @@
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('group_id') }}</p>
                                     @endif
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label" for="flatpickr01">Ảnh Đại Diện</label><br>
-                                <input accept="image/*" class="form-control" type='file' id="inputFile" name="avatar" /><br><br>
+                                <input accept="image/*" class="form-control" type='file' id="inputFile"
+                                    name="avatar" /><br><br>
                                 <img type="hidden" width="90px" height="90px" id="blah1"
                                     src="{{ asset($users->avatar) }}" alt="" />
                             </div>
