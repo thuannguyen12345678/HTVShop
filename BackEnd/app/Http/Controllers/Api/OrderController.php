@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +24,14 @@ class OrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+        $order = $this->orderService->find(1);
+        // dd(1);
+            $orderDetails = $order->orderDetails;
+            $params = [
+                'order' => $order,
+                'orderDetails' => $orderDetails,
+            ];
+        return view('backend.mail.orders', compact('params'));
     }
 
     /**
@@ -91,6 +99,17 @@ class OrderController extends Controller {
         $order->save();
         Cache::forget('carts');
         $carts = Cache::get('carts');
+        $customer = Customer::findOrFail($request->customer_id);
+        $orderDetails = $order->orderDetails;
+        $params = [
+            'order' => $order,
+            'orderDetails' => $orderDetails,
+        ];
+       
+        Mail::send('backend.mail.orders', compact('params'), function ($email) use($customer) {
+            $email->subject('HTVStore');
+            $email->to($customer->email,$customer->name);
+        });
         try{
             return response()->json(Order::with(['orderDetails'])->find($order->id));
         }catch(\Exception $e){
