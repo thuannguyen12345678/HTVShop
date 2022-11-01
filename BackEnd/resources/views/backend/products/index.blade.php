@@ -5,7 +5,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">
-                        <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
+                        <a href="{{ route('dashboard') }}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
                     </li>
                 </ol>
             </nav>
@@ -118,7 +118,7 @@
                                         </td>
                                         <td class="align-middle"> {{ $product->name }} </td>
                                         <td class="align-middle"> {{ $product->amount }} </td>
-                                        <td class="align-middle"> {{ $product->price }} </td>
+                                        <td class="align-middle"> {{number_format($product->price)}} .VNĐ </td>
                                         <td>
                                             @if ($product->status == 1)
                                                 <a href="{{ route('products.hideStatus', $product->id) }}">

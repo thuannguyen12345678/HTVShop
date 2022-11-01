@@ -21,11 +21,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//đăng nhập
+Route::prefix('login')->group(function (){
+    route::get('/',[UserController::class,'login'])->name('login');
+    route::post('loginprocessing',[UserController::class,'loginProcessing'])->name('login.processing');
+    route::get('logout',[UserController::class,'logout'])->name('login.logout');
+});
+Route::prefix('/')->middleware(['auth', 'PreventBackHistory'])->group(function(){
 Route::get('/', function () {
     return view('backend.dashboard.index');
 })->name('dashboard');
-
 //Customer
 Route::prefix('customers')->group(function () {
     Route::get('customers/trash', [CustomerController::class, 'getTrash'])->name('customer.trash');
@@ -33,7 +38,6 @@ Route::prefix('customers')->group(function () {
     Route::delete('customers/trash/force-delete/{id}', [CustomerController::class, 'forceDelete'])->name('customer.forceDelete');
 });
 Route::resource('customers', CustomerController::class);
-
 //Order
 Route::prefix('orders')->group(function () {
     Route::get('orders/trash', [OrderController::class, 'getTrash'])->name('order.trash');
@@ -41,9 +45,9 @@ Route::prefix('orders')->group(function () {
     Route::delete('orders/trash/force-delete/{id}', [OrderController::class, 'forceDelete'])->name('order.forceDelete');
     Route::get('searchOrders', [OrderController::class, 'searchByName'])->name('order.searchKey');
     Route::get('searchOrders', [OrderController::class, 'searchOrder'])->name('order.search');
+    Route::put('updatesingle/{id}',[OrderController::class, 'updateSingle'])->name('order.updatesingle');
 });
 Route::resource('orders', OrderController::class);
-
 //danh mục
 Route::prefix('categories')->group(function () {
     Route::get('/trash', [CategoryController::class, 'trashedItems'])->name('categories.trash');
@@ -53,21 +57,16 @@ Route::prefix('categories')->group(function () {
     Route::get('categories/hideStatus/{id}', [CategoryController::class,'hideStatus'])->name('categories.hideStatus');
 });
 Route::resource('categories',CategoryController::class);
-
 //nhân viên
-Route::prefix('users')->middleware(['auth', 'PreventBackHistory'])->group(function () {
+Route::prefix('users')->group(function () {
     Route::put('softDeletes/{id}',[UserController::class,'softDeletes'])->name('users.softDeletes');
     Route::get('trash',[UserController::class,'trash'])->name('users.trash');
     Route::put('restore/{id}',[UserController::class, 'restore'])->name('users.restore');
+    Route::put('edit_password/{id}',[UserController::class, 'updatePassword'])->name('users.editPassword');
+    Route::get('profile',[UserController::class, 'profile'])->name('users.profile');
 });
-Route::resource('users',UserController::class)->middleware(['auth', 'PreventBackHistory']);
+Route::resource('users',UserController::class);
 
-//đăng nhập
-Route::prefix('login')->group(function (){
-    route::get('/',[UserController::class,'login'])->name('login');
-    route::post('loginprocessing',[UserController::class,'loginProcessing'])->name('login.processing');
-    route::get('logout',[UserController::class,'logout'])->name('login.logout');
-});
 //Nhãn hiệu:
 Route::prefix('brands')->group(function () {
     Route::get('/trash', [BrandController::class, 'trashedItems'])->name('brands.trash');
@@ -88,7 +87,6 @@ Route::prefix('products')->group(function () {
 });
 Route::resource('products',ProductController::class);
 Route::resource('groups',GroupController::class);
-
 //Banner
 Route::controller(BannerController::class)->group(function () {
     Route::post('banner/updatestatus/{id}/{status?}', 'updateStatus')->name('banner.updatestatus');
@@ -97,4 +95,4 @@ Route::controller(BannerController::class)->group(function () {
     Route::get('banner/hideStatus/{id}', 'hideStatus')->name('banner.hideStatus');
 });
 Route::resource('banners', BannerController::class);
-
+});

@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <div class="mb-3 d-flex justify-content-between">
                                 <div>
-                                    <span class="me-3">Ngày Tạo Đơn: {{ $order->created_at }}</span><br>
+                                    <span class="me-3">Ngày Đặt: @if(isset($order->created_at)) <b>{{ date_format($order->created_at, "H:i:s - d/m/Y") }}</b> @endif</span>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -140,6 +140,21 @@
                             </address>
                         </div>
                     </div>
+                    @if ($order->status)
+                    <div class="text-center">
+                        <h5>Đơn hàng được chấp nhận<i class="bi bi-check2 text-success"></i></h5>
+                    </div>
+                    @else 
+                        <div class="mb-4">
+                            <form action="{{ route('order.updatesingle', $order->id) }}" method="POST" class="mb-3">
+                                @csrf
+                                @method('PUT')
+                                <div class="text-center">
+                                    <button class="btn btn-primary">Duyệt Đơn<i class="bi bi-check2 text-success"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

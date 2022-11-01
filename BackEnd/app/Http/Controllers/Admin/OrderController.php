@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Services\Order\OrderServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -71,7 +72,16 @@ class OrderController extends Controller
         ];
         return view('backend.orders.show', $params);
     }
-
+    
+    function updateSingle($id){
+        // $this->authorize('status', Order::class);
+    try{
+        $this->orderService->updateSingle($id);
+        return redirect()->route('orders.index');
+    }catch(\Exception $e){
+        Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
+    }
+    }
     /**
      * Show the form for editing the specified resource.
      *

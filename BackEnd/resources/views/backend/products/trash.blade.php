@@ -5,7 +5,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">
-                        <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
+                        <a href="{{ route('dashboard') }}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
                     </li>
                 </ol>
             </nav>
@@ -117,7 +117,7 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        @can('restore', App\Models\Banner::class)
+                                                        @can('restore', App\Models\Product::class)
                                                         <form action="{{ route('products.restore', $product->id) }}"
                                                             method="post">
                                                             @csrf
