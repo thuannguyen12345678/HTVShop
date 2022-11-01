@@ -93,7 +93,7 @@
                         </tbody>
                     </table>
                 </div style="float:right">
-                    {{-- {{ $banners->onEachSide(5)->links() }} --}}
+                    {{ $banners->onEachSide(5)->links() }}
                 </div>
                 </div>
             </div>

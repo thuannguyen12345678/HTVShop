@@ -12,6 +12,11 @@ class BannerRepository extends BaseRepository implements BannerRepositoryInterfa
     function getModel() {
         return Banner::class;
     }
+    public function all($request)
+    {
+        return $this->model->latest()->paginate(5);
+        
+    }
     function create($request) {
         $image = $this->storageUpload($request, 'banner', 'banner');
         $banner = $this->model->create([
