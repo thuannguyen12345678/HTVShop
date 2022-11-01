@@ -73,16 +73,6 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-6">
-                            <div class="mb-2">
-                                <p><b>Loại:</b></p>
-                                <input type="radio" name="type_gender" value="Nam">
-                                <label for="html">Nam </label>&nbsp&nbsp&nbsp
-                                <input type="radio" name="type_gender" value="Nữ">
-                                <label for="css">Nữ</label><br>
-                            </div>
-
-                        </div>
                     </div>
 
                 </div>
