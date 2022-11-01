@@ -117,7 +117,7 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        @can('restore', App\Models\Banner::class)
+                                                        @can('restore', App\Models\Product::class)
                                                         <form action="{{ route('products.restore', $product->id) }}"
                                                             method="post">
                                                             @csrf

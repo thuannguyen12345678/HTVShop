@@ -118,7 +118,7 @@
                                         </td>
                                         <td class="align-middle"> {{ $product->name }} </td>
                                         <td class="align-middle"> {{ $product->amount }} </td>
-                                        <td class="align-middle"> {{ $product->price }} </td>
+                                        <td class="align-middle"> {{number_format($product->price)}} .VNĐ </td>
                                         <td>
                                             @if ($product->status == 1)
                                                 <a href="{{ route('products.hideStatus', $product->id) }}">

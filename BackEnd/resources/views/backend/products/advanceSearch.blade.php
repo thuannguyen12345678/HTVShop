@@ -42,7 +42,7 @@
                         <div class="col-lg-6">
                             <div class="mb-2">
                                 <label class="form-label" for="name">&nbsp</label>
-                                <input type="text"  class="form-control" name="endPrice"
+                                <input type="number"  class="form-control" name="endPrice"
                                     id="endPrice" placeholder="đến">
                             </div>
                         </div>
