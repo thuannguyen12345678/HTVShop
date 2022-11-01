@@ -31,7 +31,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:customers|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -56,8 +56,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
 
             'email' => 'required|string|email|max:100|unique:customers',
-            'password' => 'required|string|confirmed|min:6',
-            'name' => 'required|max:20',
+            'password' => 'required',
+            'name' => 'required|max:30',
             'phone' => 'required|numeric',
             'avatar' => 'required',
 
@@ -136,8 +136,8 @@ class AuthController extends Controller
     public function changePassWord(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'old_password' => 'required|string|min:6',
-            'new_password' => 'required|string|confirmed|min:6',
+            'old_password' => 'required',
+            'new_password' => 'required',
         ]);
 
         if ($validator->fails()) {

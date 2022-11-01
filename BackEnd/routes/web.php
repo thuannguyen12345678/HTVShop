@@ -45,6 +45,7 @@ Route::prefix('orders')->group(function () {
     Route::delete('orders/trash/force-delete/{id}', [OrderController::class, 'forceDelete'])->name('order.forceDelete');
     Route::get('searchOrders', [OrderController::class, 'searchByName'])->name('order.searchKey');
     Route::get('searchOrders', [OrderController::class, 'searchOrder'])->name('order.search');
+    Route::put('updatesingle/{id}',[OrderController::class, 'updateSingle'])->name('order.updatesingle');
 });
 Route::resource('orders', OrderController::class);
 //danh mục

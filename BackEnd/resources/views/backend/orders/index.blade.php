@@ -10,16 +10,21 @@
                 </ol>
             </nav>
             <div class="d-md-flex align-items-md-start">
-                <h1 class="page-title mr-sm-auto">Danh sách người đặt hàng</h1>
+                <h1 class="page-title mr-sm-auto">Đơn đặt hàng</h1>
                 <div class="btn-toolbar">
                     <div class="input-group-prepend">
                             {{-- @include('backend.category.advanceSearch') --}}
                     </div>
                     <div class="md-5 title_cate d-flex">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#searchModal">Tìm
+                                nâng cao</button>
+                            @include('backend.orders.advanceSearch')
+                        </div>
                         <div class="form-outline">
                             <form action="">
                                 <input type="search" value="{{ request()->search }}" name="search"
-                                id="form1" class="form-control" placeholder="Tìm theo SDT" />
+                                id="form1" class="form-control" placeholder="search..." />
                                 </div>
                                 <button type="submit" class="btn btn-primary  waves-effect waves-light ">
                                     <i class="bi bi-search"></i>
@@ -59,12 +64,13 @@
                         </p>
                     @endif
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" style="text-align:center">
                             <thead>
                                 <tr>
                                     <th> # </th>
                                     <th> Khách hàng </th>
                                     <th> Số điện thoại </th>
+                                    <th> Trạng thái đơn hàng </th>
                                     <th> Xem chi tiết </th>
                                 </tr>
                             </thead>
@@ -74,6 +80,14 @@
                                         <td class="align-middle"> {{ $key + 1 }} </td>
                                         <td class="align-middle"> {{ $order->name_customer }} </td>
                                         <td class="align-middle"> {{ $order->phone }} </td>
+                                        <td >
+                                            @if($order->status)
+                                                <i class="bi bi-check-circle text-success"></i>
+                                            @else
+                                                <i class="bi bi-x-circle text-danger"></i>
+                                            @endif
+                                        </td>
+
                                         <td>
                                                 @can('view', App\Models\Order::class)
                                                 <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">
