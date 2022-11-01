@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\StoreUserRequest;
 use App\Http\Requests\Update\UpdateUserRequest;
+use App\Mail\email;
 use App\Models\Group;
 use App\Models\User;
 use App\Services\Group\GroupServiceInterface;
@@ -12,6 +13,7 @@ use App\Services\User\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -54,6 +56,14 @@ class UserController extends Controller
     {
         $data = $request->all();
         if($this->userService->create($data)){
+
+        $mailData = [
+            'title' => 'HTVStore',
+            'body' => 'Chào bạn'
+        ];
+
+        Mail::to($request->email)->send(new email($mailData));
+
             return redirect()->route('users.index')->with('success','thêm mới thành công');
         }
         return redirect()->route('users.index')->with('error','thêm mới không thành công');
