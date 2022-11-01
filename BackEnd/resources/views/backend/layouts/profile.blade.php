@@ -3,7 +3,7 @@
         <div class="row column_title">
             <div class="col-md-12">
                 <div class="page_title">
-                   <a href="{{ route('dashboard') }}"><h3>>trang chủ</h3></a>
+                    <a href="{{ route('dashboard') }}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
                 </div>
             </div>
         </div>
