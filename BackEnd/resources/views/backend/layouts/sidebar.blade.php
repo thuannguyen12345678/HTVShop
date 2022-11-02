@@ -2,8 +2,8 @@
     <div class="sidebar_blog_1">
         <div class="sidebar-header">
             <div class="logo_section">
-                <a href="index.html"><img class="logo_icon img-responsive"
-                        src="{{ asset('themeAdmin/images/logo/logo_icon.png') }}" alt="#" /></a>
+                <a href="#"><img class="logo_icon img-responsive"
+                        src="{{ asset(auth()->user()->avatar ?? '') }}" alt="#" /></a>
             </div>
         </div>
         <div class="sidebar_user_info">
@@ -13,13 +13,12 @@
                         alt="#" /></div>
                 <div class="user_info">
                     <h6>{{ auth()->user()->name ?? '' }}</h6>
-                    <p><span class="online_animation"></span> Online</p>
+                    <p><span class="online_animation"></span> Trực tuyến</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="sidebar_blog_2">
-        <h4>General</h4>
         <ul class="list-unstyled components">
             <li class="active">
                 <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i

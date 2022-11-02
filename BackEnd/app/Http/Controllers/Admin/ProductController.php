@@ -210,4 +210,17 @@ class ProductController extends Controller
     public function exportProducts(Request $request){
         return Excel::download(new ProductsExport, 'users.xlsx');
     }
+    public function updateStatus($id, $status)
+    {
+        // $this->authorize('status', Product::class);
+        $products = Product::findOrFail($id);
+        if($status){
+            $products->status = 0;
+        }else{
+            $products->status = 1;
+        }
+        $products->save();
+        return redirect()->route('products.index');
+
+    }
 }

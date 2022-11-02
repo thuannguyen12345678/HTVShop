@@ -147,7 +147,7 @@ class UserController extends Controller
     }
     public function login() {
         if (Auth::check()) {
-            return redirect()->route('users.index');
+            return redirect()->route('dashboard');
         } else {
             return view('backend.login.login');
         }
