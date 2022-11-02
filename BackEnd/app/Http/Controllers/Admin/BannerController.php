@@ -128,12 +128,16 @@ class BannerController extends Controller
     }
     public function updateStatus($id, $status)
     {
-        // if (Gate::denies('Edit_Banner', 'Edit_Banner')) {
-        //     abort(403);
-        // }
-        $this->bannerService->updateStatus($id, $status);
+        // $this->authorize('status', Product::class);
+        $banners = Banner::findOrFail($id);
+        if($status){
+            $banners->status = 0;
+        }else{
+            $banners->status = 1;
+        }
+        $banners->save();
         return redirect()->route('banners.index');
-        
+
     }
 
     /**

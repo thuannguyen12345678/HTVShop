@@ -195,7 +195,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
    public function loginProcessing($data){
 //    dd($data);
     if (Auth::attempt($data)) {
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard');
     } else {
         $kq='tài khoản, hoặc mật khẩu không đúng';
         return redirect()->route('login')->with($kq);

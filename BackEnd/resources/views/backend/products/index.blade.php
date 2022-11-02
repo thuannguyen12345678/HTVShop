@@ -73,7 +73,7 @@
                                     </a>
                                 </div>
 
-                                    {{-- @include('backend.products.modals.modalFilterColumns') --}}
+                                {{-- @include('backend.products.modals.modalFilterColumns') --}}
                             </form>
                         </div>
                     </div><br>
@@ -118,17 +118,13 @@
                                         </td>
                                         <td class="align-middle"> {{ $product->name }} </td>
                                         <td class="align-middle"> {{ $product->amount }} </td>
-                                        <td class="align-middle"> {{number_format($product->price)}} .VNĐ </td>
+                                        <td class="align-middle"> {{ number_format($product->price) }} .VNĐ </td>
                                         <td>
-                                            @if ($product->status == 1)
-                                                <a href="{{ route('products.hideStatus', $product->id) }}">
-                                                    <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
-                                                </a>
-                                            @else
-                                                <a href="{{ route('products.showStatus', $product->id) }}">
-                                                    <i class="bi bi-eye-slash-fill h3" style="color:red"></i>
-                                                </a>
-                                            @endif
+                                            <a data-href="{{ route('products.updateStatus', $product->id) }}" class="updateStatus"
+                                                data-status="{{ $product->status }}"  id="{{ $product->id }}">
+                                                <i class="h4  iconStatus{{ $product->id }}
+                                                    {{ $product->status ? 'bi bi-eye-fill h3' : 'bi bi-eye-slash-fill h3' }} "></i>
+                                            </a>
                                         </td>
                                         <td>
                                             <form action="{{ route('products.destroy', $product->id) }}"
@@ -163,4 +159,50 @@
             </div>
         </div>
     </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).on('click', '.updateStatus', function(e) {
+            e.preventDefault();
+            let id = $(this).attr('id');
+            let status = $(this).data('status');
+            let href = $(this).data('href') + `/` + status;
+            let csrf = '{{ csrf_token() }}';
+            console.log(href);
+            Swal.fire({
+                title: 'Bạn có chắc?',
+                text: "Thay đổi trạng thái của sản phẩm!",
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý!'    
+            }).then((result) => {
+                if (status) {
+                    $(this).data('status', 0);
+                    $(`.iconStatus${id}`).removeClass('bi bi-eye-fill h3');
+                    $(`.iconStatus${id}`).addClass('bi bi-eye-slash-fill h3');
+                } else {
+                    $(this).data('status', 1);
+                    $(`.iconStatus${id}`).removeClass('bi bi-eye-slash-fill h3');
+                    $(`.iconStatus${id}`).addClass('bi bi-eye-fill h3');
+                }
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: href,
+                        method: 'post',
+                        data: {
+                            _token: csrf
+                        },
+                        success: function(res) {
+                            console.log(id);
+                            Swal.fire(
+                                'Cập nhật thành công!','','success'
+                            )
+                        }
+                    });
+                }
+            })
+        });
+    </script>
 @endsection

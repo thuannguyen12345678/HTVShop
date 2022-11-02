@@ -179,4 +179,17 @@ class CategoryController extends Controller
             return redirect()->back();
         }
     }
+    public function updateStatus($id, $status)
+    {
+        // $this->authorize('status', Category::class); 
+        $product = Category::findOrFail($id);
+        if($status){
+            $product->status = 0;
+        }else{
+            $product->status = 1;
+        }
+        $product->save();
+        return redirect()->route('product.index');
+
+    }
 }

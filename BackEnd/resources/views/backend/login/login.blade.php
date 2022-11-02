@@ -51,21 +51,20 @@
                         @csrf
                         <fieldset>
                            <div class="field">
-                              <label class="label_field">Email Address</label>
+                              <label class="label_field">Email</label>
                               <input type="email" name="email" placeholder="E-mail" />
                            </div>
                            <div class="field">
-                              <label class="label_field">Password</label>
+                              <label class="label_field">Mật khẩu</label>
                               <input type="password" name="password" placeholder="Password" />
                            </div>
                            <div class="field">
                               <label class="label_field hidden">hidden label</label>
-                              <label class="form-check-label"><input type="checkbox" class="form-check-input"> Remember Me</label>
-                              <a class="forgot" href="">Forgotten Password?</a>
+                              <label class="form-check-label"><input type="checkbox" class="form-check-input"> Nhớ mật khẩu</label>
                            </div>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
-                              <button  type='submit' class="main_bt">Sing In</button>
+                              <button  type='submit' class="main_bt">Đăng nhập</button>
                            </div>
                         </fieldset>
                      </form>

@@ -55,6 +55,7 @@ Route::prefix('categories')->group(function () {
     Route::put('/restore/{id}', [CategoryController::class, 'restore'])->name('categories.restore');
     Route::get('categories/showStatus/{id}', [CategoryController::class, 'showStatus'])->name('categories.showStatus');
     Route::get('categories/hideStatus/{id}', [CategoryController::class,'hideStatus'])->name('categories.hideStatus');
+    Route::post('categories/updateStatus/{id}/{status?}',[CategoryController::class, 'updateStatus'])->name('categories.updateStatus');
 });
 Route::resource('categories',CategoryController::class);
 //nhân viên
@@ -84,6 +85,7 @@ Route::prefix('products')->group(function () {
     Route::get('products/showStatus/{id}', [ProductController::class, 'showStatus'])->name('products.showStatus');
     Route::get('products/hideStatus/{id}', [ProductController::class,'hideStatus'])->name('products.hideStatus');
     Route::get('/export-products', [ProductController::class, 'exportProducts'])->name('export-products');
+    Route::post('products/updateStatus/{id}/{status?}',[ProductController::class, 'updateStatus'])->name('products.updateStatus');
 });
 Route::resource('products',ProductController::class);
 Route::resource('groups',GroupController::class);
@@ -93,6 +95,7 @@ Route::controller(BannerController::class)->group(function () {
     Route::delete('banner/destroy/{id}', 'destroy')->name('banner.destroy');
     Route::get('banner/showStatus/{id}',  'showStatus')->name('banner.showStatus');
     Route::get('banner/hideStatus/{id}', 'hideStatus')->name('banner.hideStatus');
+    Route::post('banner/updateStatus/{id}/{status?}', 'updateStatus')->name('banner.updateStatus');
 });
 Route::resource('banners', BannerController::class);
 });
