@@ -194,6 +194,7 @@ class ProductController extends Controller
     }
 
     public function showStatus($id){
+        $this->authorize('status', Product::class);
         $products = Product::findOrFail($id);
         $products->status = '1';
         if ($products->save()) {
@@ -201,6 +202,7 @@ class ProductController extends Controller
         }
     }
     public function hideStatus($id){
+        $this->authorize('status', Product::class);
         $products = Product::findOrFail($id);
         $products->status = '0';
         if ($products->save()) {

@@ -120,6 +120,7 @@
                                         <td class="align-middle"> {{ $product->amount }} </td>
                                         <td class="align-middle"> {{number_format($product->price)}} .VNĐ </td>
                                         <td>
+                                            @can('status', App\Models\product::class)
                                             @if ($product->status == 1)
                                                 <a href="{{ route('products.hideStatus', $product->id) }}">
                                                     <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
@@ -129,6 +130,7 @@
                                                     <i class="bi bi-eye-slash-fill h3" style="color:red"></i>
                                                 </a>
                                             @endif
+                                            @endcan
                                         </td>
                                         <td>
                                             <form action="{{ route('products.destroy', $product->id) }}"

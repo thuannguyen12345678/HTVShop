@@ -91,4 +91,8 @@ class ProductPolicy
     {
         return $user->hasPermission('Product_forceDelete');
     }
+    public function status(User $user)
+    {
+        return $user->hasPermission('Product_status');
+    }
 }
