@@ -101,8 +101,10 @@ class OrderController extends Controller {
         $carts = Cache::get('carts');
         $customer = Customer::findOrFail($request->customer_id);
         $orderDetails = $order->orderDetails;
+        $orderStatus='Bạn đã đặt mua những sản phẩm :';
         $params = [
             'order' => $order,
+            'orderStatus'=>$orderStatus,
             'orderDetails' => $orderDetails,
         ];
        

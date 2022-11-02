@@ -3,6 +3,7 @@
         @php
             $order = $params['order'];
             $orderDetails = $params['orderDetails'];
+            $orderStatus = $params['orderStatus'];
             $totalPriceOrder = 0;
         @endphp
     @endif
@@ -13,8 +14,7 @@
         <h1 style="font-size:24px;margin:0 0 -40px 0;font-family:Arial,sans-serif;">
             <h3>Kính Chào Khách Hàng: {{ $order->name_customer }}</h3>
         </h1>
-        <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;color:rgb(241, 23, 63)">Bạn Đã Đặt
-            Mua Những Sản Phẩm</p><br>
+        <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;color:rgb(241, 23, 63)">{{$orderStatus}}</p><br>
 <tr>
     <td style="width: 200px"><b>Sản phẩm</b></td>
     <td style="width: 100px"><b>Số Lượng</b></td>
