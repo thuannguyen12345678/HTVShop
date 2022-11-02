@@ -110,7 +110,7 @@
             console.log(href);
             Swal.fire({
                 title: 'Bạn có chắc?',
-                text: "Thay đổi trạng thái của sản phẩm!",
+                text: "Thay đổi trạng thái của ảnh bìa!",
                 showCancelButton: true,
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Đồng ý!'    

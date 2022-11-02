@@ -106,6 +106,8 @@
                                         </td>
                                             <form action="{{ route('categories.destroy', $category->id) }}"
                                                 style="display:inline" method="post">
+                                                @csrf
+                                                @method('DELETE')
                                                 @can('update', App\Models\category::class)
                                                 <a href="{{ route('categories.edit', $category->id) }}"
                                                     class="btn btn-sm btn-icon btn-secondary"><i
@@ -116,8 +118,6 @@
                                                     type="submit" class="btn btn-sm btn-icon btn-secondary"><i
                                                         class="bi bi-trash"></i></button>
                                                 @endcan
-                                                @csrf
-                                                @method('DELETE')
                                             </form>
                                         </td>
                                     </tr>
