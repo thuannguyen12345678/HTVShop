@@ -103,7 +103,7 @@
                                                     {{ $category->status ? 'bi bi-eye-fill h3' : 'bi bi-eye-slash-fill h3' }} "></i>
                                             </a>
                                         </td>
-                                        </td>
+                                        <td>
                                             <form action="{{ route('categories.destroy', $category->id) }}"
                                                 style="display:inline" method="post">
                                                 @csrf
