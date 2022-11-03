@@ -18,7 +18,7 @@ class AuthController extends Controller
     protected $customerService;
     public function __construct(CustomerServiceInterface $customerService)
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register','logout','refresh','userProfile','changePassWord']]);
         $this->customerService = $customerService;
     }
 
@@ -30,8 +30,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|unique:customers|email',
-            'password' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:5',
         ]);
 
         if ($validator->fails()) {
@@ -56,11 +56,9 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
 
             'email' => 'required|string|email|max:100|unique:customers',
-            'password' => 'required',
-            'name' => 'required|max:30',
-            'phone' => 'required|numeric',
-            'avatar' => 'required',
-
+            'name' => 'required|string',
+            'phone' => 'required',
+            'password' => 'required|string|min:3',
         ]);
 
         if ($validator->fails()) {
@@ -91,7 +89,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
+        auth('api')->logout();
 
         return response()->json(['message' => 'Đăng Xuất Thành Công']);
     }
