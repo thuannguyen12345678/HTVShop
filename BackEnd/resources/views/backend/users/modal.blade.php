@@ -14,7 +14,7 @@
                 <!-- #filter-columns -->
                 <div id="filter-columns">
                     <!-- .form-row -->
-                    <div class="form-group form-row filter-row">
+                    {{-- <div class="form-group form-row filter-row">
                         <div class="col-lg-4">
                             <label class="">ID</label>
                         </div>
@@ -22,7 +22,7 @@
                             <div class="input text"><input type="text" name="id"
                                     value="{{ $f_id }}" class="form-control filter-column f-name"/></div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group form-row filter-row">
                         <div class="col-lg-4">
                             <label class="">Tên nhân viên</label>

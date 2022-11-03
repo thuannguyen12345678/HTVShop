@@ -14,12 +14,37 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     // }
     public function all($request)
     {
-        $search = $request->search;
-        $orders = $this->model->select('*')->orderBy('id', 'desc');
-        if ($search) {
-            $orders = $orders->where('phone', 'like', '%' . $search . '%');
+        $key        = $request->key ?? '';
+        $name_customer      = $request->name_customer ?? '';
+        $phone      = $request->phone ?? '';
+        $address      = $request->address ?? '';
+        $created_at      = $request->created_at ?? '';
+        $id         = $request->id ?? '';
+        $query = Order::query(true);
+        $query->orderBy('id', 'desc');
+        if ($name_customer) {
+            $query->where('name_customer', 'LIKE', '%' . $name_customer . '%');
         }
-        return $orders->paginate(5);
+        if ($phone) {
+            $query->where('phone', 'LIKE', '%' . $phone . '%');
+        }
+        if ($address) {
+            $query->where('address', 'LIKE', '%' . $address . '%');
+        }
+        if ($created_at) {
+            $query->where('created_at', 'LIKE', '%' . $created_at . '%');
+        }
+        if ($id) {
+            $query->where('id', $id);
+        }
+        if ($key) {
+            $query->orWhere('id', $key);
+            $query->orWhere('name_customer', 'LIKE', '%' . $key . '%');
+            $query->orWhere('created_at', 'LIKE', '%' . $key . '%');
+            $query->orWhere('phone', 'LIKE', '%' . $key . '%');
+            $query->orWhere('address', 'LIKE', '%' . $key . '%');
+        }
+        return $query->paginate(5);
     }
     // function getAllWithPaginateLatest($request){
     //     $orders = $this->model->latest()->paginate(10);

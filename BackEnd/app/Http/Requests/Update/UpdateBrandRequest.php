@@ -25,7 +25,6 @@ class UpdateBrandRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'required',
         ];
 
     }
@@ -33,7 +32,6 @@ class UpdateBrandRequest extends FormRequest
     {
         return [
             'name.required' => 'Trường bắt buộc',
-            'image.required' => 'Trường bắt buộc',
         ];
     }
 }

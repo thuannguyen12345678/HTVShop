@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->integer('order_total_price');
+            $table->tinyInteger('status')->default('0')->comment('0=Hide, 1=Show');
             $table->foreignId('customer_id')->constrained('customers');
             $table->foreignId('province_id')->constrained('provinces');
             $table->foreignId('district_id')->constrained('districts');

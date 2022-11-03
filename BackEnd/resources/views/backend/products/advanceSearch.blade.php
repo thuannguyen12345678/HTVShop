@@ -42,7 +42,7 @@
                         <div class="col-lg-6">
                             <div class="mb-2">
                                 <label class="form-label" for="name">&nbsp</label>
-                                <input type="text"  class="form-control" name="endPrice"
+                                <input type="number"  class="form-control" name="endPrice"
                                     id="endPrice" placeholder="đến">
                             </div>
                         </div>
@@ -70,16 +70,6 @@
                                 <label for="html">Hiện </label>&nbsp&nbsp&nbsp
                                 <input type="radio"  name="status" value="0">
                                 <label for="css">Ẩn</label><br>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-2">
-                                <p><b>Loại:</b></p>
-                                <input type="radio" name="type_gender" value="Nam">
-                                <label for="html">Nam </label>&nbsp&nbsp&nbsp
-                                <input type="radio" name="type_gender" value="Nữ">
-                                <label for="css">Nữ</label><br>
                             </div>
 
                         </div>

@@ -5,7 +5,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">
-                        <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
+                        <a href="{{ route('dashboard') }}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
                     </li>
                 </ol>
             </nav>
@@ -97,20 +97,17 @@
 
                                         <td class="align-middle"> {{ $category->name }} </td>
                                         <td>
-                                            @if ($category->status == 1)
-                                                <a href="{{ route('categories.hideStatus', $category->id) }}">
-                                                    <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
-                                                </a>
-                                            @else
-                                                <a href="{{ route('categories.showStatus', $category->id) }}">
-                                                    <i class="bi bi-eye-slash-fill h3" style="color:red"></i>
-                                                </a>
-                                            @endif
+                                            <a data-href="{{ route('categories.updateStatus', $category->id) }}" class="updateStatus"
+                                                    data-status="{{ $category->status }}"  id="{{ $category->id }}">
+                                                <i class="h4  iconStatus{{ $category->id }}
+                                                    {{ $category->status ? 'bi bi-eye-fill h3' : 'bi bi-eye-slash-fill h3' }} "></i>
+                                            </a>
                                         </td>
-
                                         <td>
                                             <form action="{{ route('categories.destroy', $category->id) }}"
                                                 style="display:inline" method="post">
+                                                @csrf
+                                                @method('DELETE')
                                                 @can('update', App\Models\category::class)
                                                 <a href="{{ route('categories.edit', $category->id) }}"
                                                     class="btn btn-sm btn-icon btn-secondary"><i
@@ -121,8 +118,6 @@
                                                     type="submit" class="btn btn-sm btn-icon btn-secondary"><i
                                                         class="bi bi-trash"></i></button>
                                                 @endcan
-                                                @csrf
-                                                @method('DELETE')
                                             </form>
                                         </td>
                                     </tr>
@@ -137,4 +132,50 @@
             </div>
         </div>
     </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).on('click', '.updateStatus', function(e) {
+            e.preventDefault();
+            let id = $(this).attr('id');
+            let status = $(this).data('status');
+            let href = $(this).data('href') + `/` + status;
+            let csrf = '{{ csrf_token() }}';
+            console.log(href);
+            Swal.fire({
+                title: 'Bạn có chắc?',
+                text: "Thay đổi trạng thái của sản phẩm!",
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý!'    
+            }).then((result) => {
+                if (status) {
+                    $(this).data('status', 0);
+                    $(`.iconStatus${id}`).removeClass('bi bi-eye-fill h3');
+                    $(`.iconStatus${id}`).addClass('bi bi-eye-slash-fill h3');
+                } else {
+                    $(this).data('status', 1);
+                    $(`.iconStatus${id}`).removeClass('bi bi-eye-slash-fill h3');
+                    $(`.iconStatus${id}`).addClass('bi bi-eye-fill h3');
+                }
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: href,
+                        method: 'post',
+                        data: {
+                            _token: csrf
+                        },
+                        success: function(res) {
+                            console.log(id);
+                            Swal.fire(
+                                'Cập nhật thành công!','','success'
+                            )
+                        }
+                    });
+                }
+            })
+        });
+    </script>
 @endsection

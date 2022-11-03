@@ -5,7 +5,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">
-                        <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
+                        <a href="{{ route('dashboard') }}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Trang Chủ</a>
                     </li>
                 </ol>
             </nav>
@@ -73,7 +73,6 @@
                                 <tr>
                                     <th> # </th>
                                     <th> Tên danh mục </th>
-                                    <th> Trạng thái </th>
                                     <th> Thao tác</th>
                                 </tr>
                             </thead>
@@ -83,19 +82,6 @@
                                         <td class="align-middle"> {{ $key + 1   }} </td>
 
                                         <td class="align-middle"> {{ $category->name }} </td>
-                                        <td>
-                                            @if ($category->status == 1)
-                                                <a href="{{ route('categories.hideStatus', $category->id) }}">
-                                                    <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
-
-                                                </a>
-                                            @else
-                                                <a href="{{ route('categories.showStatus', $category->id) }}">
-                                                    <i class="bi bi-eye-slash-fill h3" style="color:red"></i>
-                                                </a>
-                                            @endif
-                                        </td>
-
                                         <td>
                                             <div class="container">
                                                 <div class="row">
@@ -132,7 +118,6 @@
                             </tbody>
                         </table>
                         <div style="float:right">
-
                             {{ $categories->onEachSide(5)->links() }}
                         </div>
                     </div>

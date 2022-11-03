@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
             'email' => 'required|email',
             'name' => 'required',
             'address' => 'required',
-            'phone' => 'required|int',
+            'phone' => 'required|numeric',
             'address' => 'required',
             'day_of_birth' => 'required',
             'group_id'=>'required'
@@ -40,6 +40,7 @@ class UpdateUserRequest extends FormRequest
         'name.required' => 'Trường bắt buộc',
         'address.required' => 'Trường bắt buộc',
         'phone.required' => 'Trường bắt buộc',
+        'phone.numeric' => ' bắt buộc phải là số',
         'address.required' => 'Trường bắt buộc',
         'day_of_birth.required' => 'Trường bắt buộc',
         'group_id.required' => 'Trường bắt buộc',

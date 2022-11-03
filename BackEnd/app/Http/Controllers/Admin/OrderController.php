@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Services\Order\OrderServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -71,7 +74,29 @@ class OrderController extends Controller
         ];
         return view('backend.orders.show', $params);
     }
-
+    
+    function updateSingle($id){
+        // $this->authorize('status', Order::class);
+    try{
+        $this->orderService->updateSingle($id);
+        $order = $this->orderService->find($id);
+        $customer = Customer::findOrFail($order->customer_id);
+        $orderDetails = $order->orderDetails;
+        $orderStatus='Đơn hàng của bạn đã được duyệt';
+        $params = [
+            'order' => $order,
+            'orderStatus'=>$orderStatus,
+            'orderDetails' => $orderDetails,
+        ];
+        Mail::send('backend.mail.orders', compact('params'), function ($email) use($customer) {
+            $email->subject('HTVStore');
+            $email->to($customer->email,$customer->name);
+        });
+        return redirect()->route('orders.index');
+    }catch(\Exception $e){
+        Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
+    }
+    }
     /**
      * Show the form for editing the specified resource.
      *
