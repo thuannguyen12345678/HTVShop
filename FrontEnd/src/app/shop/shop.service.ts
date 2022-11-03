@@ -19,8 +19,12 @@ export class ShopService {
   product_listSer(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.urlAllProducts);
   }
-  
-  
+  // registerSer(register: Register): Observable<Register[]> {
+  //   return this.http.post<Register[]>(environment.urlRegister, register);
+  // }
+  googleLogin(): Observable<any> {
+    return this.http.get<any[]>(environment.urlLogin)
+  }
   trendingProductSer(): Observable<Category[]> {
     return this.http.get<Category[]>(environment.urlTrendingPro);
   }
