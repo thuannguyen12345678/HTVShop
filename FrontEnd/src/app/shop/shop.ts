@@ -2,7 +2,6 @@ export interface Product {
     name: any;
     price: any;
     amount: any;
-    sale_price: any;
     image:{ url: string};
     description: any;
   }
@@ -31,6 +30,11 @@ export interface Product {
   }
   export interface Brand {
     name: any;
-    logo: any;
+    image: any;
+    status: any;
+  }
+  export interface Banner {
+    url: any;
+    image: any;
     status: any;
   }
