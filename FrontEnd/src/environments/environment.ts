@@ -9,6 +9,10 @@ export const environment = {
   urlTrendingPro : urlApi+'trendingProduct',
   urlBanner : urlApi+'getBanner',
   urlGetAllBrand : urlApi+'brand',
+  urlAllCategories : urlApi+'category_list',
+  urlSearch : urlApi,
+  urlIdProduct : urlApi+'product_detail',
+  urlImageProduct : urlApi+'image_detail',
 };
 
 /*

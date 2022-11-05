@@ -26,13 +26,13 @@ export class HomeComponent implements OnInit {
   trendingProduct(){
     this.shopService.trendingProductSer().subscribe(res => {
       this.products = res;
-    })
+    });
   }
   getBanner(){
     this.shopService.getAllBanner().subscribe(res => {
         this.banner = res;
         this.banner = this.banner.image;
-    })
+    });
   }
   getAllBrand(){
     this.shopService.getAllBrand().subscribe(res => {

@@ -45,12 +45,12 @@ class FeProductRepository extends BaseRepository implements FeProductRepositoryI
         'brands.name as branName')->where('products.id','=',$id)->get();
         return $product;
     }
-   
+
     public function find_images($id)
     {
         $product= DB::table('products')
-        ->join('product_images', 'products.id', '=', 'product_images.product_id')
-        ->select('product_images.image as product_images')->where('product_images.product_id','=',$id)->get();
+        ->join('image_products', 'products.id', '=', 'image_products.product_id')
+        ->select('image_products.file_name as image_products')->where('image_products.product_id','=',$id)->get();
         return $product;
     }
     public function trendingProduct()

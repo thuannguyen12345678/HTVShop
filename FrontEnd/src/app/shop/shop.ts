@@ -1,13 +1,16 @@
 export interface Product {
+   id:any;
     name: any;
     price: any;
     amount: any;
     sale_price: any;
     image:{ url: string};
     description: any;
+    status: any;
   }
   export interface Category {
     name: any;
+    status:any
   }
   export interface Review {
     content: any;
@@ -28,4 +31,8 @@ export interface Product {
     name: any;
     logo: any;
     status: any;
+  }
+  export interface Image {
+    file_name: any;
+    product_id: any;
   }
