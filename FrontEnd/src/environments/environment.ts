@@ -17,8 +17,12 @@ export const environment = {
   urlRegister : urlApi+'register',
   urlLogin : urlApi+'login-customer',
   urlLogout : urlApi+'logout',
-
-
+  urlCreateOrder : urlApi+'orders/create',
+  urlGetAllProvince : urlApi+'orders/list-province',
+  urlGetAllDistrictByProvince : urlApi+'orders/list-district/',
+  urlGetAllWardByDistrict : urlApi+'orders/list-ward/',
+  urlOrderStore : urlApi+'orders/store',
+  urlOrderShow : urlApi+' orders/show/',
 };
 
 /*

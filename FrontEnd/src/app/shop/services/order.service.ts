@@ -19,7 +19,6 @@ export class OrderService {
   getAllCart(){
     return this.http.get(environment.url+'api/list-cart');
   }
-
   updateAmount(id: any, amount: any){
     return this.http.get(environment.url+'api/update-cart/'+id+'/'+amount);
   }
@@ -27,23 +26,21 @@ export class OrderService {
     return this.http.get(environment.url+'api/remove-to-cart/'+id);
   }
   createOrder(){
-    return this.http.get(environment.url+'api/order/create');
+    return this.http.get(environment.url+'api/orders/create');
   }
   getAllProvince(){
-    return this.http.get(environment.url+'api/order/list-province');
+    return this.http.get(environment.url+'api/orders/list-province');
   }
   getAllDistrictByProvinceId(id: any){
-    return this.http.get(environment.url+'api/order/list-district/'+id);
+    return this.http.get(environment.url+'api/orders/list-district/'+id);
   }
   getAllWardDistrictById(id: any){
-    return this.http.get(environment.url+'api/order/list-ward/'+id);
+    return this.http.get(environment.url+'api/orders/list-ward/'+id);
   }
   storeOrder(request: any){
-    return this.http.post(environment.url+'api/order/store/', request, {responseType: 'text'});
+    return this.http.post(environment.url+'api/orders/store/', request, {responseType: 'text'});
   }
   showOrder(id: any){
-    return this.http.get(environment.url+'api/order/show/'+id);
+    return this.http.get(environment.url+'api/orders/show/'+id);
   }
-
 }
-
