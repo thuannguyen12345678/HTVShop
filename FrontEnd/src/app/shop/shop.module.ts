@@ -9,7 +9,6 @@ import { CheckoutComponent } from './components/checkout.component';
 import { ProductDetailsComponent } from './components/product-details.component';
 import { RegisterComponent } from './components/register.component';
 import { LoginComponent } from './components/login.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ShopRoutingModule } from './shop-routing.module';
 
 
@@ -29,10 +28,9 @@ import { ShopRoutingModule } from './shop-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
     ShopRoutingModule,
   ],
   providers: [],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ShopModule { }
