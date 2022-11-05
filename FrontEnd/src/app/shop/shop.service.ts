@@ -21,6 +21,12 @@ export class ShopService {
   }
   trendingProductSer(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.urlTrendingPro);
+  // registerSer(register: Register): Observable<Register[]> {
+  //   return this.http.post<Register[]>(environment.urlRegister, register);
+  // }
+  googleLogin(): Observable<any> {
+    return this.http.get<any[]>(environment.urlLogin)
+  }
   }
   getAllBrand(): Observable<Brand[]> {
     return this.http.get<Brand[]>(environment.urlGetAllBrand);

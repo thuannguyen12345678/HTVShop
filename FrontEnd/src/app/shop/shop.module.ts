@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,6 +10,7 @@ import { ProductDetailsComponent } from './components/product-details.component'
 import { RegisterComponent } from './components/register.component';
 import { LoginComponent } from './components/login.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ShopRoutingModule } from './shop-routing.module';
 
 
 
@@ -24,11 +25,12 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule
-    
+    ShopRoutingModule,
   ],
   providers: [],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
