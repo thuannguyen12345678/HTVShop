@@ -9,11 +9,15 @@ export const environment = {
   urlAllProducts : urlApi+'product_list',
   urlTrendingPro : urlApi+'trendingProduct',
   urlBanner : urlApi+'getBanner',
-
+  urlAllCategories : urlApi+'category_list',
+  urlSearch : urlApi,
+  urlIdProduct : urlApi+'product_detail',
+  urlImageProduct : urlApi+'image_detail',
   urlGetAllBrand : urlApi+'brands',
   urlRegister : urlApi+'register',
   urlLogin : urlApi+'login-customer',
   urlLogout : urlApi+'logout',
+
 
 };
 

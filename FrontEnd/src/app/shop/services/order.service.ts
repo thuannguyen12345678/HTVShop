@@ -13,13 +13,13 @@ export class OrderService {
     })
   }
   constructor(private http: HttpClient,) {}
-  
   addToCart(id: number){
     return this.http.get(environment.url+'api/add-to-cart/'+id);
   }
   getAllCart(){
     return this.http.get(environment.url+'api/list-cart');
   }
+
   updateAmount(id: any, amount: any){
     return this.http.get(environment.url+'api/update-cart/'+id+'/'+amount);
   }
@@ -44,4 +44,6 @@ export class OrderService {
   showOrder(id: any){
     return this.http.get(environment.url+'api/order/show/'+id);
   }
+
 }
+

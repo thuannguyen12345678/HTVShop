@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   trendingProduct() {
     this.shopService.trendingProductSer().subscribe((res) => {
       this.products = res;
+
       console.log(this.products);
     });
   }
@@ -58,3 +59,6 @@ export class HomeComponent implements OnInit {
     })
   }
 }
+
+}
+
