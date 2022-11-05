@@ -5,14 +5,20 @@ let urlApi = 'http://127.0.0.1:8000/api/';
 export const environment = {
   production: false,
   url:'http://127.0.0.1:8000/',
+  
   urlAllProducts : urlApi+'product_list',
   urlTrendingPro : urlApi+'trendingProduct',
   urlBanner : urlApi+'getBanner',
-  urlGetAllBrand : urlApi+'brand',
   urlAllCategories : urlApi+'category_list',
   urlSearch : urlApi,
   urlIdProduct : urlApi+'product_detail',
   urlImageProduct : urlApi+'image_detail',
+  urlGetAllBrand : urlApi+'brands',
+  urlRegister : urlApi+'register',
+  urlLogin : urlApi+'login-customer',
+  urlLogout : urlApi+'logout',
+
+
 };
 
 /*
@@ -22,4 +28,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+

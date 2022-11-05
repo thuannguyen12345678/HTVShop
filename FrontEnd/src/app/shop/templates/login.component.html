@@ -1,63 +1,99 @@
 <div class="page-title-area">
-    <div class="d-table">
+  <div class="d-table">
     <div class="d-table-cell">
-    <div class="container">
-    <div class="title-content">
-    <h2>Login</h2>
-    <ul>
-    <li>
-    <a href="index.html">Home</a>
-    </li>
-    <li>
-    <span>Login</span>
-    </li>
-    </ul>
+      <div class="container">
+        <div class="title-content">
+          <h2>Đăng Nhập</h2>
+          <ul>
+            <li>
+              <a [routerLink]="['/home']">Trang Chủ</a>
+            </li>
+            <li>
+              <span>Đăng Nhập</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
-    <div class="title-img">
-    <img src="assets/images/page-title1.jpg" alt="About">
-    <img src="assets/images/shape16.png" alt="Shape">
-    <img src="assets/images/shape17.png" alt="Shape">
-    <img src="assets/images/shape18.png" alt="Shape">
-    </div>
-    </div>
-    
-    
-    <div class="user-area ptb-100">
-    <div class="container">
+  </div>
+  <div class="title-img">
+    <img src="assets/images/page-title1.jpg" alt="About" />
+    <img src="assets/images/shape16.png" alt="Shape" />
+    <img src="assets/images/shape17.png" alt="Shape" />
+    <img src="assets/images/shape18.png" alt="Shape" />
+  </div>
+</div>
+
+<div class="user-area ptb-100">
+  <div class="container">
     <div class="user-item">
-    <form>
-    <h2>Login</h2>
-    <div class="form-group">
-    <input type="email" class="form-control" placeholder="Your Email:">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2>Đăng Nhập</h2>
+        <div class="form-group">
+        <input
+            formControlName="email"
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            placeholder="Email"
+          /><br />
+        <small
+          class="label label-danger"
+          *ngIf="!loginForm.controls['email']?.valid && (loginForm.controls['email']?.dirty
+        ||loginForm.controls['email']?.touched) && loginForm.controls['email']?.errors?.['required']"
+          class="help-block text-danger"
+          >Trường bắt buộc!</small
+        >
+        <small
+          class="label label-danger"
+          *ngIf="!loginForm.controls['email']?.valid && (loginForm.controls['email']?.dirty
+        ||loginForm.controls['email']?.touched) && loginForm.controls['email']?.errors?.['email']"
+          class="help-block text-danger"
+          >Email không đúng địng dạng!</small
+        >
+      </div>
+      <div class="form-group">
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          placeholder="Mật khẩu"
+        /><br />
+        <small
+          class="label label-danger"
+          *ngIf="!loginForm.controls['password']?.valid && (loginForm.controls['password']?.dirty
+        ||loginForm.controls['password']?.touched) && loginForm.controls['password']?.errors?.['required']"
+          class="help-block text-danger"
+          >Trường bắt buộc!</small
+        >
+        <small
+          class="label label-danger"
+          *ngIf="!loginForm.controls['password']?.valid && (loginForm.controls['password']?.dirty
+        ||loginForm.controls['password']?.touched) && loginForm.controls['password']?.errors?.['minlength']"
+          class="help-block text-danger"
+          >Mật khẩu tối thiểu 5 ký tự!</small
+        ><br />
+        <small
+          class="label label-danger"
+          *ngIf="error"
+          class="help-block text-danger"
+          >Tài Khoản Hoặc Mật Khẩu Không Đúng</small
+        ><br /></div>
+        <input
+          type="submit"
+          [disabled]="!loginForm.valid"
+          class="btn common-btn"
+          value="Đăng Nhập"
+        />
+        <img src="assets/images/shape1.png" alt="Shape" />
+        <img src="assets/images/shape2.png" alt="Shape" />
+        <h5>
+          Bạn chưa đã có tài khoản ? <a [routerLink]="['/register']">Đăng ký</a>
+        </h5>
+      </form>
     </div>
-    <div class="form-group">
-    <input type="password" class="form-control" placeholder="Password:">
-    </div>
-    <button type="submit" class="btn common-btn">
-    Login
-    <img src="assets/images/shape1.png" alt="Shape">
-    <img src="assets/images/shape2.png" alt="Shape">
-    </button>
-    <h4>Or</h4>
-    <ul>
-    <li>
-    <a href="#">
-    <i class='bx bxl-facebook'></i>
-    Login With Facebook
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <i class='bx bxl-google'></i>
-    Login With Google
-    </a>
-    </li>
-    </ul>
-    <h5>Didn't Have An Account? <a href="register.html">Register</a></h5>
-    </form>
-    </div>
-    </div>
-    </div>
+  </div>
+</div>

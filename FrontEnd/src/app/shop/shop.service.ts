@@ -20,14 +20,16 @@ export class ShopService {
     return this.http.get<Product[]>(environment.urlAllProducts);
   }
 
+
   product_detailSer(id: any): Observable<Product[]> {
     return this.http.get<Product[]>(environment.urlIdProduct + '/' + id);
   }
   product_image(id: any): Observable<Image[]> {
     return this.http.get<Image[]>(environment.urlImageProduct + '/' + id);
   }
-  trendingProductSer(): Observable<Category[]> {
-    return this.http.get<Category[]>(environment.urlTrendingPro);
+  trendingProductSer(): Observable<Product[]> {
+    return this.http.get<Product[]>(environment.urlTrendingPro);
+
   }
   getAllBrand(): Observable<Brand[]> {
     return this.http.get<Brand[]>(environment.urlGetAllBrand);

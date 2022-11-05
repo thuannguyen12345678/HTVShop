@@ -59,7 +59,7 @@ class FeProductRepository extends BaseRepository implements FeProductRepositoryI
             ->leftJoin('products', 'products.id', '=', 'order_details.product_id')
             ->selectRaw('products.*, count(order_details.product_id) totalByQuan')
             ->groupBy('order_details.product_id')
-            ->orderBy('totalByQuan', 'desc')
+            ->orderBy('totalByQuan', 'DESC')
             ->take(8)
             ->get();
         return $trendingPro;

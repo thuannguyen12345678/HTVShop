@@ -143,10 +143,20 @@
                 <span>2</span>
               </button>
             </li>
-            <li>
-              <a class="join" href="login.html">
-                <i class="flaticon-round-account-button-with-user-inside"></i>
-                Join
+            <li *ngIf="!check">
+              <a class="join" [routerLink]="['/login']">
+                <i
+                  class="flaticon-round-account-button-with-user-inside"
+                ></i>
+                Đăng Nhập
+              </a>
+            </li>
+            <li *ngIf="check">
+              <a class="join" (click)="logout()">
+                <i
+                  class="flaticon-round-account-button-with-user-inside"
+                ></i>
+                Đăng Xuất
               </a>
             </li>
           </ul>
