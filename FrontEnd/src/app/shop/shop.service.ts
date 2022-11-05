@@ -19,10 +19,8 @@ export class ShopService {
   product_listSer(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.urlAllProducts);
   }
-  
-  
-  trendingProductSer(): Observable<Category[]> {
-    return this.http.get<Category[]>(environment.urlTrendingPro);
+  trendingProductSer(): Observable<Product[]> {
+    return this.http.get<Product[]>(environment.urlTrendingPro);
   }
   getAllBrand(): Observable<Brand[]> {
     return this.http.get<Brand[]>(environment.urlGetAllBrand);
