@@ -10,6 +10,7 @@ import { ProductDetailsComponent } from './components/product-details.component'
 import { RegisterComponent } from './components/register.component';
 import { LoginComponent } from './components/login.component';
 import { ShopRoutingModule } from './shop-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -21,6 +22,7 @@ import { ShopRoutingModule } from './shop-routing.module';
     ProductDetailsComponent,
     RegisterComponent,
     LoginComponent,
+
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { ShopRoutingModule } from './shop-routing.module';
     FormsModule,
     RouterModule,
     ShopRoutingModule,
+    NgxPaginationModule
   ],
   providers: [],
 })

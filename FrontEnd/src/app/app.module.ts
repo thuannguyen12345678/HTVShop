@@ -9,7 +9,7 @@ import { FooterComponent } from './shop/components/footer.component';
 import { HeaderComponent } from './shop/components/header.component';
 import { ShopRoutingModule } from './shop/shop-routing.module';
 import { ToastrModule } from 'ngx-toastr';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
     ShopRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     ToastrModule.forRoot(
 
     ),
