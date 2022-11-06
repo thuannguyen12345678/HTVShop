@@ -11,9 +11,15 @@ import { ShopService } from '../shop.service';
 })
 export class HomeComponent implements OnInit {
   products: any[] = [];
+  top: any[] = [];
   brands: any[] = [];
   url: string = environment.url;
   banners: any;
+
+  // brands: any;
+  brand_id: any;
+  quantity50_100:any;
+  
   constructor(
     private shopService: ShopService,
     private route: ActivatedRoute,
@@ -26,12 +32,24 @@ export class HomeComponent implements OnInit {
     this.trendingProduct();
     this.getBanner();
     this.getAllBrand();
+    this.filterBrand(this.brand_id);
+    this.shopService.product_listSer().subscribe(res => {
+      this.products = res;
+      let obj = []
+      for (const product of this.products) {
+        if (product.price > 50 && product.price < 100) {
+          obj.push(product);
+          this.products = obj;
+        }
+      }
+      this.quantity50_100 = obj;
+    });
   }
   trendingProduct() {
     this.shopService.trendingProductSer().subscribe((res) => {
-      this.products = res;
+      this.top = res;
 
-      console.log(this.products);
+      console.log(this.top);
     });
   }
   getBanner() {
@@ -57,6 +75,17 @@ export class HomeComponent implements OnInit {
     this.shopService.product_listSer().subscribe(res => {
       this.products = res;
     })
+  }
+  filterBrand(brand_id: any) {
+    this.brand_id = brand_id;
+    this.shopService.getAllBrand().subscribe(res => {
+      this.brands = res;
+      for (const brand of this.brands) {
+        if (this.brand_id == brand.id) {
+          this.products = brand.products;
+        }
+      }
+    });
   }
 }
 

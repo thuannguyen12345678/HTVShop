@@ -24,7 +24,6 @@
     </div>
   </div>
 </div>
-<br /><br />
 <div class="container" >
   <!-- sản phẩm -->
   <div class="testimonials-area two pb-100">
@@ -35,7 +34,7 @@
             <h2 class="title">Sản Phẩm Bán Chạy</h2>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-3" *ngFor="let product of products">
+        <div class="col-sm-6 col-lg-3" *ngFor="let product of top">
           <div class="products-item">
             <div class="top">
               <a class="wishlist" href="#">
@@ -81,10 +80,9 @@
       </div>
     </div>
     <div class="text-center">
-      <a class="common-btn two" href="shop.html">
-        Load More Products
+      <a class="common-btn two" [routerLink]="['/product-list']">
+        Xem thêm sản phẩm
         <img src="assets/images/shape1.png" alt="Shape" />
-        <img src="assets/images/shape2.png" alt="Shape" />
       </a>
     </div>
   </div>
@@ -92,8 +90,9 @@
   <div class="brands">
     <div class="container">
       <div class="row">
-        <div class="">
-          <h2 class="title">Thương Hiệu</h2>
+        <div  class="section-title" style="background-color:red ; width:300px">
+          <h2 style="text-align:center">Thương Hiệu</h2>
+          
         </div>
       </div>
       <br />
@@ -101,11 +100,11 @@
         <div
           class="brands-logo-carousel d-flex align-items-center justify-content-between"
         >
-          <div class="brand-logo" *ngFor="let brand of brands">
+          <div (click)="filterBrand(brand.id)" class="brand-logo" *ngFor="let brand of brands">
             <img
               [src]="url + brand.image"
               alt="#"
-              style="width: 150px; height: 140px"
+              style="width: 130px; height: 110px"
             />
           </div>
         </div>
@@ -216,9 +215,7 @@
   </div> -->
 
   <!-- sản phẩm bán chạy -->
-  <br />
-  <br />
-  <br />
+ 
   <!-- <section class="trending-product section">
     <div class="container">
         <div class="row">
@@ -260,34 +257,13 @@
   class="prd-sale cate-box bg-white p-t-15 mb24"
   style="background-color: aquamarine"
 >
-  <div class="sale-area">
-    <div class="slider-head">
-      <div class="hero-slider">
-        <div class="container-fluid">
-          <div
-            class="single-slider"
-            style="background-image: url({{url+banners}}); height: 100px; max-width: 100%;"
-          >
-            <div class="content">
-              <div class="button">
-                <a
-                  href="http://localhost:4200/product-detail/2"
-                  class="btn"
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  
 <br /><br />
 
   <div class="testimonials-area two pb-100">
     <div class="container">
-      <div class="section-title">
-        <h2>Sản phẩm</h2>
+      <div class="section-title" style="background-color:red ; width:200px">
+        <h2 style="text-align:center">Sản phẩm</h2>
       </div>
       <div class="row">
         <div class="col-sm-6 col-lg-3" *ngFor="let product of products">
