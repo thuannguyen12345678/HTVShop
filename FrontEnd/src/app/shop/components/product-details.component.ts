@@ -1,7 +1,7 @@
 import { environment } from './../../../environments/environment';
 import { Product } from './../shop';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShopService } from '../shop.service';
 

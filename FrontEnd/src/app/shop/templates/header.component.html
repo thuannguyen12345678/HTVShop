@@ -1,68 +1,4 @@
-<div class="loader">
-  <div class="d-table">
-    <div class="d-table-cell">
-      <div class="pre-load">
-        <div class="inner one"></div>
-        <div class="inner two"></div>
-        <div class="inner three"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="header-area two">
-  <div class="container-fluid">
-    <div class="row align-items-center">
-      <div class="col-sm-6 col-lg-7">
-        <div class="left">
-          <ul>
-            <li>
-              <i class="flaticon-delivery-truck"></i>
-              <span>Free Next Day Delivery*</span>
-            </li>
-            <li>
-              <i class="flaticon-quality"></i>
-              <span>Best Price Guarantee</span>
-            </li>
-            <li>
-              <i class="flaticon-call-center"></i>
-              <span>24/7 Customer Support</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-5">
-        <div class="right">
-          <div class="inner">
-            <select>
-              <option>$ USD</option>
-              <option>EUR</option>
-              <option>GBP</option>
-              <option>CAD</option>
-            </select>
-          </div>
-          <div class="inner">
-            <form>
-              <select>
-                <option>English</option>
-                <option>العربيّة</option>
-                <option>Deutsch</option>
-                <option>Português</option>
-                <option>简体中文</option>
-              </select>
-            </form>
-          </div>
-          <div class="inner">
-            <div class="call">
-              <i class="flaticon-phone-call"></i>
-              <a href="tel:9905324980">990-532-4980</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="nav-top-area two">
   <div class="container-fluid">
     <div class="row align-items-center">
@@ -95,7 +31,7 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Search Your Keywords"
+                placeholder="Tìm kiếm"
               />
               <button type="submit" class="btn">
                 <i class="bi bi-search"></i>
@@ -110,13 +46,14 @@
             <li>
               <div class="inner">
                 <i class="flaticon-pin"></i>
-                <a href="#">Set Location</a>
+                <a href="https://www.google.com/maps/place/133+L%C3%BD+Th%C6%B0%E1%BB%9Dng+Ki%E1%BB%87t,+%C4%90%C3%B4ng+H%E1%BA%A3i,+%C4%90%C3%B4ng+H%C3%A0,+Qu%E1%BA%A3ng+Tr%E1%BB%8B,+Vi%E1%BB%87t+Nam/@16.802374,107.1092616,17z/data=!3m1!4b1!4m5!3m4!1s0x3140e584960ba903:0x5c5e139c80555b93!8m2!3d16.8023689!4d107.1114503"
+        target="_blank">Xem Bản Đồ</a>
               </div>
             </li>
             <li>
               <div class="inner">
                 <i class="flaticon-question"></i>
-                <a href="#">Need Help?</a>
+                <a href="#">giúp đỡ?</a>
               </div>
             </li>
             <li>
@@ -178,7 +115,7 @@
       <nav class="navbar navbar-expand-md navbar-light">
         <div class="left">
           <select>
-            <option>All Categories</option>
+            <option>Danh mục</option>
             <option>Chair</option>
             <option>Table</option>
             <option>Bed</option>
@@ -197,123 +134,30 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" class="nav-link dropdown-toggle active"
-                >Home <i class="bi bi-arrow-down"></i
-              ></a>
-              <ul class="dropdown-menu">
-                <li class="nav-item">
-                  <a href="index.html" class="nav-link">Home Demo One</a>
-                </li>
-              </ul>
+              <a [routerLink]="['/home']" class="nav-link dropdown-toggle active"
+                >Trang chủ </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link dropdown-toggle"
-                >Pages <i class="bi bi-arrow-down"></i
-              ></a>
-              <ul class="dropdown-menu">
-                <li class="nav-item">
-                  <a href="#" class="nav-link dropdown-toggle"
-                    >Users <i class="bi bi-arrow-down"></i
-                  ></a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-item">
-                      <a href="login.html" class="nav-link">Login</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="register.html" class="nav-link">Register</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="faq.html" class="nav-link">FAQ</a>
-                </li>
-                <li class="nav-item">
-                  <a href="404.html" class="nav-link">404 Error Page</a>
-                </li>
-                <li class="nav-item">
-                  <a href="return-policy.html" class="nav-link"
-                    >Return Policy</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="privacy-policy.html" class="nav-link"
-                    >Privacy Policy</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="terms-conditions.html" class="nav-link"
-                    >Terms & Conditions</a
-                  >
-                </li>
-              </ul>
+              <a [routerLink]="['/product-list']" class="nav-link dropdown-toggle"
+                >Sản phẩm </a>
+            
             </li>
             <li class="nav-item">
-              <a href="about.html" class="nav-link">About Us</a>
-            </li>
+              <a [routerLink]="['/checkout']" class="nav-link">Đơn Hàng</a>
+              </li>
+            <!-- <li class="nav-item">
+              <a routerLink="['/']" class="nav-link dropdown-toggle"
+                ></a>
+              
+            </li> -->
             <li class="nav-item">
-              <a href="#" class="nav-link dropdown-toggle"
-                >Blog <i class="bi bi-arrow-down"></i
-              ></a>
-              <ul class="dropdown-menu">
-                <li class="nav-item">
-                  <a href="blog.html" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="blog-right-sidebar.html" class="nav-link"
-                    >Blog Right Sidebar</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="blog-left-sidebar.html" class="nav-link"
-                    >Blog Left Sidebar</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="blog-details.html" class="nav-link">Blog Details</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link dropdown-toggle"
-                >Shop <i class="bi bi-arrow-down"></i
-              ></a>
-              <ul class="dropdown-menu">
-                <li class="nav-item">
-                  <a href="shop.html" class="nav-link">Shop</a>
-                </li>
-                <li class="nav-item">
-                  <a href="checkout.html" class="nav-link">Checkout</a>
-                </li>
-                <li class="nav-item">
-                  <a href="single-product.html" class="nav-link"
-                    >Single Product</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="products-on-sale.html" class="nav-link"
-                    >Products On Sale</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="order-tracking.html" class="nav-link"
-                    >Order Tracking</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="customer-service.html" class="nav-link"
-                    >Customer Service</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="contact.html" class="nav-link">Contact</a>
+              <a [routerLink]="['/cart']" class="nav-link">Giỏ hàng</a>
             </li>
           </ul>
           <div class="side-nav two">
             <h4>
-              Get <span>50%</span> Discount On Black Friday Offer
-              <a href="products-on-sale.html">View Products On Sale</a>
+              Giảm <span>50%</span> khi mua hàng vào thứ 6
+              <a href="products-on-sale.html">Vào xem hàng giảm giá</a>
             </h4>
           </div>
         </div>
