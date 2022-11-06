@@ -14,6 +14,10 @@ export class ProductListComponent implements OnInit {
   products: any[] = [];
   categories: any;
   category_id:any;
+  page: number = 1;
+  count: number = 0;
+  tableSize:number = 16;
+  tableSizes:any = [5,10,15,20];
 
   constructor(
     private shopService: ShopService,
@@ -21,9 +25,10 @@ export class ProductListComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.filterCate(this.category_id);
-    this.shopService.product_listSer().subscribe(products => {
-      this.products = products;
-     });
+    // this.shopService.product_listSer().subscribe(products => {
+    //   this.products = products;
+    //  });
+    this.getallproducts();
 
      this.shopService.category_listSer().subscribe(res => {
       this.categories = res;
@@ -48,6 +53,81 @@ export class ProductListComponent implements OnInit {
         }
       });
     }
+    getallproducts(){
+      this.shopService.product_listSer().subscribe(products => {
+     this.products = products;
+     console.log(this.products);
 
+    });
+   }
+    filter2000000() {
+      this.shopService.product_listSer().subscribe(res => {
+        this.products = res;
+        let obj = []
+        for (const product of this.products) {
+          if (product.price <= 2000000) {
+            obj.push(product);
+          }
+        }
+        this.products = obj;
+      })
+    }
+    filter2_5() {
+      this.shopService.product_listSer().subscribe(res => {
+        this.products = res;
+        let obj = []
+        for (const product of this.products) {
+          if ( product.price >= 2000000&&product.price <= 5000000) {
+            obj.push(product);
+          }
+        }
+        this.products = obj;
+      })
+    }
+    filter5_10() {
+      this.shopService.product_listSer().subscribe(res => {
+        this.products = res;
+        let obj = []
+        for (const product of this.products) {
+          if ( product.price >= 5000000&&product.price <= 10000000) {
+            obj.push(product);
+          }
+        }
+        this.products = obj;
+      })
+    }
+    filter10_20() {
+      this.shopService.product_listSer().subscribe(res => {
+        this.products = res;
+        let obj = []
+        for (const product of this.products) {
+          if ( product.price >= 10000000&&product.price <= 20000000) {
+            obj.push(product);
+          }
+        }
+        this.products = obj;
+      })
+    }
+    filter20() {
+      this.shopService.product_listSer().subscribe(res => {
+        this.products = res;
+        let obj = []
+        for (const product of this.products) {
+          if ( product.price >= 20000000) {
+            obj.push(product);
+          }
+        }
+        this.products = obj;
+      })
+    }
+    ontableDataChange(event: any){
+      this.page = event;
+      this.products;
+    }
+    onTableSizeChange(event:any):void{
+      this.tableSize = event.target.value;
+      this.page = 1;
+      this.getallproducts();
+    }
   }
 
