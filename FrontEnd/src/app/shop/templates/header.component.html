@@ -63,6 +63,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 data-bs-whatever="@mdo"
+                (click)="changeCart()"
               >
                 <i class="bx bxs-cart"></i>
                 <span>2</span>
@@ -151,7 +152,7 @@
               
             </li> -->
             <li class="nav-item">
-              <a [routerLink]="['/cart']" class="nav-link">Giỏ hàng</a>
+              <a [routerLink]="['/cart']"  class="nav-link">Giỏ hàng</a>
             </li>
           </ul>
           <div class="side-nav two">
@@ -164,4 +165,68 @@
       </nav>
     </div>
   </div>
+</div>
+<div
+class="modal fade modal-right popup-modal"
+id="exampleModal"
+tabindex="-1"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Giỏ hàng <span>{{ listCart.length }}</span></h2>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body" *ngFor="let cart of listCart">
+      <div class="cart-table">
+        <table class="table" >
+          <tbody>
+            <tr >
+              <th scope="row">
+                <img src="http://127.0.0.1:8000/{{ cart.image }}" alt="Cart" />
+              </th>
+              <td>
+                <h3>{{ cart.name }}</h3>
+                <span class="rate">{{ cart.price | number }} VND</span>
+              </td>
+              <td>
+                <ul class="number">
+                  <li>
+                    <a onclick="this.parentNode.querySelector('input[type=number]').stepDown();"
+                          (click)="updateAmount(cart.id, amount.value)">
+                          <span class="minus">-</span>
+                      </a>
+                    <input #amount name="amount" min="1" style="width: 60px;" type="number" value="{{ cart.amount }}" />
+                    <a onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                          (click)="updateAmount(cart.id, amount.value)">
+                          <span class="plus">+</span>
+                      </a>
+                  </li>
+               
+                </ul>
+              </td>
+              <td>
+                <a class="remove-item" (click)="deleteCart(cart.id)"><i class="bx bx-x"></i></a>
+              </td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+      <div class="total-amount">
+        <h3>Tổng: <span>{{ cart.price * cart.amount| number }} VND</span></h3>
+      </div>
+    </div>
+    <div class="modal-footer">
+          <button [routerLink]="['/checkout']" class="btn common-btn btn-info">Kiểm Tra Giỏ Hàng</button>
+
+    </div>
+  </div>
+</div>
 </div>
