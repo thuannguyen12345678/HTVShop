@@ -43,7 +43,6 @@ class OrderController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -74,28 +73,29 @@ class OrderController extends Controller
         ];
         return view('backend.orders.show', $params);
     }
-    
-    function updateSingle($id){
+
+    function updateSingle($id)
+    {
         // $this->authorize('status', Order::class);
-    try{
-        $this->orderService->updateSingle($id);
-        $order = $this->orderService->find($id);
-        $customer = Customer::findOrFail($order->customer_id);
-        $orderDetails = $order->orderDetails;
-        $orderStatus='Đơn hàng của bạn đã được duyệt';
-        $params = [
-            'order' => $order,
-            'orderStatus'=>$orderStatus,
-            'orderDetails' => $orderDetails,
-        ];
-        Mail::send('backend.mail.orders', compact('params'), function ($email) use($customer) {
-            $email->subject('HTVStore');
-            $email->to($customer->email,$customer->name);
-        });
-        return redirect()->route('orders.index');
-    }catch(\Exception $e){
-        Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
-    }
+        try {
+            $this->orderService->updateSingle($id);
+            $order = $this->orderService->find($id);
+            $customer = Customer::findOrFail($order->customer_id);
+            $orderDetails = $order->orderDetails;
+            $orderStatus = 'Đơn hàng của bạn đã được duyệt';
+            $params = [
+                'order' => $order,
+                'orderStatus' => $orderStatus,
+                'orderDetails' => $orderDetails,
+            ];
+            Mail::send('backend.mail.orders', compact('params'), function ($email) use ($customer) {
+                $email->subject('HTVStore');
+                $email->to($customer->email, $customer->name);
+            });
+            return redirect()->route('orders.index');
+        } catch (\Exception $e) {
+            Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
+        }
     }
     /**
      * Show the form for editing the specified resource.

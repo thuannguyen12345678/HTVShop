@@ -161,4 +161,15 @@ class OrderController extends Controller {
     public function destroy($id) {
         //
     }
+    public function listorder($id){
+        try{
+            return response()->json(Customer::with(['orders' => function ($query) {
+                return $query->with(['orderDetails'=> function ($query) {
+                    return $query->with(['products']);
+                }]);
+            }])->find($id));
+        }catch(\Exception $e){
+            Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
+        }
+    }
 }
