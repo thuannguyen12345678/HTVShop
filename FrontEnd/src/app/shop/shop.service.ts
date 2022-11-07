@@ -40,6 +40,12 @@ export class ShopService {
   category_listSer(): Observable<Category[]> {
     return this.http.get<Category[]>(environment.urlAllCategories);
   }
+  getListOrder(id: any){
+    return this.http.get(environment.urlListOrder+id);
+  }
+  showOrder(id: any){
+    return this.http.get(environment.urlOrderShow+id);
+  }
   searchProductList(name:string){
     const response = new Promise(resolve => {
       this.http.get(environment.urlSearch+`product_list/search?
