@@ -77,7 +77,7 @@ export class CheckoutComponent implements OnInit {
           this.orderService.storeOrder(Order).subscribe(res => {
             order = res;
             this._router.navigate(['home']);
-            // alert('thành công');
+            alert('Đặt hàng thành công');
             this.getAllCart();
     });
    

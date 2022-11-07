@@ -37,7 +37,7 @@ export class ProductListComponent implements OnInit {
     addToCart(id: number) {
       this.orderService.addToCart(id).subscribe(res => {
         this.orderService.getAllCart();
-        alert('Added to cart');
+        alert('Thêm vào giỏ hàng thành công');
       })
     }
     filterCate(category_id: any) {
