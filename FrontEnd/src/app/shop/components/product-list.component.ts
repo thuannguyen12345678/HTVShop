@@ -33,9 +33,6 @@ export class ProductListComponent implements OnInit {
       search: [''],
     });
     this.filterCate(this.category_id);
-    // this.shopService.product_listSer().subscribe(products => {
-    //   this.products = products;
-    //  });
     this.getallproducts();
 
      this.shopService.category_listSer().subscribe(res => {
