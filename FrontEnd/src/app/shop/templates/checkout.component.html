@@ -135,13 +135,13 @@
                         <div class="sub-total-price">
                             <ng-container *ngFor="let cart of listCart">
                                 <div class="total-price">
-                                    <p class="value">{{ cart.name }} ({{ cart.amount }} x {{ cart.price|currency}})</p>
-                                    <p class="price">{{ cart.amount*cart.price|currency }}</p>
+                                    <p class="value">{{ cart.name }} ({{ cart.amount }} x {{ cart.price|number}}).VNĐ</p>
+                                    <p class="price">{{ cart.amount*cart.price|number }}.VNĐ</p>
                                 </div>
                             </ng-container>
                         </div>
                         <div class="inner">
-                            <h4>Tổng tiền: <p class="price">{{ cartSubtotal|currency }}</p></h4>
+                            <h4>Tổng tiền: <p class="price">{{ cartSubtotal|number }}.VNĐ</p></h4>
                         </div>
                     </div>
                     <div class="checkout-method">
