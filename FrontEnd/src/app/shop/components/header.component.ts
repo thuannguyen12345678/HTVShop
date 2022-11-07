@@ -11,6 +11,8 @@ import { OrderService } from '../services/order.service';
 })
 export class HeaderComponent implements OnInit {
   listCart: any;
+  id_user:any;
+  name:any;
   cartSubtotal: number = 0;
   count:any;
   constructor(
@@ -24,9 +26,18 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     this._AuthService.logout();
+    this.check = this._AuthService.checkAuth();
+    this.listCart = [];
     this._Router.navigate(['login']);
   }
-
+  ngDoCheck(): void{
+    if(!this.check){
+      this.check = this._AuthService.checkAuth();
+    }
+    if(this.check && !this.name && !this.id_user){
+      this.getAllCart();
+    }
+  }
   getAllCart() {
     this.orderService.getAllCart().subscribe(res => {
         this.listCart = res;
@@ -49,5 +60,6 @@ deleteCart(id: any){
 }
 changeCart(){
   this.getAllCart();
+  this.check = this._AuthService.checkAuth();
 }
 }
