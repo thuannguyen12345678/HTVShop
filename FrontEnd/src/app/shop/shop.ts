@@ -45,3 +45,13 @@ export interface Product {
     file_name: any;
     product_id: any;
   }
+  export interface Order{
+    note?: any;
+    address: any;
+    province_id: any;
+    district_id: any;
+    ward_id: any;
+    name_customer: any;
+    customer_id: any;
+    phone: any;
+  }

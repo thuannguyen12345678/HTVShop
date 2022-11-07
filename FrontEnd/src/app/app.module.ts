@@ -1,4 +1,4 @@
-import { HttpClientModule, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpClientModule, HttpHandler, HttpEvent, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +10,7 @@ import { HeaderComponent } from './shop/components/header.component';
 import { ShopRoutingModule } from './shop/shop-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { JWTInterceptorService } from './shop/jwtinterceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
     ),
   ],
-  providers: [],
+  providers:[{ provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

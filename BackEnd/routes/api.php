@@ -47,7 +47,8 @@ Route::group(['middleware' => 'api',], function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    // Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    Route::get('/profile', [AuthController::class, 'userProfile']);
     Route::post('/change-pass', [AuthController::class, 'changePassWord']);
     Route::get('product_list', [FeProductController::class, 'product_list']);
     Route::get('product_list/search', [FeProductController::class, 'search']);
