@@ -12,18 +12,20 @@ import { ShopService } from '../shop.service';
 export class HomeComponent implements OnInit {
   products: any[] = [];
   top: any[] = [];
+  id: any;
   brands: any[] = [];
   url: string = environment.url;
   banners: any;
-
-  // brands: any;
   brand_id: any;
   quantity50_100:any;
   page: number = 1;
   count: number = 0;
   tableSize:number = 8;
   tableSizes:any = [5,10,15,20];
-
+  images_array: any[] = [];
+  image1:any;
+  image_2 :any;
+  url_image = this.url+'storage/images/product/';
   
   constructor(
     private shopService: ShopService,
@@ -61,7 +63,20 @@ export class HomeComponent implements OnInit {
     this.shopService.getAllBanner().subscribe((res) => {
       this.banners = res;
       this.banners = this.banners.image;
-      console.log(this.banners);
+      // console.log(this.banners);
+      console.log(res);
+      for(let banner of this.banners){
+        this.images_array.push(banner.getAllBanner)
+      }
+      this.images_array.push(this.banners.image);
+      var i= 0;
+      setInterval(()=>{
+       this.image1 = this.url_image+this.images_array[i];
+       i++;
+       if(i>=this.images_array.length){
+         i=0;
+       }
+      },3000)
     });
   }
   getAllBrand() {
@@ -100,6 +115,9 @@ export class HomeComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.product_list();
+  }
+  changeImage(image:any){
+    this.image1 = this.url_image + image;
   }
 }
 

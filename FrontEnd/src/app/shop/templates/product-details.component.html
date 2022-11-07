@@ -29,7 +29,7 @@
                     <div class="top-img">
                       <img
                         src="http://127.0.0.1:8000/{{ image1 }}"
-                        style="width: 300px; height: 500px"
+                        style="width: 400px; height: 500px"
                         alt="Product"
                       />
                     </div>
@@ -88,29 +88,29 @@
               <li><span style="color:red">- Trả góp hỗ trợ cả NỢ XẤU</span></li>
             </ul>
             <ul class="cart">
-              <li>
-                <ul class="number">
+              <div class="row">
+                <div class="col-6">
                   <li>
-                    <div>
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#myModal"
-                      >
-                        Xem thêm <i class="bi bi-play-fill"></i>
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#myModal"
+                    >
+                      Xem thêm <i class="bi bi-play-fill"></i>
+                    </button>
                   </li>
-                </ul>
-              </li>
-              <li>
-                <a type="submit" class="common-btn"(click)="addToCart(product.id)">
-                  Add To Cart
-                  <!-- <img src="assets/images/shape1.png" alt="Shape" />
-                  <img src="assets/images/shape2.png" alt="Shape" /> -->
-                </a>
-              </li>
+                </div>
+                <div class="col-6 " >
+                    <a type="submit" style="width:176px; height:37px; text-align: center; " class="common-btn"(click)="addToCart(product.id)">
+                      Thêm giỏ hàng 
+                      <!-- <img src="assets/images/shape1.png" alt="Shape" />
+                      <img src="assets/images/shape2.png" alt="Shape" /> -->
+                    </a>
+                </div>
+              
+              
+            </div>
             </ul>
 
           <!-- The Modal -->

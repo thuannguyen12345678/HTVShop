@@ -11,6 +11,8 @@ import { RegisterComponent } from './components/register.component';
 import { LoginComponent } from './components/login.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ListorderComponent } from './components/listorder.component';
+import { OrderDetailComponent } from './components/order-detail.component';
 
 
 
@@ -22,6 +24,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProductDetailsComponent,
     RegisterComponent,
     LoginComponent,
+    ListorderComponent,
+    OrderDetailComponent,
 
   ],
   imports: [
