@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\DasboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +29,7 @@ Route::prefix('login')->group(function (){
     route::get('logout',[UserController::class,'logout'])->name('login.logout');
 });
 Route::prefix('/')->middleware(['auth', 'PreventBackHistory'])->group(function(){
-Route::get('/', function () {
-    return view('backend.dashboard.index');
-})->name('dashboard');
+Route::get('/',[DasboardController::class,'index'] )->name('dashboard');
 //Customer
 Route::prefix('customers')->group(function () {
     Route::get('customers/trash', [CustomerController::class, 'getTrash'])->name('customer.trash');

@@ -174,15 +174,15 @@
             Swal.fire({
                 title: 'Bạn có chắc?',
                 text: "Thay đổi trạng thái của sản phẩm!",
-                showCancelButton: true,
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Đồng ý!'    
+                    // showCancelButton: true,
+                    // cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý!'
             }).then((result) => {
                 if (status) {
                     $(this).data('status', 0);
                     $(`.iconStatus${id}`).removeClass('bi bi-eye-fill h3');
                     $(`.iconStatus${id}`).addClass('bi bi-eye-slash-fill h3');
-                } else {
+                }else{
                     $(this).data('status', 1);
                     $(`.iconStatus${id}`).removeClass('bi bi-eye-slash-fill h3');
                     $(`.iconStatus${id}`).addClass('bi bi-eye-fill h3');
