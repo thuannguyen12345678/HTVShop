@@ -47,7 +47,7 @@
                                     <label for="tf1"><b>Giá</b><abbr name="Trường bắt buộc">*</abbr></label> <input
                                         name="price" type="text" style="resize: none"
                                         class="form-control @error('price') is-invalid @enderror"
-                                        value="{{ old('price') }}" placeholder="Nhập Gía">
+                                        value="{{ old('price') }}" placeholder="Nhập Giá">
                                     @if ($errors->any())
                                         <p style="color:red">*{{ $errors->first('price') }}</p>
                                     @endif

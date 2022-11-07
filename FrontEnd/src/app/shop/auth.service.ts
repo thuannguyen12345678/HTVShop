@@ -27,5 +27,7 @@ export class AuthService {
     let token = localStorage.getItem('access_token');
     return token;
   }
-
+  profile():Observable<User>{
+    return this._HttpClient.get<User>(environment.urlProfile);
+  }
 }

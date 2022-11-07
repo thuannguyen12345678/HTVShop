@@ -23,6 +23,7 @@ export const environment = {
   urlGetAllWardByDistrict : urlApi+'orders/list-ward/',
   urlOrderStore : urlApi+'orders/store',
   urlOrderShow : urlApi+' orders/show/',
+  urlProfile: urlApi+'profile',
 };
 
 /*

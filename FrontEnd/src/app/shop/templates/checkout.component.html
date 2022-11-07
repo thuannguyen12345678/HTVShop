@@ -11,23 +11,12 @@
                 <div class="col-lg-8">
                     <div class="checkout-billing">
                         <div class="form-group"  >
-                            <input type="text" class="form-control" formControlName="name" placeholder="Tên:">
+                            <input type="text" class="form-control" formControlName="name_customer" placeholder="Tên:">
                         </div>
                         <small class="label label-danger"
-                            *ngIf="!form.controls['name']?.valid && (form.controls['name']?.dirty
-                            ||form.controls['name']?.touched) && form.controls['name']?.errors?.['required']"
+                            *ngIf="!form.controls['name_customer']?.valid && (form.controls['name_customer']?.dirty
+                            ||form.controls['name_customer']?.touched) && form.controls['name_customer']?.errors?.['required']"
                             class="help-block text-danger">Trường bắt buộc!</small>
-                        <div class="form-group">
-                            <input type="email" class="form-control" formControlName="email" placeholder="Email:">
-                        </div>
-                        <small class="label label-danger"
-                            *ngIf="!form.controls['email']?.valid && (form.controls['email']?.dirty
-                            ||form.controls['email']?.touched) && form.controls['email']?.errors?.['required']"
-                            class="help-block text-danger">Trường bắt buộc!</small>
-                            <small class="label label-danger"
-                            *ngIf="!form.controls['email']?.valid && (form.controls['email']?.dirty
-                            ||form.controls['email']?.touched) && form.controls['email']?.errors?.['email']"
-                            class="help-block text-danger">Email không đúng định dạng!</small>
                         <div class="form-group">
                             <input type="text" class="form-control" formControlName="phone" placeholder="Số Điện Thoại:">
                         </div>
@@ -43,7 +32,7 @@
                             ||form.controls['address']?.touched) && form.controls['address']?.errors?.['required']"
                             class="help-block text-danger">Trường bắt buộc!</small>
                         <div class="form-group">
-                            <textarea id="your-notes" rows="4" class="form-control" placeholder="Ghi chú khác (Tùy chọn)"></textarea>
+                            <textarea id="your-notes" rows="4" class="form-control"  formControlName="note" placeholder="Ghi chú khác (Tùy chọn)"></textarea>
                         </div><br>
                         <h4>Địa chỉ giao hàng</h4><br>
                         <div class="row">
@@ -52,7 +41,7 @@
                                     <label>Tỉnh, Thành Phố</label>
                                     <div class="select-items">
                                         <select name="province" class="form-control"
-                                            formControlName="provinceId"
+                                            formControlName="province_id"
                                             (change)="onSelectProvince($event)">
                                             <option disabled selected value> -- Tỉnh, Thành Phố --
                                             </option>
@@ -62,8 +51,8 @@
                                                 </ng-container>
                                         </select>
                                         <small class="label label-danger"
-                                            *ngIf="!form.controls['provinceId']?.valid && (form.controls['provinceId']?.dirty
-                                            ||form.controls['provinceId']?.touched) && form.controls['provinceId']?.errors?.['required']"
+                                            *ngIf="!form.controls['province_id']?.valid && (form.controls['province_id']?.dirty
+                                            ||form.controls['province_id']?.touched) && form.controls['province_id']?.errors?.['required']"
                                             class="help-block text-danger">Trường bắt buộc!</small>
                                     </div>
                                 </div>
@@ -72,7 +61,7 @@
                                 <div class="single-form form-default">
                                     <label>Quận, Huyện</label>
                                     <div class="select-items">
-                                        <select class="form-control" formControlName="districtId"
+                                        <select class="form-control" formControlName="district_id"
                                             (change)="onSelectDistrict($event)">
                                             <option disabled selected value> -- Quận, Huyện --
                                             </option>
@@ -84,8 +73,8 @@
                                             </ng-container>
                                         </select>
                                         <small class="label label-danger"
-                                            *ngIf="!form.controls['districtId']?.valid && (form.controls['districtId']?.dirty
-                                            ||form.controls['districtId']?.touched) && form.controls['districtId']?.errors?.['required']"
+                                            *ngIf="!form.controls['district_id']?.valid && (form.controls['district_id']?.dirty
+                                            ||form.controls['district_id']?.touched) && form.controls['district_id']?.errors?.['required']"
                                             class="help-block text-danger">Trường bắt buộc!</small>
                                     </div>
                                 </div>
@@ -94,7 +83,7 @@
                                 <div class="single-form form-default">
                                     <label>Phường, Xã</label>
                                     <div class="select-items">
-                                        <select class="form-control" formControlName="wardId">
+                                        <select class="form-control" formControlName="ward_id">
                                             <option disabled selected value> -- Phường, Xã --
                                             </option>
                                             <ng-container *ngIf="districtSelected">
@@ -104,8 +93,8 @@
                                             </ng-container>
                                         </select>
                                         <small class="label label-danger"
-                                            *ngIf="!form.controls['wardId']?.valid && (form.controls['wardId']?.dirty
-                                            ||form.controls['wardId']?.touched) && form.controls['wardId']?.errors?.['required']"
+                                            *ngIf="!form.controls['ward_id']?.valid && (form.controls['ward_id']?.dirty
+                                            ||form.controls['ward_id']?.touched) && form.controls['ward_id']?.errors?.['required']"
                                             class="help-block text-danger">Trường bắt buộc!</small>
                                     </div>
                                 </div>
@@ -127,13 +116,15 @@
                         <div class="sub-total-price">
                             <ng-container *ngFor="let cart of listCart">
                                 <div class="total-price">
-                                    <p class="value">{{ cart.name }} ({{ cart.amount }} x {{ cart.price|currency}})</p>
-                                    <p class="price">{{ cart.amount*cart.price|currency }}</p>
+                                    <p class="value">{{ cart.name }} ({{ cart.amount }} x {{ cart.price|number}}).VNĐ</p>
+                                    <p class="price">{{ cart.amount*cart.price|number }}.VNĐ</p>
                                 </div>
                             </ng-container>
                         </div>
                         <div class="inner">
-                            <h4>Tổng tiền: <p class="price">{{ cartSubtotal |currency }}</p></h4>
+
+                            <h4>Tổng tiền: <p class="price">{{ cartSubtotal|number }}.VNĐ</p></h4>
+
                         </div>
                     </div>
                     <div class="checkout-method">

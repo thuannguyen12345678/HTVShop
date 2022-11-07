@@ -38,7 +38,7 @@ export class OrderService {
     return this.http.get(environment.url+'api/orders/list-ward/'+id);
   }
   storeOrder(request: any){
-    return this.http.post(environment.url+'api/orders/store/', request, {responseType: 'text'});
+    return this.http.post(environment.url+'api/orders/store', request);
   }
   showOrder(id: any){
     return this.http.get(environment.url+'api/orders/show/'+id);

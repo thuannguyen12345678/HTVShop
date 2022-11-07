@@ -76,7 +76,7 @@ class OrderController extends Controller {
         $order->name_customer = $request->name_customer;
         $order->address = $request->address;
         $order->phone = $request->phone;
-        $order->order_total_price = $request->order_total_price;
+        $order->order_total_price = 0;
         $order->customer_id = $request->customer_id;
         $order->province_id = $request->province_id;
         $order->district_id = $request->district_id;
