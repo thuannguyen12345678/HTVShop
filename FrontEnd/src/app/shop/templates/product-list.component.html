@@ -13,10 +13,10 @@
   <a type="button"(click)="filter20()"style="color:blue">Trên 20 triệu</a>
 </div>
 <div style="text-align:right">
-   <form action="">
-    <button style="color:rgb(0, 0, 6); background-color: #2EC1AC;">tìm kiếm</button>
-    <input type="text"placeholder="nhập tên sản phẩm">
-   </form>
+  <form action="#"  [formGroup]="serachForm">
+    <input style="margin-left:97px" type="text" formControlName="search" placeholder="Tìm kiếm...">
+    <button (click)="product_search($event) " type="submit" ><i class="bx bx-search"></i></button>
+  </form>
 </div>
 <br> <br>
     <div class="row">
