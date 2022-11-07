@@ -13,21 +13,6 @@
         <div class="middle">
           <form>
             <div class="form-group">
-              <div class="inner">
-                <select>
-                  <option>All Categories</option>
-                  <option>Vegetable</option>
-                  <option>Fruits</option>
-                  <option>Chicken</option>
-                  <option>Chair</option>
-                  <option>Table</option>
-                  <option>Bed</option>
-                  <option>Sofa</option>
-                  <option>Headphones</option>
-                  <option>Keyboard</option>
-                  <option>MacBook</option>
-                </select>
-              </div>
               <input
                 type="text"
                 class="form-control"
@@ -51,12 +36,6 @@
               </div>
             </li>
             <li>
-              <div class="inner">
-                <i class="flaticon-question"></i>
-                <a href="#">giúp đỡ?</a>
-              </div>
-            </li>
-            <li>
               <button
                 type="button"
                 class="btn wishlist cart-popup-btn"
@@ -67,18 +46,6 @@
               >
                 <i class="bx bxs-cart"></i>
                 <span>{{count}}</span>
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                class="btn wishlist"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModalWishlist"
-                data-bs-whatever="@mdo"
-              >
-                <i class="bx bx-heart"></i>
-                <span>2</span>
               </button>
             </li>
             <li *ngIf="!check">
@@ -146,11 +113,6 @@
             <li class="nav-item">
               <a [routerLink]="['/checkout']" class="nav-link">Đơn Hàng</a>
               </li>
-            <!-- <li class="nav-item">
-              <a routerLink="['/']" class="nav-link dropdown-toggle"
-                ></a>
-
-            </li> -->
             <li class="nav-item">
               <a [routerLink]="['/cart']"  class="nav-link">Giỏ hàng</a>
             </li>
@@ -215,7 +177,6 @@ aria-hidden="true"
                 <a class="remove-item" (click)="deleteCart(cart.id)"><i class="bx bx-x"></i></a>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>

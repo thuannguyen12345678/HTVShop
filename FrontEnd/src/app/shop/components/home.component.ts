@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   addToCart(id: number) {
     this.orderService.addToCart(id).subscribe((res) => {
       this.orderService.getAllCart();
-      alert('Added to cart');
+      alert('Thêm vào giỏ hàng thành công');
     });
   }
   product_list() {

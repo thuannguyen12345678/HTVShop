@@ -96,9 +96,6 @@
         <div class="col-sm-6 col-lg-3" *ngFor="let product of top">
           <div class="products-item">
             <div class="top">
-              <a class="wishlist" href="#">
-                <i class="bx bx-heart"></i>
-              </a>
               <img
               routerLink='/product-detail/{{product.id}}'
                 [src]="url + product.image"
@@ -246,9 +243,6 @@
         };let i = index">
           <div class="products-item" *ngIf="product.status == 1">
             <div class="top">
-              <a class="wishlist" href="#">
-                <i class="bx bx-heart"></i>
-              </a>
               <img
                 [src]="url + product.image" [alt]="product.name"
                 alt="#"
@@ -282,7 +276,7 @@
             <br />
             <div class="bottom" style="text-align: center">
               <button (click)="addToCart(product.id)" class="btn">
-                Add to Cart <i class="bi bi-cart-plus"></i>
+                Thêm vào giỏ hàng <i class="bi bi-cart-plus"></i>
               </button>
             </div>
           </div>
@@ -306,120 +300,4 @@
                   </div>
     </div>
   </div>
-
-  <div class="support-area pt-100 pb-70">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-6 col-lg-4">
-          <div class="support-item two">
-            <i class="flaticon-free-delivery"></i>
-            <h3>Free Next Day Delivery</h3>
-            <p>Lorem ipsum dolor sit amet, cons etetur sadipscing elitr</p>
-            <img src="assets/images/support-shape1.png" alt="Shape" />
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="support-item three">
-            <i class="flaticon-call-center"></i>
-            <h3>24/7 Online Support</h3>
-            <p>Lorem ipsum dolor sit amet, cons etetur sadipscing elitr</p>
-            <img src="assets/images/support-shape1.png" alt="Shape" />
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="support-item four">
-            <i class="flaticon-giftbox"></i>
-            <h3>Weekly Gift Voucher</h3>
-            <p>Lorem ipsum dolor sit amet, cons etetur sadipscing elitr</p>
-            <img src="assets/images/support-shape1.png" alt="Shape" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <section class="blog-area two pt-100 pb-70">
-    <div class="container">
-      <div class="section-title">
-        <h2>Read Latest Our News</h2>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-sm-6 col-lg-4">
-          <div class="blog-item">
-            <div class="top">
-              <a href="blog-details.html">
-                <img src="assets/images/blog/blog4.jpg" alt="Blog" />
-              </a>
-              <span>26 Nov</span>
-            </div>
-            <div class="bottom">
-              <h3>
-                <a href="blog-details.html"
-                  >How To Choose The Best Smartphone For Your Daily Task?</a
-                >
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                recusandae praesentium dolor atque debitis aspernatur quaerat
-              </p>
-              <a class="blog-btn" href="blog-details.html">
-                Read More
-                <i class="bx bx-plus"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="blog-item">
-            <div class="top">
-              <a href="blog-details.html">
-                <img src="assets/images/blog/blog5.jpg" alt="Blog" />
-              </a>
-              <span>27 Nov</span>
-            </div>
-            <div class="bottom">
-              <h3>
-                <a href="blog-details.html"
-                  >How Does This VR Box Help In Children's Online Education?</a
-                >
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                recusandae praesentium dolor atque debitis aspernatur quaerat
-              </p>
-              <a class="blog-btn" href="blog-details.html">
-                Read More
-                <i class="bx bx-plus"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="blog-item">
-            <div class="top">
-              <a href="blog-details.html">
-                <img src="assets/images/blog/blog6.jpg" alt="Blog" />
-              </a>
-              <span>28 Nov</span>
-            </div>
-            <div class="bottom">
-              <h3>
-                <a href="blog-details.html"
-                  >Find Out The Top Gaming Laptops Within The Best Pricing!</a
-                >
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                recusandae praesentium dolor atque debitis aspernatur quaerat
-              </p>
-              <a class="blog-btn" href="blog-details.html">
-                Read More
-                <i class="bx bx-plus"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
