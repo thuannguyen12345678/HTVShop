@@ -42,7 +42,6 @@
         <div class="col-lg-4">
           <div class="top-content">
             <h2>{{ product.name }}</h2>
-
             <ul class="reviews">
               <li>
                 <i class="bx bxs-star checked"></i>
@@ -70,8 +69,8 @@
               <li>
                 Màu sắc:
                 <span>
-                  <input type="radio" id="html" name="color" value="Đen" />
-                  <label for="html">Đen </label>&nbsp;
+                  <input type="radio" id="css" name="color" value="Đen" />
+                  <label for="css">Đen </label>&nbsp;
                   <input type="radio" id="css" name="color" value="Trắng" />
                   <label for="css">Trắng</label>&nbsp;
                   <input type="radio" id="css" name="color" value="Vàng" />
@@ -83,16 +82,25 @@
               <li>
                 Số lượng: <span>{{ product.amount }}</span>
               </li>
-              <li>Tag: <span>Furniture</span></li>
-              <li>Status: <span>In Stock</span></li>
+              <li>MUA HÀNG TRẢ GÓP.</li>
+              <li><span>  - Hổ trợ lãi xuất 0%</span></li>
+              <li><span>  - Duyệt hồ sơ nhanh chóng: 15 phút nhận máy</span></li>
+              <li><span style="color:red">- Trả góp hỗ trợ cả NỢ XẤU</span></li>
             </ul>
             <ul class="cart">
               <li>
                 <ul class="number">
                   <li>
-                    <span class="minus">-</span>
-                    <input type="text" value="1" />
-                    <span class="plus">+</span>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModal"
+                      >
+                        Xem thêm <i class="bi bi-play-fill"></i>
+                      </button>
+                    </div>
                   </li>
                 </ul>
               </li>
@@ -104,16 +112,7 @@
                 </a>
               </li>
             </ul>
-            <div class=>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#myModal"
-            >
-              Xem thêm <i class="bi bi-play-fill"></i>
-            </button>
-          </div>
+
           <!-- The Modal -->
           <div class="modal" id="myModal">
             <div class="modal-dialog modal-xl">
@@ -170,7 +169,7 @@
           <div class="col-sm-6 col-lg-3">
             <div class="products-item">
               <div class="top">
-                <a class="wishlist" href="#">
+                <a class="wishlist">
                   <i class="bx bx-heart"></i>
                 </a>
                 <img
