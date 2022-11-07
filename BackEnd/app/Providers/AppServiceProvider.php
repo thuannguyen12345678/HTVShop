@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Providers;
-
 use App\Repositories\Api\Brand\BrandApiRepository;
 use App\Repositories\api\Brand\BrandApiRepositoryInterface;
 use App\Repositories\Api\Product\FeProductRepository;
@@ -26,7 +25,6 @@ use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Services\User\UserService;
 use App\Services\User\UserServiceInterface;
-
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Services\Api\Brand\BrandApiService;

@@ -10,6 +10,7 @@ import { Confirm } from '../confirm.component';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  error : any;
   constructor(
     private _Router: Router,
     private _AuthService: AuthService,
@@ -55,6 +56,8 @@ export class RegisterComponent implements OnInit {
       this._AuthService.register(User).subscribe(()=>{
         this._Router.navigate(['login']);
         alert("Đăng ký Thành Công")
+      },err => {
+        this.error= true;
       });
   }
  

@@ -44,6 +44,10 @@
             class="help-block text-danger"
             >Email không đúng định dạng!</small
           >
+              class="help-block text-danger">Email không đúng định dạng!</small>
+              <small class="label label-danger" *ngIf="error" class="help-block text-danger">
+                Email đã tồn tại
+              </small>
         </div>
         <div class="form-group">
           <input
