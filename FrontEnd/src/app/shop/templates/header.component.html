@@ -66,7 +66,7 @@
                 (click)="changeCart()"
               >
                 <i class="bx bxs-cart"></i>
-                <span>2</span>
+                <span>{{count}}</span>
               </button>
             </li>
             <li>
@@ -141,7 +141,7 @@
             <li class="nav-item">
               <a [routerLink]="['/product-list']" class="nav-link dropdown-toggle"
                 >Sản phẩm </a>
-            
+
             </li>
             <li class="nav-item">
               <a [routerLink]="['/checkout']" class="nav-link">Đơn Hàng</a>
@@ -149,7 +149,7 @@
             <!-- <li class="nav-item">
               <a routerLink="['/']" class="nav-link dropdown-toggle"
                 ></a>
-              
+
             </li> -->
             <li class="nav-item">
               <a [routerLink]="['/cart']"  class="nav-link">Giỏ hàng</a>
@@ -208,14 +208,14 @@ aria-hidden="true"
                           <span class="plus">+</span>
                       </a>
                   </li>
-               
+
                 </ul>
               </td>
               <td>
                 <a class="remove-item" (click)="deleteCart(cart.id)"><i class="bx bx-x"></i></a>
               </td>
             </tr>
-           
+
           </tbody>
         </table>
       </div>

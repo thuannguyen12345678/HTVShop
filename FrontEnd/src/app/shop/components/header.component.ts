@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit {
   id_user:any;
   name:any;
   cartSubtotal: number = 0;
-  constructor( 
+  count:any;
+  constructor(
     private _AuthService: AuthService,
     private _Router: Router,
     private orderService: OrderService
@@ -40,6 +41,7 @@ export class HeaderComponent implements OnInit {
   getAllCart() {
     this.orderService.getAllCart().subscribe(res => {
         this.listCart = res;
+        this.count=this.listCart.length;
         this.cartSubtotal = 0;
         for(let cart of this.listCart){
             this.cartSubtotal += cart.price * cart.amount;

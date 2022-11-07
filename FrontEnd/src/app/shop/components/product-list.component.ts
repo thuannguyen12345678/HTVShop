@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Brand, Category, Product } from '../shop';
 import { ShopService } from '../shop.service';
 import { OrderService } from '../services/order.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-product-list',
   templateUrl: '../templates/product-list.component.html',
@@ -18,16 +19,20 @@ export class ProductListComponent implements OnInit {
   count: number = 0;
   tableSize:number = 16;
   tableSizes:any = [5,10,15,20];
+  serachForm!: FormGroup;
+  data: any;
 
   constructor(
     private shopService: ShopService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private _route: ActivatedRoute,
+    private fb: FormBuilder,
   ) { }
   ngOnInit(): void {
+    this.serachForm = this.fb.group({
+      search: [''],
+    });
     this.filterCate(this.category_id);
-    // this.shopService.product_listSer().subscribe(products => {
-    //   this.products = products;
-    //  });
     this.getallproducts();
 
      this.shopService.category_listSer().subscribe(res => {
@@ -52,6 +57,8 @@ export class ProductListComponent implements OnInit {
           }
         }
       });
+
+
     }
     getallproducts(){
       this.shopService.product_listSer().subscribe(products => {
@@ -129,5 +136,14 @@ export class ProductListComponent implements OnInit {
       this.page = 1;
       this.getallproducts();
     }
+    product_search(search: any){
+      let keywork = this.serachForm.value.search;
+      this.shopService.searchProductList(keywork).then(res => {
+      this.data = res;
+      this.products = this.data
+      })
+    }
+
+
   }
 

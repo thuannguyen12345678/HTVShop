@@ -1939,7 +1939,7 @@ button:focus {
 /*-- Nav Top --*/
 
 .nav-top-area.two {
-    background-color: #F5F5F5;
+    background-color: #f9d553;
 }
 
 .nav-top-area.two .middle .form-group .form-control:focus {
@@ -1962,7 +1962,7 @@ button:focus {
 /*-- Navbar --*/
 
 .main-nav.two {
-    background-color: #fff;
+    background-color: #f9d553;
 }
 
 .side-nav.two h4 a {

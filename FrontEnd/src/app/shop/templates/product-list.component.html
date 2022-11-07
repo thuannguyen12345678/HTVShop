@@ -1,30 +1,47 @@
-<br> <br>
+
 <div class="products-area ptb-100">
   <div class="container">
-<div style="text-align:center">
-  <a type="button"(click)="filter2000000()" style="color:blue">Dưới 2 triệu </a>
-  &nbsp;|
-  <a type="button"(click)="filter2_5()"style="color:blue">Từ 2 đến 5 triệu</a>
-  &nbsp;|
-  <a type="button"(click)="filter5_10()"style="color:blue">Từ 5 đến 10 triệu</a>
-  &nbsp;|
-  <a type="button"(click)="filter10_20()"style="color:blue">Từ 10 đến 20 triệu</a>
-  &nbsp;|
-  <a type="button"(click)="filter20()"style="color:blue">Trên 20 triệu</a>
-</div>
-<div style="text-align:right">
-   <form action="">
-    <button style="color:rgb(0, 0, 6); background-color: #2EC1AC;">tìm kiếm</button>
-    <input type="text"placeholder="nhập tên sản phẩm">
-   </form>
-</div>
-<br> <br>
+
+    <div class="title_block id_tab"><h2>Sản phẩm</h2>
+    <div style="text-align: center">
+      <a type="button" (click)="filter2000000()" style="color: blue"
+        >Dưới 2 triệu
+      </a>
+      &nbsp;|
+      <a type="button" (click)="filter2_5()" style="color: blue"
+        >Từ 2 đến 5 triệu</a
+      >
+      &nbsp;|
+      <a type="button" (click)="filter5_10()" style="color: blue"
+        >Từ 5 đến 10 triệu</a
+      >
+      &nbsp;|
+      <a type="button" (click)="filter10_20()" style="color: blue"
+        >Từ 10 đến 20 triệu</a
+      >
+      &nbsp;|
+      <a type="button" (click)="filter20()" style="color: blue"
+        >Trên 20 triệu</a
+      >
+    </div>
+    <div style="text-align: right">
+      <form action="">
+        <button style="color: rgb(0, 0, 6); background-color: #2ec1ac">
+          tìm kiếm
+        </button>
+        <input type="text" placeholder="nhập tên sản phẩm" />
+      </form>
+    </div>
+  </div>
+    <!-- <br />
+    <br /> -->
+
     <div class="row">
       <div class="col-lg-3">
         <div class="sorting-menu">
           <ul>
             <li class="filter active" data-filter="all">
-              <div class="products-thumb"(click)="ngOnInit()">
+              <div class="products-thumb" (click)="ngOnInit()">
                 <img src="assets/images/products/shape1.png" alt="Shape" />
                 <img src="assets/images/products/shape2.png" alt="Shape" />
                 <i class="flaticon-square"></i>
@@ -32,64 +49,75 @@
               </div>
             </li>
             <ng-container *ngFor="let category of categories">
-            <li
-              class="filter active"
-              data-filter=".armchair"
-            >
-              <div (click)="filterCate(category.id)" class="products-thumb" *ngIf="category.status">
-                <img src="assets/images/products/shape1.png" alt="Shape" />
-                <img src="assets/images/products/shape2.png" alt="Shape" />
-                <i class="flaticon-armchair"></i>
-                <span >{{ category.name }}</span>
-              </div>
-            </li>
-          </ng-container>
+              <li class="filter active" data-filter=".armchair">
+                <div
+                  (click)="filterCate(category.id)"
+                  class="products-thumb"
+                  *ngIf="category.status"
+                >
+                  <img src="assets/images/products/shape1.png" alt="Shape" />
+                  <img src="assets/images/products/shape2.png" alt="Shape" />
+                  <i class="bi bi-phone"></i>
+                  <span>{{ category.name }}</span>
+                </div>
+              </li>
+            </ng-container>
           </ul>
         </div>
       </div>
       <div class="col-lg-9">
         <div class="text-center">
           <div class="row">
-
-                <div class="col-sm-6 col-lg-3"*ngFor="let product of products | paginate:{
-                  itemsPerPage:tableSize,
-                  currentPage:page,
-                  totalItems :count
-                };let i = index">
-                  <div class="products-item">
-                    <div class="top">
-                      <a class="wishlist" href="#">
-                        <i class="bx bx-heart"></i>
-                      </a>
-                      <img
-                       routerLink='/product-detail/{{product.id}}'
-                        src="http://127.0.0.1:8000/{{ product.image }}"
-                        alt="Products"
-                        style="width: 160px; height: 160px"/>
-                      <div class="inner">
-                        <h3>
-                          <a routerLink='/product-detail/{{product.id}}'>{{ product.name }}</a>
-                        </h3>
-                        <span>{{ product.price | number }} .VND </span>
-                      </div>
-                    </div>
-                    <div class="bottom">
-                      <a class="cart-text"(click)="addToCart(product.id)" href="#">Add To Cart</a>
-                      <i class="bx bx-plus"></i>
-                    </div>
+            <div
+              class="col-sm-6 col-lg-3"
+              *ngFor="
+                let product of products
+                  | paginate
+                    : {
+                        itemsPerPage: tableSize,
+                        currentPage: page,
+                        totalItems: count
+                      };
+                let i = index
+              "
+            >
+              <div class="products-item">
+                <div class="top">
+                  <a class="wishlist" href="#">
+                    <i class="bx bx-heart"></i>
+                  </a>
+                  <img
+                    routerLink="/product-detail/{{ product.id }}"
+                    src="http://127.0.0.1:8000/{{ product.image }}"
+                    alt="Products"
+                    style="width: 160px; height: 160px"
+                  />
+                  <div class="inner">
+                    <h3>
+                      <a routerLink="/product-detail/{{ product.id }}">{{
+                        product.name
+                      }}</a>
+                    </h3>
+                    <span>{{ product.price | number }} .VND </span>
                   </div>
                 </div>
-                <pagination-controls
-                previousLabel="Trang sau"
-                nextLabel="Trang tiếp"
-                (pageChange)="ontableDataChange($event)"
-                >
+                <div class="bottom">
+                  <a class="cart-text" (click)="addToCart(product.id)" href="#"
+                    >Add To Cart</a
+                  >
+                  <i class="bx bx-plus"></i>
+                </div>
+              </div>
+            </div>
+            <pagination-controls
+              previousLabel="Trang sau"
+              nextLabel="Trang tiếp"
+              (pageChange)="ontableDataChange($event)"
+            >
             </pagination-controls>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-
