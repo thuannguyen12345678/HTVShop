@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\StoreUserRequest;
 use App\Http\Requests\Update\UpdateUserRequest;
 use App\Mail\email;
+use App\Models\Customer;
 use App\Models\Group;
 use App\Models\User;
 use App\Services\Group\GroupServiceInterface;
@@ -30,6 +31,7 @@ class UserController extends Controller
     }
     public function index(Request $request)
     {
+
         $this->authorize('viewAny', User::class);
         return $this->userService->all($request);
     }
@@ -79,6 +81,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+
        $user = $this->userService->find($id);
     //    return redirect()->route('users.v')
     }
@@ -91,7 +94,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-
         $this->authorize('update', User::class);
         $users = $this->userService->find($id);
         $groups = Group::all();

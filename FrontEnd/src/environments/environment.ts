@@ -24,7 +24,7 @@ export const environment = {
   urlOrderStore : urlApi+'orders/store',
   urlOrderShow : urlApi+' orders/show/',
   urlProfile: urlApi+'profile',
-  urlListOrder: urlApi+'listorder/',
+  urlListOrder: urlApi+'listorder',
   urlChangePassByMail: urlApi+'change-pass-mail',
   urlChangePass: urlApi+'change-pass',
 };

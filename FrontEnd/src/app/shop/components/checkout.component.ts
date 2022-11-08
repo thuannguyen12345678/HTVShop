@@ -5,6 +5,7 @@ import { OrderService } from '../services/order.service';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth.service';
 import { Order } from '../shop';
+import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'app-checkout',
     templateUrl: '../templates/checkout.component.html',
@@ -23,7 +24,7 @@ export class CheckoutComponent implements OnInit {
     provinceSelected: boolean = false;
     districtSelected: boolean = false;
     constructor(
-        private orderService: OrderService, private _router: Router,private _UserService:AuthService,
+        private orderService: OrderService, private _router: Router,private _UserService:AuthService, private toastrService: ToastrService,
     ) {
         this.getAllCart();
     }
@@ -109,5 +110,6 @@ export class CheckoutComponent implements OnInit {
             this.listWard = res;
         })
     }
+   
    
 }

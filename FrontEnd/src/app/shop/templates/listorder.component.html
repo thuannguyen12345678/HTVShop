@@ -36,11 +36,10 @@
                                                 <a data-bs-toggle="tooltip" data-bs-placement="top" title="Chi Tiết Đơn Hàng" routerLink='/product-detail/{{orderDetail.products.id}}' class="text-end">{{ orderDetail.products.name }}</a>
                                             </h6>
                                         </div>
-                                 
                                 </td>
-                                <td>{{ orderDetail.quantity }}</td>
-                                <td>{{ orderDetail.price_at_time|number }}</td>
-                                <td>{{ orderDetail.price_at_time * orderDetail.quantity|number }}</td>
+                                <td>{{ orderDetail.product_quantity }}</td>
+                                <td>{{ orderDetail.product_price|number }}</td>
+                                <td>{{ orderDetail.product_price * orderDetail.product_quantity|number }}</td>
                                 <button class="btn common-btn btn-info" routerLink='/order-detail/{{ orderDetail.order_id  }}'>Xem chi tiết</button>
                             </tr>
                         </tbody>

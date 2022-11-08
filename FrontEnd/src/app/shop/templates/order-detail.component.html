@@ -1,15 +1,10 @@
-<br>
-<br>
-<br>
-<br>
-<br>
 <div class="container">
     <!-- Title -->
     <div class="mb-3 text-center">
-        <h2>Chi tiết đặt hàng</h2>
+        <h2>Order Detail</h2>
     </div>
     <div class="d-flex justify-content-between align-items-center py-3">
-        <h5>Mã đặt hàng: {{ orderId }}</h5>
+        <h5>Order Code: {{ orderId }}</h5>
     </div>
 
     <!-- Main content -->
@@ -20,52 +15,43 @@
                 <div class="card-body">
                     <div class="mb-3 d-flex justify-content-between">
                         <div>
-                            <span class="me-3">Ngày đặt: {{ order.created_at |date :'d/M/y, h:mm:ss a' }}</span>
+                            <span class="me-3">Created At: {{ order.created_at }}</span>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <span class="me-3">Tên khách hàng: {{ order.name_customer }}</span>
+                        <span class="me-3">Customer Name: {{ order.name }}</span>
                     </div>
                     <table class="table table-borderless">
-                        <tbody>
+                        <tbody >
                             <tr>
-                                <td>Ảnh</td>
-                                <td>Sản Phẩm</td>
+                                <td>Sản phẩm</td>
                                 <td>Số lượng</td>
-                                <td class="text-end">Giá</td>
-                                <td class="text-end">Tổng phụ</td>
+                                <td class="text-end">Gía</td>
+                                <td class="text-end">Subtotal</td>
                             </tr>
-                            <tr *ngFor="let orderDetail of order.order_details">
+                            <tr *ngFor="let orderDetail of order.oder_details">
                                 <td>
                                     <div class="d-flex mb-2">
                                         <div class="flex-shrink-0">
-                                            <img [src]="url+'storage/images/product/'+orderDetail.products.image"
-                                                alt="" width="65" class="img-fluid">
+                                            <img [src]="url+orderDetail.products.image"
+                                                alt="" width="35" class="img-fluid">
                                         </div>
-                                        </div>
-                                </td>
-                                <td>
-                                   
                                         <div class="flex-lg-grow-1 ms-3">
                                             <h6 class="small mb-0">
-                                                <a routerLink='/product-detail/{{orderDetail.products.id}}' class="text-end">{{ orderDetail.products.name }}</a>
+                                                <a href="#" class="text-reset">{{ orderDetail.products.name }}</a>
                                             </h6>
                                         </div>
-                                 
+                                    </div>
                                 </td>
-                                <td>{{ orderDetail.quantity }}</td>
-                                <td class="text-end">{{ orderDetail.price_at_time|number }}</td>
-                                <td class="text-end">{{ orderDetail.price_at_time * orderDetail.quantity|number }}</td>
+                                <td>{{ orderDetail.product_quantity }}</td>
+                                <td class="text-end">{{ orderDetail.product_price|currency }}</td>
+                                <td class="text-end">{{ orderDetail.product_price * orderDetail.product_quantity|currency }}</td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr class="fw-bold">
-                                <td colspan="4">Tổng tiền hàng</td>
-                                <td class="text-end">{{ totalPrice|number }} VNĐ</td>
-                            </tr>
-                            <tr class="fw-bold">
-                                <td colspan="4">Phí vận chuyển</td>
-                                <td class="text-end">25,000 VNĐ</td>
+                                <td colspan="3">TOTAL</td>
+                                <td class="text-end">{{ totalPrice|currency }}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -76,17 +62,17 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <h3 class="h6">Phương thức thanh toán</h3>
-                            <p>Thanh toán khi nhận hàng<br>
-                                Tổng thanh toán: {{ totalPrice + 25000| number }} <span class="badge bg-success rounded-pill">VNĐ</span></p>
+                            <h3 class="h6">Payment Method</h3>
+                            <p>{{ order.payment_method }}<br>
+                                Total: {{ totalPrice|currency }} <span class="badge bg-success rounded-pill">PAID</span></p>
                         </div>
                         <div class="col-lg-6">
-                            <h3 class="h6">Địa chỉ thanh toán</h3>
+                            <h3 class="h6">Billing address</h3>
                                 <div>
-                                    <strong><i>{{ order.address }}</i></strong>
+                                    <strong>{{ order.province.name }}, {{ order.district.name }}, {{ order.ward.name }}</strong>
                                 </div>
                                 <div>
-                                    <strong><i>{{ order.ward.name }}, {{ order.district.name }},{{ order.province.name }} </i></strong>
+                                    <strong>{{ order.address }}</strong>
                                 </div>
                         </div>
                     </div>
@@ -97,7 +83,7 @@
             <!-- Customer Notes -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3 class="h6">Ghi chú/yêu cầu</h3>
+                    <h3 class="h6">Note</h3>
                     <p>{{ order.note }}</p>
                 </div>
             </div>
