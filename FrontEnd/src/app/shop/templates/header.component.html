@@ -1,4 +1,3 @@
-
 <div class="nav-top-area two">
   <div class="container-fluid">
     <div class="row align-items-center">
@@ -11,13 +10,10 @@
       </div>
       <div class="col-lg-5">
         <div class="middle">
+          
           <form>
             <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Tìm kiếm"
-              />
+              <input type="text" class="form-control" placeholder="Tìm kiếm" />
               <button type="submit" class="btn">
                 <i class="bi bi-search"></i>
               </button>
@@ -25,14 +21,25 @@
           </form>
         </div>
       </div>
+      
       <div class="col-lg-5">
         <div class="right">
           <ul>
+              <li>
+                <div class="inner">
+                <i class="flaticon-question"></i>
+                <a href="#">Tổng đài? </a><br>
+                <a href="#" >1800.1007 </a>
+                </div>
+                </li>
             <li>
               <div class="inner">
                 <i class="flaticon-pin"></i>
-                <a href="https://www.google.com/maps/place/133+L%C3%BD+Th%C6%B0%E1%BB%9Dng+Ki%E1%BB%87t,+%C4%90%C3%B4ng+H%E1%BA%A3i,+%C4%90%C3%B4ng+H%C3%A0,+Qu%E1%BA%A3ng+Tr%E1%BB%8B,+Vi%E1%BB%87t+Nam/@16.802374,107.1092616,17z/data=!3m1!4b1!4m5!3m4!1s0x3140e584960ba903:0x5c5e139c80555b93!8m2!3d16.8023689!4d107.1114503"
-        target="_blank">Xem Bản Đồ</a>
+                <a
+                  href="https://www.google.com/maps/place/133+L%C3%BD+Th%C6%B0%E1%BB%9Dng+Ki%E1%BB%87t,+%C4%90%C3%B4ng+H%E1%BA%A3i,+%C4%90%C3%B4ng+H%C3%A0,+Qu%E1%BA%A3ng+Tr%E1%BB%8B,+Vi%E1%BB%87t+Nam/@16.802374,107.1092616,17z/data=!3m1!4b1!4m5!3m4!1s0x3140e584960ba903:0x5c5e139c80555b93!8m2!3d16.8023689!4d107.1114503"
+                  target="_blank"
+                  >Xem Bản Đồ</a
+                >
               </div>
             </li>
             <li>
@@ -45,22 +52,18 @@
                 (click)="changeCart()"
               >
                 <i class="bx bxs-cart"></i>
-                <span>{{count}}</span>
+                <span>{{ count }}</span>
               </button>
             </li>
             <li *ngIf="!check">
               <a class="join" [routerLink]="['/login']">
-                <i
-                  class="flaticon-round-account-button-with-user-inside"
-                ></i>
+                <i class="flaticon-round-account-button-with-user-inside"></i>
                 Đăng Nhập
               </a>
             </li>
             <li *ngIf="check">
               <a class="join" (click)="logout()">
-                <i
-                  class="flaticon-round-account-button-with-user-inside"
-                ></i>
+                <i class="flaticon-round-account-button-with-user-inside"></i>
                 Đăng Xuất
               </a>
             </li>
@@ -81,46 +84,36 @@
   <div class="main-nav two">
     <div class="container-fluid">
       <nav class="navbar navbar-expand-md navbar-light">
-        <div class="left">
-          <select>
-            <option>Danh mục</option>
-            <option>Chair</option>
-            <option>Table</option>
-            <option>Bed</option>
-            <option>Sofa</option>
-            <option>Headphones</option>
-            <option>Keyboard</option>
-            <option>MacBook</option>
-            <option>Vegetable</option>
-            <option>Fruits</option>
-            <option>Chicken</option>
-          </select>
-        </div>
         <div
           class="collapse navbar-collapse mean-menu"
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a [routerLink]="['/home']" class="nav-link dropdown-toggle active"
-                >Trang chủ </a>
+              <a
+                [routerLink]="['/home']"
+                class="nav-link dropdown-toggle active"
+                >Trang chủ
+              </a>
             </li>
             <li class="nav-item">
-              <a [routerLink]="['/product-list']" class="nav-link dropdown-toggle"
-                >Sản phẩm </a>
-
+              <a
+                [routerLink]="['/product-list']"
+                class="nav-link dropdown-toggle"
+                >Sản phẩm
+              </a>
             </li>
             <li class="nav-item">
               <a [routerLink]="['/checkout']" class="nav-link">Đơn Hàng</a>
-              </li>
+            </li>
             <li class="nav-item">
-              <a [routerLink]="['/cart']"  class="nav-link">Giỏ hàng</a>
+              <a [routerLink]="['/cart']" class="nav-link">Giỏ hàng</a>
             </li>
           </ul>
           <div class="side-nav two">
             <h4>
               Giảm <span>50%</span> khi mua hàng vào thứ 6
-              <a href="products-on-sale.html">Vào xem hàng giảm giá</a>
+              <a href="">Vào xem hàng giảm giá</a>
             </h4>
           </div>
         </div>
@@ -129,65 +122,87 @@
   </div>
 </div>
 <div
-class="modal fade modal-right popup-modal"
-id="exampleModal"
-tabindex="-1"
-aria-hidden="true"
+  class="modal fade modal-right popup-modal"
+  id="exampleModal"
+  tabindex="-1"
+  aria-hidden="true"
 >
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Giỏ hàng <span>{{ listCart.length }}</span></h2>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="modal"
-        aria-label="Close"
-      ></button>
-    </div>
-    <div class="modal-body" *ngFor="let cart of listCart">
-      <div class="cart-table">
-        <table class="table" >
-          <tbody>
-            <tr >
-              <th scope="row">
-                <img src="http://127.0.0.1:8000/{{ cart.image }}" alt="Cart" />
-              </th>
-              <td>
-                <h3>{{ cart.name }}</h3>
-                <span class="rate">{{ cart.price | number }} VND</span>
-              </td>
-              <td>
-                <ul class="number">
-                  <li>
-                    <a onclick="this.parentNode.querySelector('input[type=number]').stepDown();"
-                          (click)="updateAmount(cart.id, amount.value)">
-                          <span class="minus">-</span>
-                      </a>
-                    <input #amount name="amount" min="1" style="width: 60px;" type="number" value="{{ cart.amount }}" />
-                    <a onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                          (click)="updateAmount(cart.id, amount.value)">
-                          <span class="plus">+</span>
-                      </a>
-                  </li>
-
-                </ul>
-              </td>
-              <td>
-                <a class="remove-item" (click)="deleteCart(cart.id)"><i class="bx bx-x"></i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>
+          Giỏ hàng <span>{{ listCart.length }}</span>
+        </h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="total-amount">
-        <h3>Tổng: <span>{{ cart.price * cart.amount| number }} VND</span></h3>
+      <div class="modal-body" *ngFor="let cart of listCart">
+        <div class="cart-table">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <img
+                    src="http://127.0.0.1:8000/{{ cart.image }}"
+                    alt="Cart"
+                  />
+                </th>
+                <td>
+                  <h3>{{ cart.name }}</h3>
+                  <span class="rate">{{ cart.price | number }} VND</span>
+                </td>
+                <td>
+                  <ul class="number">
+                    <li>
+                      <a
+                        onclick="this.parentNode.querySelector('input[type=number]').stepDown();"
+                        (click)="updateAmount(cart.id, amount.value)"
+                      >
+                        <span class="minus">-</span>
+                      </a>
+                      <input
+                        #amount
+                        name="amount"
+                        min="1"
+                        style="width: 60px"
+                        type="number"
+                        value="{{ cart.amount }}"
+                      />
+                      <a
+                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        (click)="updateAmount(cart.id, amount.value)"
+                      >
+                        <span class="plus">+</span>
+                      </a>
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <a class="remove-item" (click)="deleteCart(cart.id)"
+                    ><i class="bx bx-x"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="total-amount">
+          <h3>
+            Tổng: <span>{{ cart.price * cart.amount | number }} VND</span>
+          </h3>
+        </div>
       </div>
-    </div>
-    <div class="modal-footer">
-          <button [routerLink]="['/checkout']" class="btn common-btn btn-info">Kiểm Tra Giỏ Hàng</button>
-
+      <div class="modal-footer">
+        <button [routerLink]="['/checkout']" class="btn common-btn btn-info">
+          Kiểm Tra Giỏ Hàng
+        </button>
+        <!-- <a
+        [routerLink]="['listorder/{{ id_user }}']" class="btn common-btn btn-warning" data-bs-dismiss="modal" >Lịch sử đặt hàng</a> -->
+      </div>
     </div>
   </div>
-</div>
 </div>

@@ -35,6 +35,7 @@ Route::get('orders/list-district/{id}', [OrderController::class, 'getAllDistrict
 Route::get('orders/list-ward/{id}', [OrderController::class, 'getAllWardByDistrictId']);
 Route::post('orders/store', [OrderController::class, 'store']);
 Route::get('orders/show/{id}', [OrderController::class, 'show']);
+Route::get('listorder/{id}', [OrderController::class, 'listorder']);
 
 
 //brand

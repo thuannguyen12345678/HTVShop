@@ -116,8 +116,8 @@
                         <div class="sub-total-price">
                             <ng-container *ngFor="let cart of listCart">
                                 <div class="total-price">
-                                    <p class="value">{{ cart.name }} ({{ cart.amount }} x {{ cart.price|number}}).VNĐ</p>
-                                    <p class="price">{{ cart.amount*cart.price|number }}.VNĐ</p>
+                                    <p class="value"><b>Sản phẩm: </b> {{ cart.name }}</p>
+                                    <p class="price"><b>Gía sản phẩm: </b> {{ cart.amount*cart.price|number }}.VNĐ</p>
                                 </div>
                             </ng-container>
                         </div>

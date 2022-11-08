@@ -7,6 +7,8 @@ import { LoginComponent } from './components/login.component';
 import { ProductDetailsComponent } from './components/product-details.component';
 import { ProductListComponent } from './components/product-list.component';
 import { RegisterComponent } from './components/register.component';
+import { ListorderComponent } from './components/listorder.component';
+import { OrderDetailComponent } from './components/order-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,10 +23,9 @@ const routes: Routes = [
   {
     path: 'login', component: LoginComponent,
   },
-  // { path: 'cart', component: CartComponent },
-  // { path: 'order-detail/:id', component: OrderDetailComponent },
-  // { path: 'order-pay-online/:id', component: OrderPayOnlineComponent },
-  // { path: 'order/check', component: OrderCheckComponent },
+  { path: 'order-detail/:id', component: OrderDetailComponent },
+  { path: 'listorder/:id', component: ListorderComponent },
+  
 ];
 
 @NgModule({

@@ -15,6 +15,9 @@ class Customer extends Authenticatable implements JWTSubject
     function order(){
         return $this->hasMany(Order::class);
     }
+    function orderDetails(){
+        return $this->belongsToMany(orderDetail::class);
+    }
     function province(){
         return $this->belongsTo(Province::class);
     }
