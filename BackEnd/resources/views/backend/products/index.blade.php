@@ -187,21 +187,6 @@
                     $(`.iconStatus${id}`).removeClass('bi bi-eye-slash-fill h3');
                     $(`.iconStatus${id}`).addClass('bi bi-eye-fill h3');
                 }
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: href,
-                        method: 'post',
-                        data: {
-                            _token: csrf
-                        },
-                        success: function(res) {
-                            console.log(id);
-                            Swal.fire(
-                                'Cập nhật thành công!','','success'
-                            )
-                        }
-                    });
-                }
             })
         });
     </script>
