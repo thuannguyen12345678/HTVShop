@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class DasboardController extends Controller
@@ -27,10 +29,16 @@ class DasboardController extends Controller
         ->take(5)
         ->get();
         $totalPrice  =  OrderDetail::pluck('product_price')->sum();
+        $usercount  =  User::pluck('name')->count();
+        $customercount  =  Customer::pluck('name')->count();
+        $ordercount  =  Order::pluck('id')->count();
         $params = [
            'productPro'=>$productPro,
            'customerPro'=> $customerPro,
-           'totalPrice'=>$totalPrice
+           'totalPrice'=>$totalPrice,
+           'usercount'=>$usercount,
+           'customercount'=>$customercount,
+           'ordercount'=>$ordercount,
         ];
         return view('Backend.dashboard.index',$params);
     }

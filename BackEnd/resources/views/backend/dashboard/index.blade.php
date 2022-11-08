@@ -28,13 +28,12 @@
              <div class="full counter_section margin_bottom_30">
                 <div class="couter_icon">
                    <div>
-                      <i class="fa fa-clock-o blue1_color"></i>
                    </div>
                 </div>
                 <div class="counter_no">
-                   <div>
-                      <p class="total_no">123.50</p>
-                      <p class="head_couter">Average Time</p>
+                   <div style="text-align: center">
+                      <p class="total_no" ><h2>{{number_format($ordercount)}}</h2></p>
+                      <p class="head_couter">Số Đơn hàng</p>
                    </div>
                 </div>
              </div>
@@ -43,13 +42,12 @@
              <div class="full counter_section margin_bottom_30">
                 <div class="couter_icon">
                    <div>
-                      <i class="fa fa-cloud-download green_color"></i>
                    </div>
                 </div>
-                <div class="counter_no">
-                   <div>
-                      <p class="total_no">1,805</p>
-                      <p class="head_couter">Collections</p>
+                <div class="counter_no" >
+                   <div style="text-align: center">
+                      <p class="total_no"><h2>{{number_format($customercount)}}</h2></p>
+                      <p class="head_couter">Số Khách Hàng</p>
                    </div>
                 </div>
              </div>
@@ -58,13 +56,12 @@
              <div class="full counter_section margin_bottom_30">
                 <div class="couter_icon">
                    <div>
-                      <i class="fa fa-comments-o red_color"></i>
                    </div>
                 </div>
-                <div class="counter_no">
-                   <div>
-                      <p class="total_no">54</p>
-                      <p class="head_couter">Comments</p>
+                <div class="counter_no" >
+                   <div style="text-align: center">
+                      <p class="total_no"><h2>{{number_format($usercount)}}</p>
+                      <p class="head_couter">Số Nhân Viên</p>
                    </div>
                 </div>
              </div>
@@ -78,7 +75,7 @@
              <div class="dash_blog">
                 <div class="dash_blog_inner">
                    <div class="dash_head">
-                      <h3><span><i class="fa fa-calendar"></i>Top các Khách hàng mua nhiều nhất</span><span class="plus_green_bt"><a href="#">+</a></span></h3>
+                      <h3><span><i class="fa fa-calendar"></i>Top Các Khách Hàng Thân Thiết</span><span class="plus_green_bt"></span></h3>
                    </div>
                    <div class="list_cont">
 
@@ -98,7 +95,7 @@
              <div class="dash_blog">
                 <div class="dash_blog_inner">
                    <div class="dash_head">
-                      <h3><span><i class="fa fa-comments-o"></i>Top sản phẩm bán chạy </span><span class="plus_green_bt"><a href="#">+</a></span></h3>
+                      <h3><span><i class="fa fa-comments-o"></i>Top Sản Phẩm Bán Chạy </span><span class="plus_green_bt"></span></h3>
                    </div>
                    <div class="list_cont">
                    </div>
