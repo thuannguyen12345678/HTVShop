@@ -74,15 +74,8 @@
       </li>
     </div>
   </div>
-
- 
-
-
-
-
 </ul>
 </section>
-
 <div class="container" >
   <!-- sản phẩm -->
   <div class="testimonials-area two pb-100">
@@ -93,7 +86,8 @@
             <h1 class="title" style="text-align:center ;">Top Sản Phẩm Bán Chạy</h1>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-3" *ngFor="let product of top">
+        <ng-container *ngFor="let product of top">
+        <div class="col-sm-6 col-lg-3" >
           <div class="products-item">
             <div class="top">
               <img
@@ -134,8 +128,10 @@
             </div>
           </div>
         </div>
+      </ng-container>
       </div>
     </div>
+
     <div class="text-center">
       <a class="common-btn two" [routerLink]="['/product-list']">
         Xem thêm sản phẩm
@@ -221,26 +217,24 @@
       </div>
     </div>
   </div>
-
-
   <div
   class="prd-sale cate-box bg-white p-t-15 mb24"
   style="background-color: aquamarine"
 >
-
 <br /><br />
-
   <div class="testimonials-area two pb-100">
     <div class="container">
       <div class="section-title" >
         <h1 style="text-align:center">Sản phẩm</h1>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-lg-3" *ngFor="let product of products | paginate:{
+         <ng-container  *ngFor="let product of products | paginate:{
           itemsPerPage:tableSize,
           currentPage:page,
           totalItems :count
         };let i = index">
+        <ng-container *ngIf="product.status">
+        <div class="col-sm-6 col-lg-3">
           <div class="products-item" *ngIf="product.status == 1">
             <div class="top">
               <img
@@ -280,24 +274,21 @@
               </button>
             </div>
           </div>
-          <!-- <h4 class="title">
-            <a routerLink='/product-detail/{{product.id}}'>{{ product.name }}</a>
-          </h4> -->
         </div>
+      </ng-container>
+      </ng-container>
         <pagination-controls
                 previousLabel="Trang sau"
                 nextLabel="Trang tiếp"
                 (pageChange)="ontableDataChange($event)"
                 >
-            </pagination-controls>  
+        </pagination-controls>
       </div>
       <div class="item">
         <a rel="nofollow" href="https://dienthoaihay.vn/khuyen-mai/mua-hang-tu-xa-tai-dienthoaihayvn-an-tam-tuyet-doi-voi-goi-bao-hiem-den-bu-100-gia-tri-san-pham-n129.html" title='Dưới slideshow'  id="banner_item_96" class="banner_item">
-                                <img class="img-old img-responsive" alt="Dưới slideshow" src="https://dienthoaihay.vn/images/banners/original/den-bu-100-dai_1663384522.gif" >
-                          </a>
-    
-    
-                  </div>
+            <img class="img-old img-responsive" alt="Dưới slideshow" src="https://dienthoaihay.vn/images/banners/original/den-bu-100-dai_1663384522.gif" >
+        </a>
+      </div>
     </div>
   </div>
 </div>

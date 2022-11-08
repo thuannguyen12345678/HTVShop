@@ -1,7 +1,6 @@
 
 <div class="products-area ptb-100">
   <div class="container">
-
     <div class="title_block id_tab"><h2>Sản phẩm</h2>
     <div style="text-align: center">
       <a type="button" (click)="filter2000000()" style="color: blue"
@@ -25,17 +24,12 @@
       >
     </div>
     <div style="text-align: right">
-      <form action="">
-        <button style="color: rgb(0, 0, 6); background-color: #2ec1ac">
-          tìm kiếm
-        </button>
-        <input type="text" placeholder="nhập tên sản phẩm" />
+      <form action="#"  [formGroup]="serachForm">
+        <input style="margin-left:97px" type="text" formControlName="search" placeholder="Tìm kiếm...">
+        <button (click)="product_search($event) " type="submit" ><i class="bx bx-search"></i></button>
       </form>
     </div>
   </div>
-    <!-- <br />
-    <br /> -->
-
     <div class="row">
       <div class="col-lg-3">
         <div class="sorting-menu">
@@ -68,19 +62,18 @@
       <div class="col-lg-9">
         <div class="text-center">
           <div class="row">
-            <div
-              class="col-sm-6 col-lg-3"
-              *ngFor="
-                let product of products
-                  | paginate
-                    : {
-                        itemsPerPage: tableSize,
-                        currentPage: page,
-                        totalItems: count
-                      };
-                let i = index
-              "
-            >
+            <ng-container *ngFor="
+            let product of products
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          ">
+          <ng-container *ngIf="product.status">
+            <div class="col-sm-6 col-lg-3">
               <div class="products-item">
                 <div class="top">
                   <a class="wishlist" href="#">
@@ -102,13 +95,15 @@
                   </div>
                 </div>
                 <div class="bottom">
-                  <a class="cart-text" (click)="addToCart(product.id)" href="#"
+                  <a class="cart-text" (click)="addToCart(product.id)" type="submit"
                     >Add To Cart</a
                   >
                   <i class="bx bx-plus"></i>
                 </div>
               </div>
             </div>
+          </ng-container>
+          </ng-container>
             <pagination-controls
               previousLabel="Trang sau"
               nextLabel="Trang tiếp"

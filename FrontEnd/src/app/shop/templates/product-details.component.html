@@ -83,9 +83,11 @@
                 Số lượng: <span>{{ product.amount }}</span>
               </li>
               <li>MUA HÀNG TRẢ GÓP.</li>
-              <li><span>  - Hổ trợ lãi xuất 0%</span></li>
-              <li><span>  - Duyệt hồ sơ nhanh chóng: 15 phút nhận máy</span></li>
-              <li><span style="color:red">- Trả góp hỗ trợ cả NỢ XẤU</span></li>
+              <li><span> - Hổ trợ lãi xuất 0%</span></li>
+              <li><span> - Duyệt hồ sơ nhanh chóng: 15 phút nhận máy</span></li>
+              <li>
+                <span style="color: red">- Trả góp hỗ trợ cả NỢ XẤU</span>
+              </li>
             </ul>
             <ul class="cart">
               <li>
@@ -105,7 +107,11 @@
                 </ul>
               </li>
               <li>
-                <a type="submit" class="common-btn"(click)="addToCart(product.id)">
+                <a
+                  type="submit"
+                  class="common-btn"
+                  (click)="addToCart(product.id)"
+                >
                   Add To Cart
                   <!-- <img src="assets/images/shape1.png" alt="Shape" />
                   <img src="assets/images/shape2.png" alt="Shape" /> -->
@@ -113,40 +119,41 @@
               </li>
             </ul>
 
-          <!-- The Modal -->
-          <div class="modal" id="myModal">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">
-                    Xem thêm <i class="bi bi-play-fill"></i>
-                  </h4>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                  ></button>
-                </div>
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">
+                      Xem thêm <i class="bi bi-play-fill"></i>
+                    </h4>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                    ></button>
+                  </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <div
-                    class="tab-pane fade show active"
-                    id="description"
-                    role="tabpanel"
-                    aria-labelledby="description-tab"
-                    [innerHTML]="product.description"
-                  ></div>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <div
+                      class="tab-pane fade show active"
+                      id="description"
+                      role="tabpanel"
+                      aria-labelledby="description-tab"
+                      [innerHTML]="product.description"
+                    ></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -154,44 +161,51 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="bottom">
-    <br />
-    <br />
-    <div class="products-area pb-70">
-      <div class="container">
-        <div class="section-title">
-          <h2>Sản phẩm liên quan</h2>
-        </div>
-        <div class="row">
-          <ng-container *ngFor="let trending of product_top">
-            <ng-container *ngIf="trending.status">
-          <div class="col-sm-6 col-lg-3">
-            <div class="products-item">
-              <div class="top">
-                <a class="wishlist">
-                  <i class="bx bx-heart"></i>
-                </a>
-                <img
-                  src="http://127.0.0.1:8000/{{ trending.image }}"
-                  alt="Products"
-                  style="width: 160px; height: 160px"
-                />
-                <div class="inner">
-                  <h3>
-                    <a type="submit" (click)="detail(trending.id)">{{ trending.name }}</a>
-                  </h3>
-                  <span>{{ trending.price|number }}</span>
-                </div>
-              </div>
-              <div class="bottom">
-                <a type="submit" class="cart-text" (click)="addToCart(product.id)">Add To Cart</a>
-                <i class="bx bx-plus"></i>
-              </div>
-            </div>
+    <div class="bottom">
+      <br />
+      <br />
+      <div class="products-area pb-70">
+        <div class="container">
+          <div class="section-title">
+            <h2>Sản phẩm liên quan</h2>
           </div>
-        </ng-container>
-      </ng-container>
+          <div class="row">
+            <ng-container *ngFor="let trending of product_top">
+              <ng-container *ngIf="trending.status">
+                <div class="col-sm-6 col-lg-3">
+                  <div class="products-item">
+                    <div class="top">
+                      <a class="wishlist">
+                        <i class="bx bx-heart"></i>
+                      </a>
+                      <img
+                        src="http://127.0.0.1:8000/{{ trending.image }}"
+                        alt="Products"
+                        style="width: 160px; height: 160px"
+                      />
+                      <div class="inner">
+                        <h3>
+                          <a type="submit" (click)="detail(trending.id)">{{
+                            trending.name
+                          }}</a>
+                        </h3>
+                        <span>{{ trending.price | number }}</span>
+                      </div>
+                    </div>
+                    <div class="bottom">
+                      <a
+                        type="submit"
+                        class="cart-text"
+                        (click)="addToCart(product.id)"
+                        >Add To Cart</a
+                      >
+                      <i class="bx bx-plus"></i>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
