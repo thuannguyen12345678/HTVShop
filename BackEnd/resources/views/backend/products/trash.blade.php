@@ -86,14 +86,13 @@
                                     <th> Tên Sản phẩm </th>
                                     <th> Số lượng </th>
                                     <th> Giá </th>
-                                    <th> Trạng thái</th>
                                     <th> Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($products as $key => $product)
                                     <tr>
-                                        <td class="align-middle"> {{ $product->id }} </td>
+                                        <td class="align-middle"> {{ $key + 1 }} </td>
                                         <td>
                                             <img style="width:100px; height:70px" src="{{ asset($product->image) }}">
                                         </td>
@@ -101,18 +100,6 @@
                                         <td class="align-middle"> {{ $product->name }} </td>
                                         <td class="align-middle"> {{ $product->amount }} </td>
                                         <td class="align-middle"> {{ $product->price }} </td>
-                                        <td>
-                                            @if ($product->status == 1)
-                                                <a href="{{ route('products.hideStatus', $product->id) }}">
-                                                    <i class="bi bi-eye-fill h3" style="color:rgb(71, 66, 233) "></i>
-                                                </a>
-                                            @else
-                                                <a href="{{ route('products.showStatus', $product->id) }}">
-                                                    <i class="bi bi-eye-slash-fill h3" style="color:red"></i>
-                                                </a>
-                                            @endif
-                                        </td>
-
                                         <td>
                                             <div class="container">
                                                 <div class="row">

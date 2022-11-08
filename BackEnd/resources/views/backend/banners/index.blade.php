@@ -110,34 +110,19 @@
             console.log(href);
             Swal.fire({
                 title: 'Bạn có chắc?',
-                text: "Thay đổi trạng thái của ảnh bìa!",
-                showCancelButton: true,
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Đồng ý!'    
+                text: "Thay đổi trạng thái của sản phẩm!",
+                    // showCancelButton: true,
+                    // cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý!'
             }).then((result) => {
                 if (status) {
                     $(this).data('status', 0);
                     $(`.iconStatus${id}`).removeClass('bi bi-eye-fill h3');
                     $(`.iconStatus${id}`).addClass('bi bi-eye-slash-fill h3');
-                } else {
+                }else{
                     $(this).data('status', 1);
                     $(`.iconStatus${id}`).removeClass('bi bi-eye-slash-fill h3');
                     $(`.iconStatus${id}`).addClass('bi bi-eye-fill h3');
-                }
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: href,
-                        method: 'post',
-                        data: {
-                            _token: csrf
-                        },
-                        success: function(res) {
-                            console.log(id);
-                            Swal.fire(
-                                'Cập nhật thành công!','','success'
-                            )
-                        }
-                    });
                 }
             })
         });
