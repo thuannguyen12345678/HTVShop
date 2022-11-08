@@ -15,6 +15,7 @@ use App\Models\Product;
 use App\Models\Province;
 use App\Models\Ward;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller {
@@ -163,11 +164,20 @@ class OrderController extends Controller {
     }
     public function listorder($id){
         try{
-            return response()->json(Customer::with(['orders' => function ($query) {
-                return $query->with(['orderDetails'=> function ($query) {
-                    return $query->with(['products']);
-                }]);
-            }])->find($id));
+            $orders = DB::table('order_details')
+        ->leftJoin('orders', 'order_details.order_id', '=', 'orders.id')
+        ->leftJoin('customers', 'orders.customer_id', '=', 'customers.id')
+        ->select('order_details.*')->where('customers.id',$id)
+        ->get();
+        //    $Customer = Customer::find($id);
+        //    $order  = $Customer->orderDetails();
+           return response()->json($orders, 200);
+            //
+            // return response()->json(Customer::with(['orders' => function ($query) {
+            //     return $query->with(['orderDetails'=> function ($query) {
+            //         return $query->with(['products']);
+            //     }]);
+            // }])->find($id));
         }catch(\Exception $e){
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
         }

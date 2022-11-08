@@ -41,10 +41,10 @@ export class ShopService {
     return this.http.get<Category[]>(environment.urlAllCategories);
   }
   getListOrder(id: any){
-    return this.http.get(environment.urlListOrder+id);
+    return this.http.get(environment.urlListOrder+'/'+id);
   }
   showOrder(id: any){
-    return this.http.get(environment.urlOrderShow+id);
+    return this.http.get(environment.urlOrderShow+'/'+id);
   }
   searchProductList(name:string){
     const response = new Promise(resolve => {

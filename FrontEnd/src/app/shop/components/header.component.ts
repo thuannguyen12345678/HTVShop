@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderService } from '../services/order.service';
+import { ShopService } from '../shop.service';
 @Component({
   selector: 'app-header',
   templateUrl: '../templates/header.component.html',
@@ -13,16 +14,20 @@ export class HeaderComponent implements OnInit {
   listCart: any;
   id_user: any;
   name: any;
+  order: any;
   cartSubtotal: number = 0;
   count: any;
   constructor(
     private _AuthService: AuthService,
     private _Router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private _UserService:AuthService,
+    private ShopService:ShopService,
   ) {}
   check: any = this._AuthService.checkAuth();
   ngOnInit(): void {
     this.getAllCart();
+    this.profile();
   }
   logout() {
     this._AuthService.logout();
@@ -39,6 +44,17 @@ export class HeaderComponent implements OnInit {
       
     }
   }
+  profile(){
+    if(this._UserService.checkAuth()) {
+        this._UserService.profile().subscribe(res =>{
+          this.id_user = res.id;
+          console.log(this.id_user);
+        },e=>{        })        
+    }
+    else{
+      this._Router.navigate(['/login']);
+    }
+}
   getAllCart() {
     this.orderService.getAllCart().subscribe((res) => {
       this.listCart = res;
@@ -62,5 +78,12 @@ export class HeaderComponent implements OnInit {
   changeCart() {
     this.getAllCart();
     this.check = this._AuthService.checkAuth();
+  }
+  orders(){
+    // this.customer_id = this.route.snapshot.params['id'];
+    this.ShopService.getListOrder(this.id_user).subscribe(res => {
+      this.order = res;
+      console.log(res);
+    });
   }
 }
